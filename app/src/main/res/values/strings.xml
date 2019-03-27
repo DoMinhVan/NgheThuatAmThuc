@@ -10,4 +10,10 @@
     <string name="nhapLaiMatKhau">Nhập lại mật khẩu</string>
     <string name="btnDangKy">Đăng ký</string>
     <string name="btnHuy">Hủy</string>
+    //Màn hình thêm bài viết
+    <string name="txtNguyenLieu">Nhập nguyên liệu</string>
+    <string name="txtBuocLam">Nhập bước làm</string>
+    <string name="edtTenDD">Nhập tên/loại dinh dưỡng</string>
+    <string name="edtKhoiLuong">Nhập khối lượng</string>
+    <string name="edtPhanTram">Nhập phần trăm</string>
 </resources>

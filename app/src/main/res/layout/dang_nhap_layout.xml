@@ -81,6 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:textColor="@color/textbtn"
             android:background="@drawable/custom_button_dn_fb"
             android:text="Đăng Nhập Bằng Facebook" />
 
@@ -90,6 +91,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
+            android:textColor="@color/textbtn"
             android:background="@drawable/custom_button_dn_gmail"
             android:text="Đăng Nhập Bằng Gmail"/>
         <LinearLayout
@@ -102,11 +104,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="50dp"
+                android:textColor="@color/textbtn"
                 android:background="@drawable/custom_button_dn_fb"
                 android:text="Đăng Nhập" />
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/textbtn"
                 android:background="@drawable/custom_button_dn_gmail"
                 android:text="Đăng ký" />
         </LinearLayout>

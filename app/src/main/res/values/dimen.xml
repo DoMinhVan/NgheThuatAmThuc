@@ -3,4 +3,6 @@
     //Màn hình đăng ký
     <dimen name="sizeTieuDeManHinhDangKy">35dp</dimen>
     <dimen name="magrinScreen">20dp</dimen>
+    //Màn hình thêm
+    <dimen name="sizeTenMonAn">20sp</dimen>
 </resources>

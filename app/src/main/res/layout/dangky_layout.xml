@@ -31,7 +31,7 @@
             tools:text="@string/tenTieuDe" />
 
         <Spinner
-            android:id="@+id/spinner"
+            android:id="@+id/spnNguoiDung"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -45,7 +45,7 @@
             app:layout_constraintVertical_bias="0.15" />
 
         <Spinner
-            android:id="@+id/spinner2"
+            android:id="@+id/spnGioiTinh"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -60,103 +60,104 @@
             app:layout_constraintVertical_bias="0.55" />
 
         <EditText
+            android:id="@+id/edtHoTen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginLeft="@dimen/magrinScreen"
-            android:lyout_marginRight="@dimen/magrinScreen"
             android:layout_marginTop="8dp"
+            android:hint="@string/nhapHoTen"
             android:inputType="text"
+            android:lyout_marginRight="@dimen/magrinScreen"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.25"
-            tools:text="@string/nhapHoTen" />
+            app:layout_constraintVertical_bias="0.25" />
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/edtSDT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginLeft="@dimen/magrinScreen"
             android:layout_marginRight="@dimen/magrinScreen"
             android:layout_marginTop="8dp"
+            android:hint="@string/nhapSoDienThoai"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.45"
-            tools:text="@string/nhapSoDienThoai" />
+            app:layout_constraintVertical_bias="0.45" />
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/edtNgaySinh"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginLeft="@dimen/magrinScreen"
             android:layout_marginRight="@dimen/magrinScreen"
             android:layout_marginTop="8dp"
+            android:hint="@string/nhapNgaySinh"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.65"
-            tools:text="@string/nhapMatKhau" />
+            app:layout_constraintVertical_bias="0.65" />
 
         <EditText
-            android:id="@+id/editText6"
+            android:id="@+id/edtMatKhau"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginLeft="@dimen/magrinScreen"
             android:layout_marginRight="@dimen/magrinScreen"
+            android:layout_marginTop="8dp"
+            android:hint="@string/nhapMatKhau"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.75"
-            tools:text="@string/nhapNgaySinh" />
+            app:layout_constraintVertical_bias="0.75" />
 
         <EditText
-            android:id="@+id/editText4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="@dimen/magrinScreen"
-            android:layout_marginRight="@dimen/magrinScreen"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.85"
-            tools:text="@string/nhapMatKhau" />
-
-        <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/edtNhapLaiMatKhau"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginLeft="@dimen/magrinScreen"
             android:layout_marginRight="@dimen/magrinScreen"
             android:layout_marginTop="8dp"
+            android:hint="@string/nhapLaiMatKhau"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.35"
-            tools:text="@string/nhapEmail" />
+            app:layout_constraintVertical_bias="0.85" />
+
+        <EditText
+            android:id="@+id/edtEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="@dimen/magrinScreen"
+            android:layout_marginRight="@dimen/magrinScreen"
+            android:layout_marginTop="8dp"
+            android:hint="@string/nhapEmail"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.35" />
 
         <Button
+            android:id="@+id/btnDangKy"
             style="@style/btnDangKy"
-            android:id="@+id/button"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
@@ -174,8 +175,8 @@
             tools:text="@string/btnDangKy" />
 
         <Button
+            android:id="@+id/btnHuy"
             style="@style/btnDangKy"
-            android:id="@+id/button2"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
