@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">NgheThuatAmThuc</string>
+    //Màn hình đăng ký
+    <string name="tenTieuDe">Đăng Ký</string>
+    <string name="nhapHoTen">Nhập họ tên</string>
+    <string name="nhapEmail">Nhập Email</string>
+    <string name="nhapSoDienThoai">Nhập số điện thoại</string>
+    <string name="nhapNgaySinh">16/04/1998</string>
+    <string name="nhapMatKhau">Nhập mật khẩu</string>
+    <string name="nhapLaiMatKhau">Nhập lại mật khẩu</string>
+    <string name="btnDangKy">Đăng ký</string>
+    <string name="btnHuy">Hủy</string>
 </resources>

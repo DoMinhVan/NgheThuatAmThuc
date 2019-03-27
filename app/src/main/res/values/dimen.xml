@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    //Màn hình đăng ký
+    <dimen name="sizeTieuDeManHinhDangKy">35dp</dimen>
+    <dimen name="magrinScreen">20dp</dimen>
+</resources>

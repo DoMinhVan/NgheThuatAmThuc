@@ -5,4 +5,6 @@
     <color name="colorAccent">#D81B60</color>
     <color name="btnDNFb">#3300FF</color>
     <color name="btnDNGmail">#FF0033</color>
+    <color name="textnomarl">#000000</color>
+    <color name="textbtn">#ffffff</color>
 </resources>
