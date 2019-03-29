@@ -7,4 +7,6 @@
     <color name="btnDNGmail">#ea6464</color>
     <color name="textnomarl">#000000</color>
     <color name="textbtn">#f1f1f1</color>
+    <color name="btnNoiBat">#c75847</color>
+    <color name="txtBtnNoiBat">#fff</color>
 </resources>

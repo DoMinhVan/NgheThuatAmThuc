@@ -19,7 +19,6 @@
         <activity android:name=".QuanLyTaiKhoanActivity">
         </activity>
         <activity android:name=".DangNhapActivity"></activity>
-        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

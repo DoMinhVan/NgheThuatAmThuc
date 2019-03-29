@@ -16,4 +16,17 @@
     <string name="edtTenDD">Nhập tên/loại dinh dưỡng</string>
     <string name="edtKhoiLuong">Nhập khối lượng</string>
     <string name="edtPhanTram">Nhập phần trăm</string>
+    //Manf hình nổi bật(Trang chủ)
+    <string name="btnMonNgonMoiNgay">Món ngon mỗi ngày</string>
+    <string name="btnDanhGiaCao">Đánh giá cao</string>
+    <string name="btnSoiNoi">Sôi nổi</string>
+    <string name="btnMucKhac">Mục khác</string>
+    <string name="planets">Mục khác</string>
+
+        <string-array name="planets_array">
+            <item>Cơm chay</item>
+            <item>Món nướng</item>
+            <item>Món xào</item>
+            <item>Món đa dinh dưỡng</item>
+        </string-array>
 </resources>

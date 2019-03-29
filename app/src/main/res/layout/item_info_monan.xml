@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txtTenNguoiDang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ngô Hiếu"/>
+
+    <ImageView
+        android:id="@+id/imgMonAn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/login"/>
+
+    <TextView
+        android:id="@+id/txtTenMonAn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bánh Huế"/>
+    <TextView
+        android:id="@+id/txtLuotThich"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="69 lượt thích"/>
+    <TextView
+        android:id="@+id/txtTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mới đây"/>
+    <TextView
+        android:id="@+id/txtDemo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Demo số sao"/>
+</LinearLayout>
