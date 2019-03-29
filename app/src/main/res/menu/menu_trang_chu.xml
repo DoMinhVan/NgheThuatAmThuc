@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item  android:title="yeuthich" android:id="@+id/menuYeuThich" android:icon="@drawable/login" app:showAsAction="always" />
+    <item  android:title="admin" android:id="@+id/menuAdmin" android:icon="@drawable/login" app:showAsAction="always" />
+    <item  android:title="ngoisao" android:id="@+id/menuNgoiSao" android:icon="@drawable/login" app:showAsAction="always" />
+    <item  android:title="timkiem" android:id="@+id/menuTimKiem" android:icon="@drawable/login" app:showAsAction="always" />
+</menu>
