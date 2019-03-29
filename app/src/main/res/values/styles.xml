@@ -1,11 +1,15 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    //ToolBar
+    <style name="HeaderBar">
+        <item name="android:background">#303F9F</item>
     </style>
     //Layout_DangKy
     <style name="btnDangKy">
@@ -20,7 +24,7 @@
         <item name="android:background">@mipmap/button_add_thembaiviet</item>
     </style>
     <style name="txt_input">
-        <item name="android:layout_width">320sp</item>
+        <item name="android:layout_width">380sp</item>
         <item name="android:layout_height">40sp</item>
     </style>
 </resources>
