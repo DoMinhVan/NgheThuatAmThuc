@@ -27,6 +27,8 @@
         <item name="android:layout_width">380sp</item>
         <item name="android:layout_height">40sp</item>
     </style>
-    
-
+    //Trang nổi bật
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlActivated">#dce04a</item>
+    </style>
 </resources>

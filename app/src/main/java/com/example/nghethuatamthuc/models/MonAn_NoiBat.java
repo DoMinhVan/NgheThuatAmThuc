@@ -6,15 +6,15 @@ public class MonAn_NoiBat {
     String tenMonAn;
     String luotThich;
     String thoiGian;
-    String DemoSoSao;
+    float sosanhgia;
 
-    public MonAn_NoiBat(String tenNguoiDang, String tenMonAn, String luotThich, String thoiGian, String demoSoSao) {
+    public MonAn_NoiBat(String tenNguoiDang, String tenMonAn, String luotThich, String thoiGian, float sosanhgia) {
         this.tenNguoiDang = tenNguoiDang;
         //this.idImage = idImage;
         this.tenMonAn = tenMonAn;
         this.luotThich = luotThich;
         this.thoiGian = thoiGian;
-        DemoSoSao = demoSoSao;
+        this.sosanhgia = sosanhgia;
     }
 
     public String getTenNguoiDang() {
@@ -57,11 +57,11 @@ public class MonAn_NoiBat {
         this.thoiGian = thoiGian;
     }
 
-    public String getDemoSoSao() {
-        return DemoSoSao;
+    public float getsosanhgia() {
+        return sosanhgia;
     }
 
-    public void setDemoSoSao(String demoSoSao) {
-        DemoSoSao = demoSoSao;
+    public void setsosanhgia(float sosanhgia) {
+        this.sosanhgia = sosanhgia;
     }
 }

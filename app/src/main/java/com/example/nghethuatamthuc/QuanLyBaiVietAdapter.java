@@ -2,8 +2,6 @@ package com.example.nghethuatamthuc;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.LayerDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,13 +14,13 @@ import com.example.nghethuatamthuc.models.MonAn_NoiBat;
 
 import java.util.ArrayList;
 
-public class NoiBatAdapter extends BaseAdapter {
+public class QuanLyBaiVietAdapter extends BaseAdapter {
 
     private Activity context;
     private int layoutID;
     private ArrayList<MonAn_NoiBat> listMonAn;
 
-    public NoiBatAdapter(Activity context, int layoutID, ArrayList<MonAn_NoiBat> listMonAn) {
+    public QuanLyBaiVietAdapter(Activity context, int layoutID, ArrayList<MonAn_NoiBat> listMonAn) {
         this.context = context;
         this.layoutID = layoutID;
         this.listMonAn = listMonAn;

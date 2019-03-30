@@ -5,4 +5,9 @@
     <dimen name="magrinScreen">20dp</dimen>
     //Màn hình thêm
     <dimen name="sizeTenMonAn">20sp</dimen>
+    //Màn hình nổi bật
+    <dimen name="marginListView">5sp</dimen>
+    <dimen name="sizeTenNguoiDang">20sp</dimen>
+    <dimen name="sizeTextNormal">15sp</dimen>
+    <dimen name="sizeTextThich">10sp</dimen>
 </resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item  android:title="xoa" android:id="@+id/menuXoa" android:icon="@mipmap/icons8_recy_none_48" app:showAsAction="always" />
+    <item  android:title="them" android:id="@+id/menuThem" android:icon="@mipmap/icons8_add_none_48" app:showAsAction="always" />
+    />
+</menu>

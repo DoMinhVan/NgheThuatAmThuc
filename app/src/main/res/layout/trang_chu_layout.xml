@@ -49,22 +49,22 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"/>
+
             <Spinner
+                android:textAlignment="center"
                 android:id="@+id/btnMucKhac"
-                android:background="@color/btnNoiBat"
-                android:text="@string/btnMucKhac"
-                android:textColor="@color/txtBtnNoiBat"
+                style="?android:attr/buttonStyle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:background="@color/btnNoiBat"
                 android:entries="@array/planets_array"
-                android:prompt="@string/planets"
-                style="?android:attr/buttonStyle">
-
+                android:text="@string/btnMucKhac">
             </Spinner>
 
         </LinearLayout>
         <ListView
+            android:layout_margin="@dimen/marginListView"
             android:id="@+id/listMain"
             android:layout_width="match_parent"
             android:layout_height="0dp"

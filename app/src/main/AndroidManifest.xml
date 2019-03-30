@@ -19,6 +19,10 @@
         <activity android:name=".QuanLyTaiKhoanActivity">
         </activity>
         <activity android:name=".DangNhapActivity"></activity>
+        <activity android:name=".YeuThichActivity"></activity>
+        <activity android:name=".QuanLyBaiVietActivity">
+
+        </activity>
     </application>
 
 </manifest>
