@@ -64,7 +64,7 @@ public class YeuThichActivity extends AppCompatActivity {
             return true;
         }
         if (id == R.id.menuAdmin) {
-            Intent i = new Intent(this, TrangChuActivity.class);
+            Intent i = new Intent(this, DangNhapActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(i);
             return true;

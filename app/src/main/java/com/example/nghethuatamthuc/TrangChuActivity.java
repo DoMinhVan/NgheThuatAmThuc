@@ -44,6 +44,7 @@ public class TrangChuActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setTitle(null);
 
+
         ListView listView = (ListView) findViewById(R.id.listMain);
 
         listMembers.add(new MonAn_NoiBat("Ngô Hiếu","Hamburger","696","Mới đây",5));
@@ -56,6 +57,7 @@ public class TrangChuActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_trang_chu,menu);
+
         return super.onCreateOptionsMenu(menu);
     }
 
