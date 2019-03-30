@@ -27,4 +27,6 @@
         <item name="android:layout_width">380sp</item>
         <item name="android:layout_height">40sp</item>
     </style>
+    
+
 </resources>
