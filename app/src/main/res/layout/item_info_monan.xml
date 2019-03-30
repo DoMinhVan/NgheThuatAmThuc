@@ -48,7 +48,7 @@
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@mipmap/icons8_love_none_48" />
+            app:srcCompat="@mipmap/icons8_love_selected_48" />
     </android.support.constraint.ConstraintLayout>
 
     <TextView
