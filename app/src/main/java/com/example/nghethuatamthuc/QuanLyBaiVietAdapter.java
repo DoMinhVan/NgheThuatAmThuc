@@ -64,7 +64,7 @@ public class QuanLyBaiVietAdapter extends BaseAdapter {
         tenMonAn.setText(monAn.getTenMonAn());
         luotThich.setText(monAn.getLuotThich() + " Lượt thích");
         thoiGian.setText(monAn.getThoiGian());
-        soluotdanhgia.setRating(monAn.getsosanhgia());
+        soluotdanhgia.setRating(monAn.getSodanhgia());
 
         return view;
     }

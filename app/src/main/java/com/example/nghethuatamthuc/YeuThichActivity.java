@@ -36,7 +36,7 @@ public class YeuThichActivity extends AppCompatActivity {
 
         ListView listView = (ListView) findViewById(R.id.listYeuThich);
 
-        listMembers.add(new MonAn_NoiBat("Ngô Hiếu","Hamburger","696","Mới đây",5));
+        listMembers.add(new MonAn_NoiBat("Ngô Hiếu","Hamburger","696","Mới đây",5f,0,0));
 
         adapter = new NoiBatAdapter(this, R.layout.item_info_monan,listMembers);
         listView.setAdapter(adapter);

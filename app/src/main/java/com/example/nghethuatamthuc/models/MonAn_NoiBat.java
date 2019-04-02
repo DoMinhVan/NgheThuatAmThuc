@@ -6,15 +6,18 @@ public class MonAn_NoiBat {
     String tenMonAn;
     String luotThich;
     String thoiGian;
-    float sosanhgia;
+    float sodanhgia;
+    int like;
+    int love;
 
-    public MonAn_NoiBat(String tenNguoiDang, String tenMonAn, String luotThich, String thoiGian, float sosanhgia) {
+    public MonAn_NoiBat(String tenNguoiDang, String tenMonAn, String luotThich, String thoiGian, float sodanhgia, int like, int love) {
         this.tenNguoiDang = tenNguoiDang;
-        //this.idImage = idImage;
         this.tenMonAn = tenMonAn;
         this.luotThich = luotThich;
         this.thoiGian = thoiGian;
-        this.sosanhgia = sosanhgia;
+        this.sodanhgia = sodanhgia;
+        this.like = like;
+        this.love = love;
     }
 
     public String getTenNguoiDang() {
@@ -57,11 +60,23 @@ public class MonAn_NoiBat {
         this.thoiGian = thoiGian;
     }
 
-    public float getsosanhgia() {
-        return sosanhgia;
+    public float getSodanhgia() {
+        return sodanhgia;
     }
 
-    public void setsosanhgia(float sosanhgia) {
-        this.sosanhgia = sosanhgia;
+    public int isLike() {
+        return like;
+    }
+
+    public void setLike(int like) {
+        this.like = like;
+    }
+
+    public int isLove() {
+        return love;
+    }
+
+    public void setLove(int love) {
+        this.love = love;
     }
 }

@@ -33,7 +33,7 @@ public class QuanLyBaiVietActivity extends AppCompatActivity {
 
         ListView listView = (ListView) findViewById(R.id.listQuanLyBaiViet);
 
-        listMembers.add(new MonAn_NoiBat("Ngô Hiếu","Hamburger","696","Mới đây",5));
+        listMembers.add(new MonAn_NoiBat("Ngô Hiếu","Hamburger","696","Mới đây",5,1,0));
 
         adapter = new NoiBatAdapter(this, R.layout.item_info_quanlybaiviet,listMembers);
         listView.setAdapter(adapter);
