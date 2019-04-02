@@ -3,5 +3,5 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:title="admin" android:id="@+id/menuAdmin" android:icon="@mipmap/icons8_user_none_48" app:showAsAction="always"/>
     <item android:title="messenger" android:id="@+id/menuMessenger" android:icon="@mipmap/icons8_mess_none_48" app:showAsAction="always"/>
-    <item android:title="thongbao" android:id="@+id/menuThongBao" android:icon="@mipmap/icons8_mess_none_48" app:showAsAction="always" />
+    <item android:title="thongbao" android:id="@+id/menuThongBao" android:icon="@mipmap/icons8_alarm_48" app:showAsAction="always" />
 </menu>
