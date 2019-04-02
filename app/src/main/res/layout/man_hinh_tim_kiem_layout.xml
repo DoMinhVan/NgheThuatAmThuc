@@ -65,11 +65,11 @@
 
 
         <Spinner
+            android:id="@+id/spDanhMuc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:entries="@array/arr_tkiem">
+            android:layout_marginRight="50dp">
         </Spinner>
     </LinearLayout>
 
@@ -83,20 +83,19 @@
         android:layout_marginLeft="20dp"
         android:text="@string/txtDanhCho" />
     <Spinner
-        android:id="@+id/spTimKiem"
+        android:id="@+id/spDoiTuong"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtDanhCho"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:layout_marginTop="10dp"
-        android:entries="@array/arr_timkiem">
+        android:layout_marginTop="10dp">
     </Spinner>
     <Button
         android:id="@+id/btnTim"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/spTimKiem"
+        android:layout_below="@+id/spDoiTuong"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="81dp"
         android:background="@drawable/custom_button_dn_fb"
@@ -106,7 +105,7 @@
         android:id="@+id/btnHuy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/spTimKiem"
+        android:layout_below="@+id/spDoiTuong"
         android:layout_marginLeft="157dp"
         android:layout_marginTop="82dp"
         android:layout_toRightOf="@+id/btnTim"
