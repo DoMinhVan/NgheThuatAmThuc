@@ -22,11 +22,38 @@
     <string name="btnDanhGiaCao">Đánh giá cao</string>
     <string name="btnSoiNoi">Sôi nổi</string>
     <string name="btnMucKhac">Mục khác</string>
-        <string-array name="planets_array">
-            <item>MỤC KHÁC</item>
-            <item>Cơm chay</item>
-            <item>Món nướng</item>
-            <item>Món xào</item>
-            <item>Món đa dinh dưỡng</item>
-        </string-array>
+    <string-array name="planets_array">
+        <item>MỤC KHÁC</item>
+        <item>Cơm chay</item>
+        <item>Món nướng</item>
+        <item>Món xào</item>
+        <item>Món đa dinh dưỡng</item>
+    </string-array>
+    <string-array name="arr_timkiem">
+        <item>Bình Thường</item>
+        <item>Ăn Kiên</item>
+        <item>Người Bệnh Tiểu Đường</item>
+    </string-array>
+    //MÀN HÌNH ĐĂNG NHẬP
+    <string name="txtDNhapfb">ĐĂNG NHẬP BẰNG FACEBOOK</string>
+    <string name="txtDNhapGM">ĐĂNG NHẬP BẰNG GMAIL</string>
+    <string name="txtDN">ĐĂNG NHẬP</string>
+    <string name="txtHuy">HỦY</string>
+    <string name="txtNoiTro">Nội Trợ</string>
+    <string name="txtAThuc">Chuyên Gia Ẩm Thực</string>
+    <string name="txtDD">Chuyên Gia Dinh Dưỡng</string>
+    <string name="txtLuu">Lưu đăng nhập</string>
+    //MÀN HÌNH TIM KIẾM
+    <string name="txtTim">TÌM KIẾM</string>
+    <string name="txtDanhCho">Dành Cho :</string>
+    <string name="btnTim">TÌM</string>
+    <string-array name="arr_tkiem">
+        <item>Món Lẩu</item>
+        <item>Món Khai Vị</item>
+        <item>Món Nướng</item>
+    </string-array>
+    <string name="txtDMuc">Chọn Danh Mục</string>
+    //tin nhan
+    <string name="txtUser">Người dùng 1</string>
+    <string name="txtTime">3 phút trước</string>
 </resources>

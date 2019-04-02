@@ -9,4 +9,5 @@
     <color name="textbtn">#f1f1f1</color>
     <color name="btnNoiBat">#c75847</color>
     <color name="txtBtnNoiBat">#fff</color>
+    <color name="txtUser">#000000</color>
 </resources>

@@ -67,7 +67,6 @@ public class NoiBatAdapter extends BaseAdapter {
         luotThich.setText(monAn.getLuotThich() + " Lượt thích");
         thoiGian.setText(monAn.getThoiGian());
         soluotdanhgia.setRating(monAn.getsosanhgia());
-
         return view;
     }
 

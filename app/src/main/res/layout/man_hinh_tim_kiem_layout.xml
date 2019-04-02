@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ManHinhTimKiemActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarTimKiem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
+    </android.support.v7.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/txtTimKiem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbarTimKiem"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginBottom="0dp"
+        android:text="@string/txtTim"
+        android:textSize="30sp" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/imgHinh"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/toolbarTimKiem"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="27dp"
+        android:layout_toRightOf="@+id/txtTimKiem"
+        android:src="@drawable/monan"
+        app:civ_border_color="#FF000000"
+        app:civ_border_width="1dp" />
+    <EditText
+        android:id="@+id/edtTimKiem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imgHinh"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="30dp"
+        android:hint="Nhập Từ Khóa Cần Tìm" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/edtTimKiem"
+        android:textSize="25sp"
+        android:layout_marginLeft="20dp"
+        android:text="@string/txtDMuc"/>
+    <LinearLayout
+        android:id="@+id/ln1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edtTimKiem"
+        android:layout_marginTop="70dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:entries="@array/arr_tkiem">
+        </Spinner>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtDanhCho"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ln1"
+        android:layout_marginTop="31dp"
+        android:textSize="25sp"
+        android:layout_marginLeft="20dp"
+        android:text="@string/txtDanhCho" />
+    <Spinner
+        android:id="@+id/spTimKiem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtDanhCho"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="10dp"
+        android:entries="@array/arr_timkiem">
+    </Spinner>
+    <Button
+        android:id="@+id/btnTim"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spTimKiem"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="81dp"
+        android:background="@drawable/custom_button_dn_fb"
+        android:text="@string/btnTim" />
+
+    <Button
+        android:id="@+id/btnHuy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spTimKiem"
+        android:layout_marginLeft="157dp"
+        android:layout_marginTop="82dp"
+        android:layout_toRightOf="@+id/btnTim"
+        android:background="@drawable/custom_button_dn_fb"
+        android:text="@string/btnHuy" />
+</RelativeLayout>

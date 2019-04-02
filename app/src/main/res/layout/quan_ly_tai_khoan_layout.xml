@@ -156,6 +156,7 @@
       android:layout_height="wrap_content"
       android:layout_below="@id/txtGmail2"
       android:text="Lưu"
+      android:background="@drawable/custom_button_dn_fb"
       android:layout_marginTop="20dp"/>
  </RelativeLayout>
 
