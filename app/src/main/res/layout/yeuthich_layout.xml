@@ -11,7 +11,7 @@
         android:id="@+id/toolbarYeuThich"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#4d8ab7">
+        android:background="@color/toolBar">
     </android.support.v7.widget.Toolbar>
 
     <LinearLayout

@@ -22,6 +22,7 @@ public class YeuThichActivity extends AppCompatActivity {
 
     private ArrayList<MonAn_NoiBat> listMembers = new ArrayList<MonAn_NoiBat>();
     private NoiBatAdapter adapter;
+    private boolean DangNhap = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,27 +53,33 @@ public class YeuThichActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item)
     {
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.menuTimKiem) {
-            return true;
+        switch (id) {
+            case R.id.menuTimKiem:
+                Intent intent1 = new Intent(YeuThichActivity.this, ManHinhTimKiemActivity.class);
+                intent1.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent1);
+                return true;
+            case R.id.menuNgoiSao:
+                Intent intent2 = new Intent(YeuThichActivity.this, TrangChuActivity.class);
+                intent2.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent2);
+                return true;
+            case R.id.menuAdmin:
+                if (DangNhap == true) {
+                    Intent intent3 = new Intent(YeuThichActivity.this, ManHinhTrangCaNhanActivity.class);
+                    intent3.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    startActivity(intent3);
+                } else {
+                    Intent intent4 = new Intent(YeuThichActivity.this, DangNhapActivity.class);
+                    intent4.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    startActivity(intent4);
+                }
+                return true;
+            case R.id.menuYeuThich:
+                Toast.makeText(YeuThichActivity.this, "Bạn đang ở trang này", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        if (id == R.id.menuNgoiSao) {
-            Intent i = new Intent(this, TrangChuActivity.class);
-            i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            startActivity(i);
-            return true;
-        }
-        if (id == R.id.menuAdmin) {
-            Intent i = new Intent(this, DangNhapActivity.class);
-            i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            startActivity(i);
-            return true;
-        }
-        if (id == R.id.menuYeuThich) {
-            Toast.makeText(YeuThichActivity.this, "Bạn đang ở trang này", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 }

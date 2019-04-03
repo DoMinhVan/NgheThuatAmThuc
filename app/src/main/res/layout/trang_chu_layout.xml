@@ -12,7 +12,7 @@
         android:id="@+id/toolbarTrangChu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#4d8ab7">
+        android:background="@color/toolBar">
     </android.support.v7.widget.Toolbar>
 
     <LinearLayout
@@ -53,7 +53,6 @@
             <Spinner
                 android:textAlignment="center"
                 android:id="@+id/btnMucKhac"
-                style="?android:attr/buttonStyle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

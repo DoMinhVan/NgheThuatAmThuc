@@ -9,12 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ManHinhThongBaoActivity">
+        <activity android:name=".TrangChuActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".ManHinhTrangCaNhanActivity">
+
+        </activity>
+        <activity android:name=".ManHinhThongBaoActivity">
+
         </activity>
         <activity android:name=".ManHinhTinNhanActivity" >
 
@@ -22,7 +28,6 @@
         <activity android:name=".ManHinhTimKiemActivity">
 
         </activity>
-        <activity android:name=".TrangChuActivity" />
         <activity android:name=".QuanLyTaiKhoanActivity" />
         <activity android:name=".DangNhapActivity" />
         <activity android:name=".YeuThichActivity" />

@@ -1,99 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ManHinhTrangCaNhanActivity">
-    <ImageView
-        android:id="@+id/imageView2"
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarTrangCaNhan"
         android:layout_width="match_parent"
-        android:layout_height="246dp"
-        android:scaleType="centerCrop"
+        android:layout_height="wrap_content"
+        android:background="@color/toolBar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/anhbia" />
+        app:layout_constraintVertical_bias="0.0">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imgHDaiDien"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
-        android:layout_below="@+id/imageView2"
-        android:layout_alignStart="@+id/imageView2"
-        android:layout_alignLeft="@+id/imageView2"
-        android:layout_alignBottom="@+id/imageView2"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="-88dp"
-        android:layout_marginEnd="104dp"
-        android:layout_marginRight="104dp"
-        android:layout_marginBottom="-88dp"
-        app:civ_border_width="5dp"
-        app:civ_border_color="@android:color/holo_purple"
-        android:src="@drawable/anhdaidien" />
-
-    <TextView
-        android:id="@+id/txtUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/imgHDaiDien"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="95dp"
-        android:text="@string/txtUser2"
-        android:textSize="@dimen/sizetext"
-        android:textColor="@color/txtUser"/>
-    <TextView
-        android:id="@+id/txtNgThamGia"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txtUser"
-        android:layout_centerHorizontal="true"
-        android:text="@string/txtNgayTG"
-        android:textSize="@dimen/sizetext2"/>
-
-    <RelativeLayout
-        android:id="@+id/retvQL"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txtNgThamGia"
-        android:layout_marginTop="-2dp">
-
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            app:srcCompat="@drawable/qltk"
-            tools:ignore="UnknownId" />
-        <TextView
-            android:layout_below="@id/imageView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/txtQlTK"
-            android:textSize="@dimen/sizetextql"
-            android:textColor="@color/txtUser"/>
-    </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
 
     <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_below="@id/retvQL"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="-58dp"
-        android:layout_marginRight="38dp"
-        app:srcCompat="@drawable/thembv" />
-    <TextView
-        android:layout_below="@id/imageView6"
-        android:layout_alignParentRight="true"
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="226dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarTrangCaNhan"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/anhbia" />
+
+    <Button
+        android:id="@+id/btnQuanLyCaNhan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/sizetextql"
-        android:textColor="@color/txtUser"
-        android:text="@string/txtQlTK"/>
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnThemBaiViet"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.4" />
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/btnThemBaiViet"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/thembv"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.74"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.4" />
+
+
+</android.support.constraint.ConstraintLayout>
