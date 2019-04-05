@@ -14,4 +14,6 @@
     <dimen name="sizetext2">10sp</dimen>
     <dimen name="maginBottom">5sp</dimen>
     <dimen name="sizetextql">15sp</dimen>
+
+    <dimen name="sizeTenNguoiDung">20sp</dimen>
 </resources>

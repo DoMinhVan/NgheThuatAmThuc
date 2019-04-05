@@ -58,7 +58,7 @@
     <string name="txtTime">3 phút trước</string>
     //trang ca nhan
     <string name="txtUser2">User</string>
-    <string name="txtNgayTG">Ngày tham gia 29/3/209</string>
+    <string name="txtNgayTG">Ngày tham gia 29/3/2009</string>
     <string name="txtQlBv">Quản lý bài viết</string>
     <string name="txtQlTK">Quản lý tài khoản</string>
 </resources>

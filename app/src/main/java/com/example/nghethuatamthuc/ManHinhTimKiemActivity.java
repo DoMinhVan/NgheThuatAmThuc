@@ -22,7 +22,7 @@ public class ManHinhTimKiemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.man_hinh_tim_kiem_layout);
-        Toolbar
+        //Toolbar
         toolbarTimKiem = (Toolbar) findViewById(R.id.toolbarTimKiem);
         setSupportActionBar(toolbarTimKiem);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
