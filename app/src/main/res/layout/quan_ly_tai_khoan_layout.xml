@@ -7,158 +7,156 @@
     android:layout_height="match_parent"
     android:layout_margin="20dp"
     tools:context=".QuanLyTaiKhoanActivity">
- <RelativeLayout
-     android:layout_width="match_parent"
-     android:orientation="vertical"
-     android:layout_height="wrap_content">
-  <TextView
-      android:id="@+id/txtHoTen"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_alignParentTop="true"
-      android:layout_alignParentLeft="true"
-      android:layout_marginTop="20dp"
-      android:text="Họ Tên"/>
-  <EditText
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_toRightOf="@+id/txtNhapLaiMatKhau"
-      android:hint="Nhập họ tên"/>
-  <TextView
-      android:id="@+id/txtTenDangNhap"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="Tên Đăng Nhập"
-      android:layout_marginTop="40dp"
-      android:layout_below="@+id/txtHoTen"/>
-  <EditText
-      android:id="@+id/edtTenDangNhap"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_toRightOf="@+id/txtNhapLaiMatKhau"
-      android:layout_marginTop="30dp"
-      android:layout_below="@+id/txtHoTen"
-      android:hint="Nhập tên đăng nhập"/>
-  <TextView
-      android:id="@+id/txtSDT"
-      android:layout_marginTop="30dp"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_below="@id/txtTenDangNhap"
-      android:text="Số Điện Thoại"/>
-  <EditText
-      android:id="@+id/edtSoDT"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_below="@id/edtTenDangNhap"
-      android:layout_toRightOf="@id/txtNhapLaiMatKhau"
-      android:hint="Nhập số điện thoại"/>
-  <TextView
-      android:id="@+id/txtGmail"
-      android:layout_marginTop="30dp"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_below="@id/txtSDT"
-      android:text="Gmail"/>
-  <EditText
-      android:id="@+id/edtGmail"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_below="@id/edtSoDT"
-      android:layout_toRightOf="@id/txtNhapLaiMatKhau"
-      android:hint="Nhập gmail"/>
-  <TextView
-      android:id="@+id/txtNgaySinh"
-      android:layout_marginTop="30dp"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_below="@id/txtGmail"
-      android:text="Ngày Sinh"/>
-  <EditText
-      android:id="@+id/edtNgaySinh"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_below="@id/edtGmail"
-      android:layout_toRightOf="@id/txtNhapLaiMatKhau"
-      android:hint="Nhập ngày sinh"/>
   <RelativeLayout
-      android:id="@+id/lnSpiner"
-      android:orientation="horizontal"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="20dp"
-      android:layout_below="@+id/txtNgaySinh">
+      android:orientation="vertical"
+      android:layout_height="wrap_content">
    <TextView
-       android:layout_marginTop="10dp"
-       android:id="@+id/txtGioiTinh"
+       android:id="@+id/txtHoTen"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:text="Giới Tính"/>
-   <Spinner
-       android:id="@+id/spGioiTinh"
-       android:layout_toRightOf="@+id/txtGioiTinh"
-       android:layout_marginLeft="65dp"
+       android:layout_alignParentTop="true"
+       android:layout_alignParentLeft="true"
+       android:layout_marginTop="20dp"
+       android:text="Họ Tên"/>
+   <EditText
        android:layout_width="match_parent"
-       android:layout_height="wrap_content">
-   </Spinner>
+       android:layout_height="wrap_content"
+       android:layout_toRightOf="@+id/txtNhapLaiMatKhau"
+       android:hint="Nhập họ tên"/>
+   <TextView
+       android:id="@+id/txtTenDangNhap"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Tên Đăng Nhập"
+       android:layout_marginTop="40dp"
+       android:layout_below="@+id/txtHoTen"/>
+   <EditText
+       android:id="@+id/edtTenDangNhap"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_toRightOf="@+id/txtNhapLaiMatKhau"
+       android:layout_marginTop="30dp"
+       android:layout_below="@+id/txtHoTen"
+       android:hint="Nhập tên đăng nhập"/>
+   <TextView
+       android:id="@+id/txtSDT"
+       android:layout_marginTop="30dp"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_below="@id/txtTenDangNhap"
+       android:text="Số Điện Thoại"/>
+   <EditText
+       android:id="@+id/edtSoDT"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_below="@id/edtTenDangNhap"
+       android:layout_toRightOf="@id/txtNhapLaiMatKhau"
+       android:hint="Nhập số điện thoại"/>
+   <TextView
+       android:id="@+id/txtGmail"
+       android:layout_marginTop="30dp"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_below="@id/txtSDT"
+       android:text="Gmail"/>
+   <EditText
+       android:id="@+id/edtGmail"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_below="@id/edtSoDT"
+       android:layout_toRightOf="@id/txtNhapLaiMatKhau"
+       android:hint="Nhập gmail"/>
+   <TextView
+       android:id="@+id/txtNgaySinh"
+       android:layout_marginTop="30dp"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_below="@id/txtGmail"
+       android:text="Ngày Sinh"/>
+   <EditText
+       android:id="@+id/edtNgaySinh"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_below="@id/edtGmail"
+       android:layout_toRightOf="@id/txtNhapLaiMatKhau"
+       android:hint="Nhập ngày sinh"/>
+   <RelativeLayout
+       android:id="@+id/lnSpiner"
+       android:orientation="horizontal"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="20dp"
+       android:layout_below="@+id/txtNgaySinh">
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/txtGioiTinh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Giới Tính"/>
+    <Spinner
+        android:id="@+id/spGioiTinh"
+        android:layout_toRightOf="@+id/txtGioiTinh"
+        android:layout_marginLeft="65dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </Spinner>
+   </RelativeLayout>
+   <CheckBox
+       android:id="@+id/chkChon"
+       android:layout_below="@id/lnSpiner"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Chọn Đổi Mật Khẩu"
+       />
+   <TextView
+       android:id="@+id/txtMatKhau"
+       android:layout_below="@id/chkChon"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="20dp"
+       android:text="Mật Khâu"/>
+   <EditText
+       android:id="@+id/edtMatKhau"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_below="@id/lnSpiner"
+       android:layout_marginTop="30dp"
+       android:layout_toRightOf="@id/txtNhapLaiMatKhau"/>
+   <TextView
+       android:id="@+id/txtNhapLaiMatKhau"
+       android:layout_below="@id/txtMatKhau"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="20dp"
+       android:text="Nhập Lại Mật Khâu"/>
+   <EditText
+       android:id="@+id/edtNhapLaiMatKhau"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_below="@id/edtMatKhau"
+       android:layout_marginLeft="60dp"
+       android:layout_toRightOf="@id/txtMatKhau"/>
+   <TextView
+       android:id="@+id/txtGmail2"
+       android:layout_marginTop="30dp"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_below="@id/txtNhapLaiMatKhau"
+       android:text="Gmail"/>
+   <EditText
+       android:id="@+id/edtGmail2"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_below="@id/edtNhapLaiMatKhau"
+       android:layout_toRightOf="@id/txtNhapLaiMatKhau"/>
+   <Button
+       android:id="@+id/btnLuu"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_below="@id/txtGmail2"
+       android:text="Lưu"
+       android:background="@drawable/custom_button_dn_fb"
+       android:layout_marginTop="20dp"/>
   </RelativeLayout>
-  <CheckBox
-      android:id="@+id/chkChon"
-      android:layout_below="@id/lnSpiner"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="Chọn Đổi Mật Khẩu"
-      />
-  <TextView
-      android:id="@+id/txtMatKhau"
-      android:layout_below="@id/chkChon"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="20dp"
-      android:text="Mật Khâu"/>
-  <EditText
-      android:id="@+id/edtMatKhau"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_below="@id/lnSpiner"
-      android:layout_marginTop="30dp"
-      android:layout_toRightOf="@id/txtNhapLaiMatKhau"/>
-  <TextView
-      android:id="@+id/txtNhapLaiMatKhau"
-      android:layout_below="@id/txtMatKhau"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="20dp"
-      android:text="Nhập Lại Mật Khâu"/>
-  <EditText
-      android:id="@+id/edtNhapLaiMatKhau"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_below="@id/edtMatKhau"
-      android:layout_marginLeft="60dp"
-      android:layout_toRightOf="@id/txtMatKhau"/>
-  <TextView
-      android:id="@+id/txtGmail2"
-      android:layout_marginTop="30dp"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_below="@id/txtNhapLaiMatKhau"
-      android:text="Gmail"/>
-  <EditText
-      android:id="@+id/edtGmail2"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_below="@id/edtNhapLaiMatKhau"
-      android:layout_toRightOf="@id/txtNhapLaiMatKhau"/>
-  <Button
-      android:id="@+id/btnLuu"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_below="@id/txtGmail2"
-      android:text="Lưu"
-      android:background="@drawable/custom_button_dn_fb"
-      android:layout_marginTop="20dp"/>
- </RelativeLayout>
-
-
 </ScrollView>

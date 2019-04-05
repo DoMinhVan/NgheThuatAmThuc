@@ -95,5 +95,4 @@ public class DangNhapActivity extends AppCompatActivity {
             }
         }
     }
-
 }

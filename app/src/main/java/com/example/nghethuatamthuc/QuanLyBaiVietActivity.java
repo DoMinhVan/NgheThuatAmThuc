@@ -18,7 +18,7 @@ public class QuanLyBaiVietActivity extends AppCompatActivity {
     Toolbar toolbarQuanLyBaiViet;
 
     private ArrayList<MonAn_NoiBat> listMembers = new ArrayList<MonAn_NoiBat>();
-    private NoiBatAdapter adapter;
+    private QuanLyBaiVietAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class QuanLyBaiVietActivity extends AppCompatActivity {
 
         listMembers.add(new MonAn_NoiBat("Ngô Hiếu","Hamburger","696","Mới đây",5,1,0));
 
-        adapter = new NoiBatAdapter(this, R.layout.item_info_quanlybaiviet,listMembers);
+        adapter = new QuanLyBaiVietAdapter(this, R.layout.item_info_quanlybaiviet,listMembers);
         listView.setAdapter(adapter);
     }
 

@@ -6,10 +6,21 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class ManHinhTrangCaNhanActivity extends AppCompatActivity {
+import de.hdodenhof.circleimageview.CircleImageView;
+
+public class ManHinhTrangCaNhanActivity extends AppCompatActivity implements View.OnClickListener {
     Toolbar toolbarTrangCaNhan;
+    ImageView imgAnhBia;
+    CircleImageView imgAnhDaiDien;
+    TextView  txtUser,txtNgayThamGia;
+    Button btnQuanLyTaiKhoan,btnQuanLyBaiViet;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +31,20 @@ public class ManHinhTrangCaNhanActivity extends AppCompatActivity {
         setSupportActionBar(toolbarTrangCaNhan);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(null);
+        //Ánh xạ
+        AnhXa();
+        //Bắt sự  kiện tab
+        btnQuanLyTaiKhoan.setOnClickListener(this);
+        btnQuanLyBaiViet.setOnClickListener(this);
+    }
+
+    private void AnhXa() {
+        imgAnhBia = (ImageView) findViewById(R.id.imgAnhBia);
+        imgAnhDaiDien = (CircleImageView) findViewById(R.id.imgHinhDaiDien);
+        txtUser = (TextView) findViewById(R.id.txtUser);
+        txtNgayThamGia = (TextView) findViewById(R.id.txtNgayThamGia);
+        btnQuanLyTaiKhoan = (Button) findViewById(R.id.btnQuanLyTaiKhoan);
+        btnQuanLyBaiViet = (Button) findViewById(R.id.btnQuanLyBaiViet);
     }
 
     @Override
@@ -54,6 +79,19 @@ public class ManHinhTrangCaNhanActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
 
+    @Override
+    public void onClick(View v) {
+        if (v == btnQuanLyTaiKhoan){
+            Intent i = new Intent(ManHinhTrangCaNhanActivity.this,QuanLyTaiKhoanActivity.class);
+            startActivity(i);
+            Toast.makeText(getApplicationContext(),"Tai Khoan",Toast.LENGTH_SHORT).show();
+        }
+        if (v == btnQuanLyBaiViet){
+            Intent i = new Intent(ManHinhTrangCaNhanActivity.this,QuanLyBaiVietActivity.class);
+            startActivity(i);
+            Toast.makeText(getApplicationContext(),"Bai Viet",Toast.LENGTH_SHORT).show();
+        }
     }
 }
