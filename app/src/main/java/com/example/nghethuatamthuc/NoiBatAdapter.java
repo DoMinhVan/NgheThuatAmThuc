@@ -60,11 +60,11 @@ public class NoiBatAdapter extends BaseAdapter {
         final TextView tenMonAn = (TextView) view.findViewById(R.id.txtTenMonAn);
         TextView luotThich = (TextView) view.findViewById(R.id.txtLuotThich);
         TextView thoiGian = (TextView) view.findViewById(R.id.txtTime);
-        RatingBar soluotdanhgia = (RatingBar) view.findViewById(R.id.simpleRatingBar);
+        final RatingBar soluotdanhgia = (RatingBar) view.findViewById(R.id.simpleRatingBar);
         final Button btnLike = (Button) view.findViewById(R.id.btnlike);
         final Button btnLove = (Button) view.findViewById(R.id.btnlove);
         //soluotdanhgia.setEnabled(false);
-        soluotdanhgia.setIsIndicator(true);
+        soluotdanhgia.setIsIndicator(false);
 
         MonAn_NoiBat monAn = listMonAn.get(position);
 
@@ -130,13 +130,17 @@ public class NoiBatAdapter extends BaseAdapter {
             btnLove.setSelected(true);
             btnLove.setBackgroundResource(R.mipmap.icons8_love_selected_48);
         }
-        else {
+        else{
             btnLove.setSelected(false);
             btnLove.setBackgroundResource(R.mipmap.icons8_love_none_48);
         }
-
+        //Click vào ratingbar
+        soluotdanhgia.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                Toast.makeText(context,"Đã Đánh Gía: "+rating+" Sao",Toast.LENGTH_SHORT).show();
+            }
+        });
         return view;
     }
-
-
 }
