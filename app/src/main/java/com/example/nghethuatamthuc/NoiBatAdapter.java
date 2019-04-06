@@ -17,20 +17,24 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.nghethuatamthuc.models.BaiViet;
 import com.example.nghethuatamthuc.models.MonAn_NoiBat;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class NoiBatAdapter extends BaseAdapter {
 
     private Activity context;
     private int layoutID;
-    private ArrayList<MonAn_NoiBat> listMonAn;
+    private ArrayList<BaiViet> listMonAn;
 
-    public NoiBatAdapter(Activity context, int layoutID, ArrayList<MonAn_NoiBat> listMonAn) {
+    public NoiBatAdapter(Activity context, int layoutID, ArrayList<BaiViet> listBaiViet) {
         this.context = context;
         this.layoutID = layoutID;
-        this.listMonAn = listMonAn;
+        this.listMonAn = listBaiViet;
     }
 
     @Override
@@ -61,31 +65,39 @@ public class NoiBatAdapter extends BaseAdapter {
         TextView luotThich = (TextView) view.findViewById(R.id.txtLuotThich);
         TextView thoiGian = (TextView) view.findViewById(R.id.txtTime);
         final RatingBar soluotdanhgia = (RatingBar) view.findViewById(R.id.simpleRatingBar);
-        final Button btnLike = (Button) view.findViewById(R.id.btnlike);
-        final Button btnLove = (Button) view.findViewById(R.id.btnlove);
+        //final Button btnLike = (Button) view.findViewById(R.id.btnlike);
+        //final Button btnLove = (Button) view.findViewById(R.id.btnlove);
         //soluotdanhgia.setEnabled(false);
         soluotdanhgia.setIsIndicator(false);
 
-        MonAn_NoiBat monAn = listMonAn.get(position);
+        BaiViet baiViet = listMonAn.get(position);
 
-        tenNguoiDang.setText(monAn.getTenNguoiDang());
+        tenNguoiDang.setText(baiViet.getIDNguoiDung()+"ID");
         hinhMonAn.setImageResource(R.drawable.monan);
-        tenMonAn.setText(monAn.getTenMonAn());
-        luotThich.setText(monAn.getLuotThich() + " Lượt thích");
-        thoiGian.setText(monAn.getThoiGian());
-        soluotdanhgia.setRating(monAn.getSodanhgia());
+        tenMonAn.setText(baiViet.getTenBaiViet());
+        luotThich.setText(baiViet.getLuotThich() + " Lượt thích");
 
-        btnLike.setOnClickListener(new View.OnClickListener() {
+        SimpleDateFormat postFormater = new SimpleDateFormat("dd/MM/yyyy");
+        String newNgayViet = null;
+        try {
+            newNgayViet = postFormater.format(baiViet.getNgayViet());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        thoiGian.setText(newNgayViet);
+        soluotdanhgia.setRating(baiViet.getIDDanhGia());
+
+        /*btnLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(btnLike.isSelected()){
-                    listMonAn.get(position).setLike(1);
+                    //listMonAn.get(position).setLike(1);
                     //Log.d("Now",listMonAn.get(position).isLike()+"");
                     btnLike.setBackgroundResource(R.mipmap.icons8_like_none_48);
                     btnLike.setSelected(false);
                 }
                 else {
-                    listMonAn.get(position).setLike(0);
+                    //listMonAn.get(position).setLike(0);
                     btnLike.setBackgroundResource(R.mipmap.icons8_like_selected_48);
                     btnLike.setSelected(true);
                 }
@@ -96,17 +108,17 @@ public class NoiBatAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 if(btnLove.isSelected()){
-                    listMonAn.get(position).setLove(1);
+                    //listMonAn.get(position).setLove(1);
                     btnLove.setBackgroundResource(R.mipmap.icons8_love_none_48);
                     btnLove.setSelected(false);
                 }
                 else {
-                    listMonAn.get(position).setLove(0);
+                    //listMonAn.get(position).setLove(0);
                     btnLove.setBackgroundResource(R.mipmap.icons8_love_selected_48);
                     btnLove.setSelected(true);
                 }
             }
-        });
+        });*/
 
         tenMonAn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,7 +127,7 @@ public class NoiBatAdapter extends BaseAdapter {
             }
         });
 
-        if(monAn.isLike()==1)
+        /*if(monAn.isLike()==1)
         {
             btnLike.setSelected(true);
             btnLike.setBackgroundResource(R.mipmap.icons8_like_selected_48);
@@ -140,7 +152,7 @@ public class NoiBatAdapter extends BaseAdapter {
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 Toast.makeText(context,"Đã Đánh Gía: "+rating+" Sao",Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
         return view;
     }
 }
