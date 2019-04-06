@@ -49,11 +49,15 @@ public class TrangChuActivity extends AppCompatActivity {
     private ListView listView;
     private Button btnLike;
     private boolean DangNhap = false;
+    private List<String> listSpinnerLoaiMon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.trang_chu_layout);
+        //FireBase
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference();
         //Button
         Button btnMonNgonMoiNgay = (Button) findViewById(R.id.btnMonNgonMoiNgay);
         Button btnDanhGiaCao = (Button) findViewById(R.id.btnDanhGiaCao);
@@ -63,12 +67,37 @@ public class TrangChuActivity extends AppCompatActivity {
         RatingBar simpleRantingBar= (RatingBar) findViewById(R.id.simpleRatingBar);
         //Spinner
         final Spinner buttonMucKhac = (Spinner) findViewById(R.id.btnMucKhac);
-        List<String> list = new ArrayList<String>();
-        list.add("MÓN KHÁC");
-        list.add("Cơm chay");
-        list.add("Món nướng");
-        list.add("Món xào");
-        ArrayAdapter<String> adapterSpinner = new ArrayAdapter<String>(this,R.layout.spinner_item, list);
+        listSpinnerLoaiMon = new ArrayList<String>();
+        listSpinnerLoaiMon.add("MÓN KHÁC");
+        //ĐỔ DỮ LIỆU Từ FIREBASE VỀ CHO SPIINER
+        myRef.child("LoaiMon").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                String value = dataSnapshot.getValue(String.class);
+                listSpinnerLoaiMon.add(value);
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        ArrayAdapter<String> adapterSpinner = new ArrayAdapter<String>(this,R.layout.spinner_item, listSpinnerLoaiMon);
         adapterSpinner.setDropDownViewResource(R.layout.spinner_dropdown_item);
         buttonMucKhac.setAdapter(adapterSpinner);
 
@@ -79,11 +108,7 @@ public class TrangChuActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(null);
 
         listView = (ListView) findViewById(R.id.listMain);
-
-        //FireBase
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference();
-
+        
         //BaiViet baiViet = new BaiViet("Bánh huế","Bột","ab","Dinh Duong","TD","ABC",0,0,"6-4-2019","6-4-2019",5,5,1,113,5);
         //TestBai test = new TestBai(1,"ABC");
         //Lưu bài viết
@@ -101,8 +126,7 @@ public class TrangChuActivity extends AppCompatActivity {
 
             }
         });*/
-        //myRef.child("BaiViet").child("-LblVJvszkyHbyKR4HzG");
-
+        //ĐỌC TẤT CẢ CÁC BÀI VIẾT VÀ ĐỔ VÀO ARRAYLIST
         myRef.child("BaiViet").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
@@ -201,6 +225,20 @@ public class TrangChuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(TrangChuActivity.this, "Update list view - Sôi nổi!", Toast.LENGTH_SHORT).show();
+                Collections.sort(listMembers, new Comparator<BaiViet>() {
+                    @Override
+                    public int compare(BaiViet baiViet1, BaiViet baiViet2) {
+                        if (baiViet1.getLuotBinhLuan() > (baiViet2.getLuotBinhLuan())) {
+                            return -1;
+                        } else {
+                            if (baiViet1.getLuotBinhLuan() == baiViet2.getLuotBinhLuan()) {
+                                return 0;
+                            } else {
+                                return 1;
+                            }
+                        }
+                    }
+                });
                 adapter.notifyDataSetChanged();
             }
         });
