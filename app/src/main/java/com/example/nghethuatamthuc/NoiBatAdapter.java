@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.LayerDrawable;
+import android.net.Uri;
 import android.nfc.Tag;
 import android.os.Debug;
 import android.support.annotation.NonNull;
@@ -25,6 +26,7 @@ import com.example.nghethuatamthuc.models.HinhAnh;
 import com.example.nghethuatamthuc.models.MonAn_NoiBat;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -97,27 +99,14 @@ public class NoiBatAdapter extends BaseAdapter {
         //soluotdanhgia.setEnabled(false);
         soluotdanhgia.setIsIndicator(false);
 
+
         final BaiViet baiViet = listMonAn.get(position);
 
-        myRef.child("HinhAnh").addChildEventListener(new ChildEventListener() {
+        /*myRef.child("HinhAnh").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 //HinhAnh value = dataSnapshot.getValue(HinhAnh.class);
-                for(HinhAnh hinhAnh : listHinhAnh)
-                {
-                    Toast.makeText(context, baiViet.getID() + "  " + hinhAnh.getIDLoai() + "", Toast.LENGTH_LONG);
-                    if (baiViet.getID() == hinhAnh.getIDLoai()) {
 
-                        StorageReference islandRef = storageRef.child(hinhAnh.getDuongDan());
-
-                        Log.d("TestDuongDan", islandRef + "");
-
-                        //MyAppGlideModule Glide = new MyAppGlideModule();
-                        Glide.with(context)
-                                .load(islandRef)
-                                .into(hinhMonAn);
-                    }
-                }
             }
 
             @Override
@@ -139,9 +128,29 @@ public class NoiBatAdapter extends BaseAdapter {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        });*/
 
         tenNguoiDang.setText(baiViet.getIDNguoiDung()+"ID");
+
+        for(HinhAnh hinhAnh : listHinhAnh)
+        {
+            if (baiViet.getID().equals(hinhAnh.getIDLoai())) {
+                Log.d("ListHinhAnh", baiViet.getID() + "  " + hinhAnh.getIDLoai() + "");
+                storageRef.child("images/" + hinhAnh.getDuongDan()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Log.d("TestDuongDan", uri+"");
+
+                        //MyAppGlideModule Glide = new MyAppGlideModule();
+                        Glide.with(context)
+                                .load(uri)
+                                .into(hinhMonAn);
+                    }
+                });
+
+
+            }
+        }
 
         /*final long ONE_MEGABYTE = 1024 * 1024;
         islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
