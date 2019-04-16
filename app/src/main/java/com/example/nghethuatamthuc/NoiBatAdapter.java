@@ -102,11 +102,27 @@ public class NoiBatAdapter extends BaseAdapter {
 
         final BaiViet baiViet = listMonAn.get(position);
 
-        /*myRef.child("HinhAnh").addChildEventListener(new ChildEventListener() {
+        myRef.child("HinhAnh").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 //HinhAnh value = dataSnapshot.getValue(HinhAnh.class);
+                for(HinhAnh hinhAnh : listHinhAnh)
+                {
+                    if (baiViet.getID().equals(hinhAnh.getIDLoai())) {
+                        Log.d("ListHinhAnh", baiViet.getID() + "  " + hinhAnh.getIDLoai() + "");
+                        storageRef.child("images/" + hinhAnh.getDuongDan()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                Log.d("TestDuongDan", uri+"");
 
+                                //MyAppGlideModule Glide = new MyAppGlideModule();
+                                Glide.with(context)
+                                        .load(uri)
+                                        .into(hinhMonAn);
+                            }
+                        });
+                    }
+                }
             }
 
             @Override
@@ -128,29 +144,10 @@ public class NoiBatAdapter extends BaseAdapter {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });*/
+        });
 
         tenNguoiDang.setText(baiViet.getIDNguoiDung()+"ID");
 
-        for(HinhAnh hinhAnh : listHinhAnh)
-        {
-            if (baiViet.getID().equals(hinhAnh.getIDLoai())) {
-                Log.d("ListHinhAnh", baiViet.getID() + "  " + hinhAnh.getIDLoai() + "");
-                storageRef.child("images/" + hinhAnh.getDuongDan()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        Log.d("TestDuongDan", uri+"");
-
-                        //MyAppGlideModule Glide = new MyAppGlideModule();
-                        Glide.with(context)
-                                .load(uri)
-                                .into(hinhMonAn);
-                    }
-                });
-
-
-            }
-        }
 
         /*final long ONE_MEGABYTE = 1024 * 1024;
         islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
