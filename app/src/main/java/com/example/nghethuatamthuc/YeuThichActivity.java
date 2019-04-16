@@ -22,6 +22,7 @@ public class YeuThichActivity extends AppCompatActivity {
     Toolbar toolbarYeuThich;
 
     private ArrayList<BaiViet> listMembers = new ArrayList<BaiViet>();
+    private ArrayList<BaiViet> listImages = new ArrayList<BaiViet>();
     private NoiBatAdapter adapter;
     private boolean DangNhap = false;
 
@@ -40,7 +41,7 @@ public class YeuThichActivity extends AppCompatActivity {
 
         //listMembers.add(new MonAn_NoiBat("Ngô Hiếu","Hamburger","696","Mới đây",5f,0,0));
 
-        adapter = new NoiBatAdapter(this, R.layout.item_info_monan,listMembers);
+        adapter = new NoiBatAdapter(this, R.layout.item_info_monan,listMembers,listImages);
         listView.setAdapter(adapter);
     }
 

@@ -43,6 +43,7 @@ public class NoiBatAdapter extends BaseAdapter {
     private Activity context;
     private int layoutID;
     private ArrayList<BaiViet> listMonAn;
+    private ArrayList<HinhAnh> listHinhAnh;
 
     private static final String HeadURLImage = "https://firebasestorage.googleapis.com/v0/b/nghethuatamthuc.appspot.com/o/";
     private static final String EndURLImage = ".jpg?alt=media&token=255076b3-6ce9-4a1d-8762-99a21d2dbd60";
@@ -53,10 +54,14 @@ public class NoiBatAdapter extends BaseAdapter {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference();
 
-    public NoiBatAdapter(Activity context, int layoutID, ArrayList<BaiViet> listBaiViet) {
+    public NoiBatAdapter(Activity context, int layoutID, ArrayList<BaiViet> listBaiViet, ArrayList<HinhAnh> listHinhAnh) {
         this.context = context;
         this.layoutID = layoutID;
         this.listMonAn = listBaiViet;
+        this.listHinhAnh = listHinhAnh;
+    }
+
+    public NoiBatAdapter(YeuThichActivity context, int item_info_monan, ArrayList<BaiViet> listMembers, ArrayList<BaiViet> listImages) {
     }
 
     @Override
@@ -97,19 +102,20 @@ public class NoiBatAdapter extends BaseAdapter {
         myRef.child("HinhAnh").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                final HinhAnh value = dataSnapshot.getValue(HinhAnh.class);
-                if(dataSnapshot.exists()) {
-                    if (baiViet.getID() == value.getIDLoai()) {
+                //HinhAnh value = dataSnapshot.getValue(HinhAnh.class);
+                for(HinhAnh hinhAnh : listHinhAnh)
+                {
+                    Toast.makeText(context, baiViet.getID() + "  " + hinhAnh.getIDLoai() + "", Toast.LENGTH_LONG);
+                    if (baiViet.getID() == hinhAnh.getIDLoai()) {
 
-                        StorageReference islandRef = storageRef.child(value.getDuongDan());
+                        StorageReference islandRef = storageRef.child(hinhAnh.getDuongDan());
 
-                        Log.d("TestDuongDan", islandRef.getName());
+                        Log.d("TestDuongDan", islandRef + "");
 
                         //MyAppGlideModule Glide = new MyAppGlideModule();
                         Glide.with(context)
-                                .load(HeadURLImage + "1555057793480" + EndURLImage)
+                                .load(islandRef)
                                 .into(hinhMonAn);
-
                     }
                 }
             }
@@ -151,6 +157,9 @@ public class NoiBatAdapter extends BaseAdapter {
         });*/
 
         tenMonAn.setText(baiViet.getTenBaiViet());
+
+
+
         luotThich.setText(baiViet.getLuotThich() + " Lượt thích");
         //thoiGian.setText(baiViet.LayNgayVietTheoNgayThang()+"");
 

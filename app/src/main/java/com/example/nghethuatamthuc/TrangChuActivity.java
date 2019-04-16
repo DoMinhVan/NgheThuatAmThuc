@@ -39,6 +39,7 @@ public class TrangChuActivity extends AppCompatActivity {
     Toolbar toolbarTrangChu;
     //Button btnLike;
     private static ArrayList<BaiViet> listMembers = new ArrayList<BaiViet>();
+    private static ArrayList<HinhAnh> listHinhAnh = new ArrayList<>();
     private NoiBatAdapter adapter;
     private ListView listView;
     private Button btnLike;
@@ -67,7 +68,7 @@ public class TrangChuActivity extends AppCompatActivity {
         listSpinnerLoaiMon = new ArrayList<String>();
         listSpinnerLoaiMon.add("MÓN KHÁC");
 
-        //ĐỔ DỮ LIỆU Từ FIREBASE VỀ CHO SPIINER
+        //ĐỔ DỮ LIỆU TỪ FIREBASE VỀ CHO SPIINER
         myRef.child("LoaiMon").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
@@ -116,7 +117,6 @@ public class TrangChuActivity extends AppCompatActivity {
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 if(dataSnapshot.exists()) {
                     BaiViet value = dataSnapshot.getValue(BaiViet.class);
-                    value.setID(dataSnapshot.getKey());
                     listMembers.add(value);
                     adapter.notifyDataSetChanged();
                 }
@@ -143,7 +143,52 @@ public class TrangChuActivity extends AppCompatActivity {
             }
         });
 
+        //ĐỌC TẤT CẢ HÌNH ẢNH ĐỔ VÀO LISTHINHANH
+        myRef.child("HinhAnh").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                HinhAnh value = dataSnapshot.getValue(HinhAnh.class);
+                listHinhAnh.add(value);
+                /*if(dataSnapshot==null) Toast.makeText(context, "Null", Toast.LENGTH_LONG);
+                else {
+                    final HinhAnh value = dataSnapshot.getValue(HinhAnh.class);
+                    //listHinhAnh.add(value);
+                    if (baiViet.getID() == value.getIDLoai()) {
 
+                        Toast.makeText(context, baiViet.getID() + "  " + value.getIDLoai() + "", Toast.LENGTH_LONG);
+
+                        StorageReference islandRef = storageRef.child(value.getDuongDan());
+
+                        Log.d("TestDuongDan", islandRef + "");
+
+                        //MyAppGlideModule Glide = new MyAppGlideModule();
+                        Glide.with(context)
+                                .load(islandRef)
+                                .into(hinhMonAn);
+                    }
+                }*/
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
         /*myRef.child("BaiViet").addValueEventListener(new ValueEventListener() {
@@ -160,7 +205,7 @@ public class TrangChuActivity extends AppCompatActivity {
             }
         });*/
 
-        adapter = new NoiBatAdapter(this, R.layout.item_info_monan,listMembers);
+        adapter = new NoiBatAdapter(this, R.layout.item_info_monan,listMembers,listHinhAnh);
 
 
         btnMonNgonMoiNgay.setOnClickListener(new View.OnClickListener() {
