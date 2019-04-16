@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout"
@@ -11,7 +12,7 @@
         android:layout_height="match_parent">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbarTrangChu"
+            android:id="@+id/toolbarThemBaiViet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/toolBar"
@@ -32,7 +33,7 @@
             android:textSize="@dimen/sizeTenMonAn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbarTrangChu" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbarThemBaiViet" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -60,6 +61,38 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView"
             app:layout_constraintVertical_bias="0.0" />
+
+        <EditText
+            android:id="@+id/txtDiaChi"
+            style="@style/txt_input"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:hint="@string/txtDiaChi"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnThemDinhDuong"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <EditText
+            android:id="@+id/txtThongTinThem"
+            style="@style/txt_input"
+            android:layout_width="0dp"
+            android:layout_height="219dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:hint="@string/txtThongTinThem"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtDiaChi" />
 
         <Button
             android:id="@+id/btnThemNguyenLieu"
@@ -102,6 +135,18 @@
             app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtBuocLam" />
+
+        <Button
+            android:id="@+id/btnThemDinhDuong"
+            style="@style/btnAdd_Add"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@mipmap/button_add_thembaiviet"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtKhoiLuong" />
 
         <Spinner
             android:id="@+id/spnDoiTuong"
@@ -165,5 +210,28 @@
             app:layout_constraintTop_toBottomOf="@+id/edtTenDinhDuong"
             app:layout_constraintVertical_bias="0.1" />
 
+        <Button
+            android:id="@+id/btnDangTai"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/btnDangTai"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtThongTinThem"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <Button
+            android:id="@+id/btnThoat"
+            android:text="@string/btnThoat"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtThongTinThem" />
+
     </android.support.constraint.ConstraintLayout>
-</LinearLayout>
+</ScrollView>

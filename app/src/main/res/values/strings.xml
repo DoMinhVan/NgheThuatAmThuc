@@ -16,6 +16,10 @@
     <string name="edtTenDD">Nhập tên/loại dinh dưỡng</string>
     <string name="edtKhoiLuong">Nhập khối lượng</string>
     <string name="edtPhanTram">Nhập phần trăm</string>
+    <string name="txtDiaChi">Nhập địa chỉ</string>
+    <string name="txtThongTinThem">Nhập thông tin thêm</string>
+    <string name="btnDangTai">Đăng tải</string>
+    <string name="btnThoat">Thoát</string>
     //Manf hình nổi bật(Trang chủ)
 
     <string name="btnMonNgonMoiNgay">Món ngon mỗi ngày</string>

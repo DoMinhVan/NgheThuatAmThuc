@@ -6,6 +6,8 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.LayerDrawable;
 import android.nfc.Tag;
 import android.os.Debug;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,8 +19,19 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.nghethuatamthuc.models.BaiViet;
+import com.example.nghethuatamthuc.models.HinhAnh;
 import com.example.nghethuatamthuc.models.MonAn_NoiBat;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -30,6 +43,15 @@ public class NoiBatAdapter extends BaseAdapter {
     private Activity context;
     private int layoutID;
     private ArrayList<BaiViet> listMonAn;
+
+    private static final String HeadURLImage = "https://firebasestorage.googleapis.com/v0/b/nghethuatamthuc.appspot.com/o/";
+    private static final String EndURLImage = ".jpg?alt=media&token=255076b3-6ce9-4a1d-8762-99a21d2dbd60";
+
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    final StorageReference storageRef = storage.getReference();
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference();
 
     public NoiBatAdapter(Activity context, int layoutID, ArrayList<BaiViet> listBaiViet) {
         this.context = context;
@@ -60,7 +82,7 @@ public class NoiBatAdapter extends BaseAdapter {
         view = inflater.inflate(layoutID,null);
 
         TextView tenNguoiDang = (TextView) view.findViewById(R.id.txtTenNguoiDang);
-        ImageView hinhMonAn = (ImageView) view.findViewById(R.id.imgMonAn);
+        final ImageView hinhMonAn = (ImageView) view.findViewById(R.id.imgMonAn);
         final TextView tenMonAn = (TextView) view.findViewById(R.id.txtTenMonAn);
         TextView luotThich = (TextView) view.findViewById(R.id.txtLuotThich);
         TextView thoiGian = (TextView) view.findViewById(R.id.txtTime);
@@ -70,21 +92,77 @@ public class NoiBatAdapter extends BaseAdapter {
         //soluotdanhgia.setEnabled(false);
         soluotdanhgia.setIsIndicator(false);
 
-        BaiViet baiViet = listMonAn.get(position);
+        final BaiViet baiViet = listMonAn.get(position);
+
+        myRef.child("HinhAnh").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                final HinhAnh value = dataSnapshot.getValue(HinhAnh.class);
+                if(dataSnapshot.exists()) {
+                    if (baiViet.getID() == value.getIDLoai()) {
+
+                        StorageReference islandRef = storageRef.child(value.getDuongDan());
+
+                        Log.d("TestDuongDan", islandRef.getName());
+
+                        //MyAppGlideModule Glide = new MyAppGlideModule();
+                        Glide.with(context)
+                                .load(HeadURLImage + "1555057793480" + EndURLImage)
+                                .into(hinhMonAn);
+
+                    }
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         tenNguoiDang.setText(baiViet.getIDNguoiDung()+"ID");
-        hinhMonAn.setImageResource(R.drawable.monan);
+
+        /*final long ONE_MEGABYTE = 1024 * 1024;
+        islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                hinhMonAn.setImageResource(bytes[0]);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });*/
+
         tenMonAn.setText(baiViet.getTenBaiViet());
         luotThich.setText(baiViet.getLuotThich() + " Lượt thích");
+        //thoiGian.setText(baiViet.LayNgayVietTheoNgayThang()+"");
 
         SimpleDateFormat postFormater = new SimpleDateFormat("dd/MM/yyyy");
         String newNgayViet = null;
         try {
-            newNgayViet = postFormater.format(baiViet.getNgayViet());
+            newNgayViet = postFormater.format(baiViet.LayNgayVietTheoNgayThang());
+            thoiGian.setText(newNgayViet);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        thoiGian.setText(newNgayViet);
+
         soluotdanhgia.setRating(baiViet.getIDDanhGia());
 
         /*btnLike.setOnClickListener(new View.OnClickListener() {

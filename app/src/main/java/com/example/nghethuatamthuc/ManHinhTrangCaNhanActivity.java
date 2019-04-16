@@ -84,14 +84,14 @@ public class ManHinhTrangCaNhanActivity extends AppCompatActivity implements Vie
     @Override
     public void onClick(View v) {
         if (v == btnQuanLyTaiKhoan){
-            Intent i = new Intent(ManHinhTrangCaNhanActivity.this,QuanLyTaiKhoanActivity.class);
-            startActivity(i);
-            Toast.makeText(getApplicationContext(),"Tai Khoan",Toast.LENGTH_SHORT).show();
+            Intent intent1 = new Intent(ManHinhTrangCaNhanActivity.this, QuanLyTaiKhoanActivity.class);
+            intent1.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(intent1);
         }
         if (v == btnQuanLyBaiViet){
-            Intent i = new Intent(ManHinhTrangCaNhanActivity.this,QuanLyBaiVietActivity.class);
-            startActivity(i);
-            Toast.makeText(getApplicationContext(),"Bai Viet",Toast.LENGTH_SHORT).show();
+            Intent intent1 = new Intent(ManHinhTrangCaNhanActivity.this, QuanLyBaiVietActivity.class);
+            intent1.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(intent1);
         }
     }
 }

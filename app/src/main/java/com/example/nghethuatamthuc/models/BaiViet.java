@@ -5,7 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class BaiViet {
+    private String ID;
     private String TenBaiViet;
+    private String DuongDan;
     private String NguyenLieu;
     private String BuocLam;
     private String DinhDuong;
@@ -24,8 +26,10 @@ public class BaiViet {
     public BaiViet() {
     }
 
-    public BaiViet(String tenBaiViet, String nguyenLieu, String buocLam, String dinhDuong, String diaChi, String thongTinChiTiet, int doiTuong, int loaiMon, String ngayViet, String ngaySua, int luotThich, int luotBinhLuan, int trangThai, int IDNguoiDung, int IDDanhGia) throws ParseException {
+    public BaiViet(String ID, String tenBaiViet, String duongDan, String nguyenLieu, String buocLam, String dinhDuong, String diaChi, String thongTinChiTiet, int doiTuong, int loaiMon, String ngayViet, String ngaySua, int luotThich, int luotBinhLuan, int trangThai, int IDNguoiDung, int IDDanhGia) {
+        this.ID = ID;
         TenBaiViet = tenBaiViet;
+        DuongDan = duongDan;
         NguyenLieu = nguyenLieu;
         BuocLam = buocLam;
         DinhDuong = dinhDuong;
@@ -42,12 +46,28 @@ public class BaiViet {
         this.IDDanhGia = IDDanhGia;
     }
 
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
     public String getTenBaiViet() {
         return TenBaiViet;
     }
 
     public void setTenBaiViet(String tenBaiViet) {
         TenBaiViet = tenBaiViet;
+    }
+
+    public String getDuongDan() {
+        return DuongDan;
+    }
+
+    public void setDuongDan(String duongDan) {
+        DuongDan = duongDan;
     }
 
     public String getNguyenLieu() {
@@ -106,20 +126,16 @@ public class BaiViet {
         LoaiMon = loaiMon;
     }
 
-    public Date getNgayViet() throws ParseException {
-        SimpleDateFormat curFormater = new SimpleDateFormat("dd/MM/yyyy");
-        Date dateObj = curFormater.parse(NgayViet);
-        return dateObj;
+    public String getNgayViet() {
+        return NgayViet;
     }
 
-    public void setNgayViet(String ngayViet){
+    public void setNgayViet(String ngayViet) {
         NgayViet = ngayViet;
     }
 
-    public Date getNgaySua() throws ParseException {
-        SimpleDateFormat curFormater = new SimpleDateFormat("dd/MM/yyyy");
-        Date dateObj = curFormater.parse(NgaySua);
-        return dateObj;
+    public String getNgaySua() {
+        return NgaySua;
     }
 
     public void setNgaySua(String ngaySua) {
@@ -164,5 +180,18 @@ public class BaiViet {
 
     public void setIDDanhGia(int IDDanhGia) {
         this.IDDanhGia = IDDanhGia;
+    }
+
+    public Date LayNgayVietTheoNgayThang() throws ParseException {
+        SimpleDateFormat curFormater = new SimpleDateFormat("dd/MM/yyyy");
+        Date dateObj = curFormater.parse(NgayViet);
+        return dateObj;
+    }
+
+
+    public Date LayNgaySuaTheoNgayThang() throws ParseException {
+        SimpleDateFormat curFormater = new SimpleDateFormat("dd/MM/yyyy");
+        Date dateObj = curFormater.parse(NgaySua);
+        return dateObj;
     }
 }

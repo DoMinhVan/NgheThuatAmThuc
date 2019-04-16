@@ -51,10 +51,16 @@ public class QuanLyBaiVietActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.menuXoa) {
+        if (id == android.R.id.home) {
+            Intent intent = new Intent(QuanLyBaiVietActivity.this, ManHinhTrangCaNhanActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(intent);
             return true;
         }
         if (id == R.id.menuThem) {
+            Intent intent1 = new Intent(QuanLyBaiVietActivity.this, ThemBaiVietActivity.class);
+            intent1.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(intent1);
             return true;
         }
 

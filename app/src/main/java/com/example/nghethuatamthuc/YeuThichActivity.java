@@ -55,6 +55,12 @@ public class YeuThichActivity extends AppCompatActivity {
     {
         int id = item.getItemId();
         switch (id) {
+            case android.R.id.home:
+                Intent intent = new Intent(YeuThichActivity.this, TrangChuActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+                return true;
             case R.id.menuTimKiem:
                 Intent intent1 = new Intent(YeuThichActivity.this, ManHinhTimKiemActivity.class);
                 intent1.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);

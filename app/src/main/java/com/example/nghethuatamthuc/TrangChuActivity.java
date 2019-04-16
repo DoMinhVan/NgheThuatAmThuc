@@ -1,41 +1,35 @@
 package com.example.nghethuatamthuc;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nghethuatamthuc.models.BaiViet;
-import com.example.nghethuatamthuc.models.MonAn_NoiBat;
-import com.example.nghethuatamthuc.models.TestBai;
+import com.example.nghethuatamthuc.models.HinhAnh;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -50,6 +44,7 @@ public class TrangChuActivity extends AppCompatActivity {
     private Button btnLike;
     private boolean DangNhap = false;
     private List<String> listSpinnerLoaiMon;
+    private HinhAnh hinhAnhBaiViet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +53,8 @@ public class TrangChuActivity extends AppCompatActivity {
         //FireBase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
+
+
         //Button
         Button btnMonNgonMoiNgay = (Button) findViewById(R.id.btnMonNgonMoiNgay);
         Button btnDanhGiaCao = (Button) findViewById(R.id.btnDanhGiaCao);
@@ -69,12 +66,15 @@ public class TrangChuActivity extends AppCompatActivity {
         final Spinner buttonMucKhac = (Spinner) findViewById(R.id.btnMucKhac);
         listSpinnerLoaiMon = new ArrayList<String>();
         listSpinnerLoaiMon.add("MÓN KHÁC");
+
         //ĐỔ DỮ LIỆU Từ FIREBASE VỀ CHO SPIINER
         myRef.child("LoaiMon").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                String value = dataSnapshot.getValue(String.class);
-                listSpinnerLoaiMon.add(value);
+                if(dataSnapshot.exists()) {
+                    String value = dataSnapshot.getValue(String.class);
+                    listSpinnerLoaiMon.add(value);
+                }
             }
 
             @Override
@@ -108,31 +108,18 @@ public class TrangChuActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(null);
 
         listView = (ListView) findViewById(R.id.listMain);
-        
-        //BaiViet baiViet = new BaiViet("Bánh huế","Bột","ab","Dinh Duong","TD","ABC",0,0,"6-4-2019","6-4-2019",5,5,1,113,5);
-        //TestBai test = new TestBai(1,"ABC");
-        //Lưu bài viết
-        //myRef.child("BaiViet").push();
-        /*myRef.child("BaiViet").push().setValue(baiViet, new DatabaseReference.CompletionListener() {
-            @Override
-            public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
-                if(databaseError !=null)
-                {
-                    Toast.makeText(TrangChuActivity.this, "Lưu thành công", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    Toast.makeText(TrangChuActivity.this, "Lưu thất bại", Toast.LENGTH_SHORT).show();
-                }
 
-            }
-        });*/
+
         //ĐỌC TẤT CẢ CÁC BÀI VIẾT VÀ ĐỔ VÀO ARRAYLIST
         myRef.child("BaiViet").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                BaiViet value = dataSnapshot.getValue(BaiViet.class);
-                listMembers.add(value);
-                adapter.notifyDataSetChanged();
+                if(dataSnapshot.exists()) {
+                    BaiViet value = dataSnapshot.getValue(BaiViet.class);
+                    value.setID(dataSnapshot.getKey());
+                    listMembers.add(value);
+                    adapter.notifyDataSetChanged();
+                }
             }
 
             @Override
@@ -155,6 +142,10 @@ public class TrangChuActivity extends AppCompatActivity {
 
             }
         });
+
+
+
+
         /*myRef.child("BaiViet").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -180,10 +171,10 @@ public class TrangChuActivity extends AppCompatActivity {
                     @Override
                     public int compare(BaiViet baiViet1, BaiViet baiViet2) {
                         try {
-                            if (baiViet1.getNgayViet().compareTo(baiViet2.getNgayViet()) == 1) {
+                            if (baiViet1.LayNgaySuaTheoNgayThang().compareTo(baiViet2.LayNgaySuaTheoNgayThang()) == 1) {
                                 return -1;
                             } else {
-                                if (baiViet1.getNgayViet().compareTo(baiViet2.getNgayViet()) == 0) {
+                                if (baiViet1.LayNgaySuaTheoNgayThang().compareTo(baiViet2.LayNgaySuaTheoNgayThang()) == 0) {
                                     return 0;
                                 } else {
                                     return 1;
@@ -273,7 +264,7 @@ public class TrangChuActivity extends AppCompatActivity {
                 startActivity(intent1);
                 return true;
             case R.id.menuNgoiSao:
-                Toast.makeText(TrangChuActivity.this, "Bạn đang trang này!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TrangChuActivity.this, "Bạn đang ở trang này!", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.menuAdmin:
                 if (DangNhap == true) {
