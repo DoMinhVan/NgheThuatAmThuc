@@ -22,14 +22,11 @@
 
         </android.support.v7.widget.Toolbar>
 
-        <TextView
+        <EditText
             android:id="@+id/txtMonAn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="TextView"
+            android:hint="@string/txtTenMonAn"
             android:textSize="@dimen/sizeTenMonAn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -151,7 +148,7 @@
         <Spinner
             android:id="@+id/spnDoiTuong"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
@@ -159,6 +156,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnThemBuoc"
+            app:layout_constraintVertical_bias="0.01999998">
+
+        </Spinner>
+
+        <Spinner
+            android:id="@+id/spnLoaiMon"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spnDoiTuong"
             app:layout_constraintVertical_bias="0.01999998">
 
         </Spinner>
@@ -175,7 +187,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spnDoiTuong"
+            app:layout_constraintTop_toBottomOf="@+id/spnLoaiMon"
             app:layout_constraintVertical_bias="0.060000002" />
 
         <EditText

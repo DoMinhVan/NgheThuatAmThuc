@@ -20,13 +20,13 @@ public class BaiViet {
     private int LuotThich;
     private int LuotBinhLuan;
     private int TrangThai;
-    private int IDNguoiDung;
-    private int IDDanhGia;
+    private String IDNguoiDung;
+    private String IDDanhGia;
 
     public BaiViet() {
     }
 
-    public BaiViet(String ID, String tenBaiViet, String duongDan, String nguyenLieu, String buocLam, String dinhDuong, String diaChi, String thongTinChiTiet, int doiTuong, int loaiMon, String ngayViet, String ngaySua, int luotThich, int luotBinhLuan, int trangThai, int IDNguoiDung, int IDDanhGia) {
+    public BaiViet(String ID, String tenBaiViet, String duongDan, String nguyenLieu, String buocLam, String dinhDuong, String diaChi, String thongTinChiTiet, int doiTuong, int loaiMon, String ngayViet, String ngaySua, int luotThich, int luotBinhLuan, int trangThai, String IDNguoiDung, String IDDanhGia) {
         this.ID = ID;
         TenBaiViet = tenBaiViet;
         DuongDan = duongDan;
@@ -166,19 +166,19 @@ public class BaiViet {
         TrangThai = trangThai;
     }
 
-    public int getIDNguoiDung() {
+    public String getIDNguoiDung() {
         return IDNguoiDung;
     }
 
-    public void setIDNguoiDung(int IDNguoiDung) {
+    public void setIDNguoiDung(String IDNguoiDung) {
         this.IDNguoiDung = IDNguoiDung;
     }
 
-    public int getIDDanhGia() {
+    public String getIDDanhGia() {
         return IDDanhGia;
     }
 
-    public void setIDDanhGia(int IDDanhGia) {
+    public void setIDDanhGia(String IDDanhGia) {
         this.IDDanhGia = IDDanhGia;
     }
 

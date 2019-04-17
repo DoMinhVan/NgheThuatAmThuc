@@ -178,7 +178,7 @@ public class NoiBatAdapter extends BaseAdapter {
             e.printStackTrace();
         }
 
-        soluotdanhgia.setRating(baiViet.getIDDanhGia());
+        soluotdanhgia.setRating(5);
 
         /*btnLike.setOnClickListener(new View.OnClickListener() {
             @Override

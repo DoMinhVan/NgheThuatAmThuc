@@ -19,15 +19,21 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nghethuatamthuc.models.BaiViet;
+import com.example.nghethuatamthuc.models.DanhGia;
+import com.example.nghethuatamthuc.models.DanhGiaBaiViet;
 import com.example.nghethuatamthuc.models.HinhAnh;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -38,39 +44,42 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.UUID;
 
 public class ThemBaiVietActivity extends AppCompatActivity{
     private Toolbar mTopToolbar;
     private BaiViet baiViet;
     private HinhAnh hinhAnh;
+    private DanhGiaBaiViet danhGiaBaiViet;
     private Uri filePath;
 
-    private ImageView imageView;
+    private List<String> listSpinnerLoaiMon;
+    private List<String> listSpinnerDoiTuong;
 
-    FirebaseStorage storage;
-    StorageReference storageRef;
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference storageRef = storage.getReference();
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference();
+
+    private ImageView imageView;
+    private Spinner spnLoaiMon;
+    private Spinner spnDoiTuong;
+    private TextView txtTenMonAn;
+    private TextView txtNguyenLieu;
+    private TextView txtBuocLam;
+    private TextView txtTenDD;
+    private TextView txtKhoiLuong;
+    private TextView txtPhanTram;
+    private TextView txtDiaChi;
+    private TextView txtThongTinThem;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.thembaiviet_layout);
-
-        imageView = (ImageView) findViewById(R.id.imageView);
-        final TextView txtTenMonAn = (TextView) findViewById(R.id.txtMonAn);
-        final TextView txtNguyenLieu = (TextView) findViewById(R.id.txtNguyenLieu);
-        final TextView txtBuocLam = (TextView) findViewById(R.id.txtBuocLam);
-        final TextView txtTenDD = (TextView) findViewById(R.id.edtTenDinhDuong);
-        final TextView txtKhoiLuong = (TextView) findViewById(R.id.edtKhoiLuong);
-        final TextView txtPhanTram = (TextView) findViewById(R.id.edtPhanTram);
-        final TextView txtDiaChi = (TextView) findViewById(R.id.txtDiaChi);
-        final TextView txtThongTinThem = (TextView) findViewById(R.id.txtThongTinThem);
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference myRef = database.getReference();
-
-        storage = FirebaseStorage.getInstance();
-        storageRef = storage.getReference();
 
         mTopToolbar = (Toolbar) findViewById(R.id.toolbarThemBaiViet);
         setSupportActionBar(mTopToolbar);
@@ -78,6 +87,90 @@ public class ThemBaiVietActivity extends AppCompatActivity{
         getSupportActionBar().setTitle(null);
 
         Button btnThem = (Button) findViewById(R.id.btnDangTai);
+        imageView = (ImageView) findViewById(R.id.imageView);
+        spnLoaiMon = (Spinner) findViewById(R.id.spnLoaiMon);
+        spnDoiTuong = (Spinner) findViewById(R.id.spnDoiTuong);
+        txtTenMonAn = (TextView) findViewById(R.id.txtMonAn);
+        txtNguyenLieu = (TextView) findViewById(R.id.txtNguyenLieu);
+        txtBuocLam = (TextView) findViewById(R.id.txtBuocLam);
+        txtTenDD = (TextView) findViewById(R.id.edtTenDinhDuong);
+        txtKhoiLuong = (TextView) findViewById(R.id.edtKhoiLuong);
+        txtPhanTram = (TextView) findViewById(R.id.edtPhanTram);
+        txtDiaChi = (TextView) findViewById(R.id.txtDiaChi);
+        txtThongTinThem = (TextView) findViewById(R.id.txtThongTinThem);
+
+        listSpinnerLoaiMon = new ArrayList<String>();
+        listSpinnerDoiTuong = new ArrayList<String>();
+
+        //ĐỔ DỮ LIỆU TỪ FIREBASE VỀ CHO SPIINER LOAI MON
+        myRef.child("LoaiMon").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                if(dataSnapshot.exists()) {
+                    String value = dataSnapshot.getValue(String.class);
+                    listSpinnerLoaiMon.add(value);
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        ArrayAdapter<String> adapterSpinnerLoaiMon = new ArrayAdapter<String>(this,R.layout.spinner_item, listSpinnerLoaiMon);
+        adapterSpinnerLoaiMon.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        listSpinnerLoaiMon.add("Chọn loại món");
+        spnLoaiMon.setAdapter(adapterSpinnerLoaiMon);
+
+        //ĐỔ DỮ LIỆU TỪ FIREBASE VỀ CHO SPIINER DOI TUONG
+        myRef.child("DoiTuong").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                if(dataSnapshot.exists()) {
+                    String value = dataSnapshot.getValue(String.class);
+                    listSpinnerDoiTuong.add(value);
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        ArrayAdapter<String> adapterSpinnerDoiTuong = new ArrayAdapter<String>(this,R.layout.spinner_item, listSpinnerDoiTuong);
+        adapterSpinnerDoiTuong.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        listSpinnerDoiTuong.add("Chọn đối tượng người dùng");
+        spnDoiTuong.setAdapter(adapterSpinnerDoiTuong);
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,36 +208,17 @@ public class ThemBaiVietActivity extends AppCompatActivity{
         btnThem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Calendar calendar = Calendar.getInstance();
-                final Long NameImage = calendar.getTimeInMillis();
-                taiAnh(NameImage);
-                final String key = myRef.child("BaiViet").push().getKey();
-
-                baiViet = new BaiViet(key,txtTenMonAn.getText()+"","",txtNguyenLieu.getText()+"",txtBuocLam.getText()+"",txtTenDD.getText() + "" + txtKhoiLuong.getText() + "" + txtPhanTram.getText() + "",txtDiaChi.getText()+"",txtThongTinThem.getText()+"",0,0,calendar.getTime().getSeconds()+"","6-4-2019",5,5,1,113,5);
-
-
-                myRef.child("BaiViet").child(key).setValue(baiViet, new DatabaseReference.CompletionListener() {
-                    @Override
-                    public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
-                        if(databaseError == null)
-                        {
-                            hinhAnh = new HinhAnh(NameImage+"",200,200,0,key);
-                            myRef.child("HinhAnh").child(NameImage+"").setValue(hinhAnh);
-
-                            /*Toast.makeText(ThemBaiVietActivity.this, "Lưu thành công", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(ThemBaiVietActivity.this, QuanLyBaiVietActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);*/
-                        }
-                        else {
-                            /*Toast.makeText(ThemBaiVietActivity.this, "Lưu thất bại", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(ThemBaiVietActivity.this, QuanLyBaiVietActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);*/
-                        }
-                    }
-                });
+                /*if(txtTenMonAn.getText() == ""){
+                    Toast.makeText(ThemBaiVietActivity.this, "Bạn chưa nhập tên món ăn", Toast.LENGTH_SHORT).show();
                 }
+                    else if(txtNguyenLieu.getText() == ""){
+                        Toast.makeText(ThemBaiVietActivity.this, "Bạn chưa nhập nguyên liệu", Toast.LENGTH_SHORT).show();
+                    }
+                        else if(txtBuocLam.getText() == ""){
+                                Toast.makeText(ThemBaiVietActivity.this, "Bạn chưa nhập bước làm", Toast.LENGTH_SHORT).show();
+                            }*/
+                            taiAnh();
+                        }
         });
 
 
@@ -172,6 +246,44 @@ public class ThemBaiVietActivity extends AppCompatActivity{
         });*/
 
 
+    }
+
+    public void PushFireBase(final Long nameImage){
+        final Calendar calendar = Calendar.getInstance();
+
+        final String key = myRef.child("BaiViet").push().getKey();
+        final String keyDanhGia = myRef.child("DanhGia").push().getKey();
+
+        danhGiaBaiViet = new DanhGiaBaiViet(keyDanhGia,0,0,0,0,0);
+
+        int doiTuong = spnDoiTuong.getSelectedItemPosition();
+        int loaiMon = spnLoaiMon.getSelectedItemPosition();
+
+        baiViet = new BaiViet(key,txtTenMonAn.getText()+"","",txtNguyenLieu.getText()+"",txtBuocLam.getText()+"",txtTenDD.getText() + "" + txtKhoiLuong.getText() + "" + txtPhanTram.getText() + "",txtDiaChi.getText()+"",txtThongTinThem.getText()+"", doiTuong, loaiMon,"11/05/2000","17/4/2019",0,0,1,113+"",keyDanhGia);
+
+
+        myRef.child("BaiViet").child(key).setValue(baiViet, new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
+                if(databaseError == null)
+                {
+                    hinhAnh = new HinhAnh(nameImage+"",200,200,0,key);
+                    myRef.child("HinhAnh").child(nameImage+"").setValue(hinhAnh);
+                    myRef.child("DanhGiaBaiViet").child(keyDanhGia).setValue(danhGiaBaiViet);
+
+                    Toast.makeText(ThemBaiVietActivity.this, "Đăng bài viết thành công", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(ThemBaiVietActivity.this, QuanLyBaiVietActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
+                else {
+                    Toast.makeText(ThemBaiVietActivity.this, "Đăng bài viết thất bại", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(ThemBaiVietActivity.this, QuanLyBaiVietActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
+            }
+        });
     }
 
     private void chonAnh() {
@@ -208,18 +320,20 @@ public class ThemBaiVietActivity extends AppCompatActivity{
                         .decodeFile(imgDecodableString));
 
             } else {
-                Toast.makeText(this, "You haven't picked Image",
+                Toast.makeText(this, "Bạn chưa chọn ảnh",
                         Toast.LENGTH_LONG).show();
             }
         } catch (Exception e) {
-            Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG)
+            Toast.makeText(this, "Lỗi ảnh", Toast.LENGTH_LONG)
                     .show();
         }
     }
 
-    private void taiAnh(Long NameImage) {
+    private void taiAnh() {
         if(filePath != null)
         {
+            Calendar calendar = Calendar.getInstance();
+            final Long NameImage = calendar.getTimeInMillis();
             final ProgressDialog progressDialog = new ProgressDialog(this);
             progressDialog.setTitle("Tải ảnh lên");
             progressDialog.show();
@@ -230,20 +344,18 @@ public class ThemBaiVietActivity extends AppCompatActivity{
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     progressDialog.dismiss();
-                    Toast.makeText(ThemBaiVietActivity.this, "Đăng bài viết thành công", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(ThemBaiVietActivity.this, QuanLyBaiVietActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
+
+                    PushFireBase(NameImage);
                 }
             })
             .addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     progressDialog.dismiss();
-                    Toast.makeText(ThemBaiVietActivity.this, "Đăng bài viết thất bại", Toast.LENGTH_SHORT).show();
+                    /*Toast.makeText(ThemBaiVietActivity.this, "Đăng bài viết thất bại", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(ThemBaiVietActivity.this, QuanLyBaiVietActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
+                    startActivity(intent);*/
                 }
             })
             .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -254,6 +366,9 @@ public class ThemBaiVietActivity extends AppCompatActivity{
                     progressDialog.setMessage("Đang tải hình ảnh "+(int) progress +"%");
                 }
             });
+        }
+        else {
+            Toast.makeText(ThemBaiVietActivity.this, "Bạn chưa chọn ảnh", Toast.LENGTH_SHORT).show();
         }
     }
 

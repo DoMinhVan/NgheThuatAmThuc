@@ -30,6 +30,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -54,7 +55,6 @@ public class TrangChuActivity extends AppCompatActivity {
         //FireBase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
-
 
         //Button
         Button btnMonNgonMoiNgay = (Button) findViewById(R.id.btnMonNgonMoiNgay);
@@ -115,6 +115,7 @@ public class TrangChuActivity extends AppCompatActivity {
         myRef.child("BaiViet").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
                 if(dataSnapshot.exists()) {
                     BaiViet value = dataSnapshot.getValue(BaiViet.class);
                     listMembers.add(value);
@@ -124,17 +125,17 @@ public class TrangChuActivity extends AppCompatActivity {
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
+                adapter.notifyDataSetChanged();
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
+                adapter.notifyDataSetChanged();
             }
 
             @Override
             public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -242,7 +243,7 @@ public class TrangChuActivity extends AppCompatActivity {
                 Collections.sort(listMembers, new Comparator<BaiViet>() {
                     @Override
                     public int compare(BaiViet baiViet1, BaiViet baiViet2) {
-                        if (baiViet1.getIDDanhGia() < baiViet2.getIDDanhGia()) {
+                        if (baiViet1.getIDDanhGia().equals(baiViet2.getIDDanhGia())) {
                             return 1;
                         } else {
                             if (baiViet1.getIDDanhGia() == baiViet2.getIDDanhGia()) {
@@ -331,5 +332,11 @@ public class TrangChuActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
 
+    }
+
+    @Override
+    protected void onResume() {
+        //listMembers.clear();
+        super.onResume();
     }
 }
