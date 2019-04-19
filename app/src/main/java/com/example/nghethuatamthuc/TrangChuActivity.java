@@ -292,13 +292,13 @@ public class TrangChuActivity extends AppCompatActivity {
                 Collections.sort(listMembers, new Comparator<BaiViet>() {
                     @Override
                     public int compare(BaiViet baiViet1, BaiViet baiViet2) {
-                        if (baiViet1.getIDDanhGia().equals(baiViet2.getIDDanhGia())) {
-                            return 1;
+                        if (baiViet1.LayDanhGiaTrungBinh() > (baiViet2.LayDanhGiaTrungBinh())) {
+                            return -1;
                         } else {
                             if (baiViet1.getIDDanhGia() == baiViet2.getIDDanhGia()) {
                                 return 0;
                             } else {
-                                return -1;
+                                return 1;
                             }
                         }
                     }

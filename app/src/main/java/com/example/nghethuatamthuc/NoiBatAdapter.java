@@ -121,6 +121,7 @@ public class NoiBatAdapter extends BaseAdapter {
                         if(soLuotDanhGia!=0) {
                             soDanhGiaTrungBinh = (((danhGiaBaiViet.getDanhGia1()) + (danhGiaBaiViet.getDanhGia2() * 2) + (danhGiaBaiViet.getDanhGia3() * 3) + (danhGiaBaiViet.getDanhGia4() * 4) + (danhGiaBaiViet.getDanhGia5() * 5))/soLuotDanhGia);
                             //Log.d("soDanhGiaTrungBinh", soDanhGiaTrungBinh + "");
+                            baiViet.DanhGiaTrungBinh(soDanhGiaTrungBinh);
                             soluotdanhgia.setRating(soDanhGiaTrungBinh);
                         }
                     }

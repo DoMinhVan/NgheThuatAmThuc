@@ -23,6 +23,7 @@ public class BaiViet {
     private String IDNguoiDung;
     private String IDDanhGia;
 
+    private float DanhGiaTrungBinh;
     public BaiViet() {
     }
 
@@ -193,5 +194,15 @@ public class BaiViet {
         SimpleDateFormat curFormater = new SimpleDateFormat("dd/MM/yyyy");
         Date dateObj = curFormater.parse(NgaySua);
         return dateObj;
+    }
+
+    public void DanhGiaTrungBinh(float danhGiaTrungBinh)
+    {
+        DanhGiaTrungBinh = danhGiaTrungBinh;
+    }
+
+    public float LayDanhGiaTrungBinh()
+    {
+        return DanhGiaTrungBinh;
     }
 }
