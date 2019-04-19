@@ -43,7 +43,9 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -289,14 +291,25 @@ public class ThemBaiVietActivity extends AppCompatActivity{
     private void chonAnh() {
         Intent intent = new Intent();
         intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
+        intent.setAction(Intent.ACTION_PICK);
         startActivityForResult(Intent.createChooser(intent, "Chọn ảnh"), 71);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        try
+        if(requestCode == 71 && resultCode == RESULT_OK && data != null){
+            Uri uri = data.getData();
+            try {
+                InputStream inputStream = getContentResolver().openInputStream(uri);
+                Bitmap b = BitmapFactory.decodeStream(inputStream);
+                imageView.setImageBitmap(b);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+        }
+       /* try
         {   // When an Image is picked
             if (requestCode == 71 && resultCode == RESULT_OK
                     && null != data) {
@@ -326,7 +339,7 @@ public class ThemBaiVietActivity extends AppCompatActivity{
         } catch (Exception e) {
             Toast.makeText(this, "Lỗi ảnh", Toast.LENGTH_LONG)
                     .show();
-        }
+        }*/
     }
 
     private void taiAnh() {
