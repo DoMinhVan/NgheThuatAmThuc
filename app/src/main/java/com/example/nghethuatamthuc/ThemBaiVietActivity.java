@@ -92,14 +92,14 @@ public class ThemBaiVietActivity extends AppCompatActivity{
         imageView = (ImageView) findViewById(R.id.imageView);
         spnLoaiMon = (Spinner) findViewById(R.id.spnLoaiMon);
         spnDoiTuong = (Spinner) findViewById(R.id.spnDoiTuong);
-        txtTenMonAn = (TextView) findViewById(R.id.txtMonAn);
-        txtNguyenLieu = (TextView) findViewById(R.id.txtNguyenLieu);
-        txtBuocLam = (TextView) findViewById(R.id.txtBuocLam);
+        txtTenMonAn = (TextView) findViewById(R.id.edtMonAn);
+        txtNguyenLieu = (TextView) findViewById(R.id.edtNguyenLieu);
+        txtBuocLam = (TextView) findViewById(R.id.edtBuocLam);
         txtTenDD = (TextView) findViewById(R.id.edtTenDinhDuong);
         txtKhoiLuong = (TextView) findViewById(R.id.edtKhoiLuong);
         txtPhanTram = (TextView) findViewById(R.id.edtPhanTram);
-        txtDiaChi = (TextView) findViewById(R.id.txtDiaChi);
-        txtThongTinThem = (TextView) findViewById(R.id.txtThongTinThem);
+        txtDiaChi = (TextView) findViewById(R.id.edtDiaChi);
+        txtThongTinThem = (TextView) findViewById(R.id.edtThongTinThem);
 
         listSpinnerLoaiMon = new ArrayList<String>();
         listSpinnerDoiTuong = new ArrayList<String>();
@@ -210,7 +210,7 @@ public class ThemBaiVietActivity extends AppCompatActivity{
         btnThem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*if(txtTenMonAn.getText() == ""){
+                if(txtTenMonAn.getText() == ""){
                     Toast.makeText(ThemBaiVietActivity.this, "Bạn chưa nhập tên món ăn", Toast.LENGTH_SHORT).show();
                 }
                     else if(txtNguyenLieu.getText() == ""){
@@ -218,8 +218,23 @@ public class ThemBaiVietActivity extends AppCompatActivity{
                     }
                         else if(txtBuocLam.getText() == ""){
                                 Toast.makeText(ThemBaiVietActivity.this, "Bạn chưa nhập bước làm", Toast.LENGTH_SHORT).show();
-                            }*/
-                            taiAnh();
+                            }
+                                else if(txtTenDD.getText() == ""){
+                                    Toast.makeText(ThemBaiVietActivity.this, "Bạn chưa nhập tên dinh dưỡng", Toast.LENGTH_SHORT).show();
+                                }
+                                    else if(txtKhoiLuong.getText() == ""){
+                                        Toast.makeText(ThemBaiVietActivity.this, "Bạn chưa nhập khối lượng", Toast.LENGTH_SHORT).show();
+                                    }
+                                        else if(txtPhanTram.getText() == ""){
+                                            Toast.makeText(ThemBaiVietActivity.this, "Bạn chưa nhập phần trăm", Toast.LENGTH_SHORT).show();
+                                        }
+                                            else if(txtDiaChi.getText() == ""){
+                                                Toast.makeText(ThemBaiVietActivity.this, "Bạn chưa nhập địa chỉ", Toast.LENGTH_SHORT).show();
+                                            }
+                                                else{
+                                                        taiAnh();
+                }
+
                         }
         });
 

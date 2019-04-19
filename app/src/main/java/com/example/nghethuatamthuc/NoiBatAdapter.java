@@ -2,10 +2,12 @@ package com.example.nghethuatamthuc;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
 import android.nfc.Tag;
+import android.os.Bundle;
 import android.os.Debug;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -22,8 +24,10 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.nghethuatamthuc.models.BaiViet;
+import com.example.nghethuatamthuc.models.DanhGiaBaiViet;
 import com.example.nghethuatamthuc.models.HinhAnh;
 import com.example.nghethuatamthuc.models.MonAn_NoiBat;
+import com.example.nghethuatamthuc.models.NguoiDung;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -46,9 +50,12 @@ public class NoiBatAdapter extends BaseAdapter {
     private int layoutID;
     private ArrayList<BaiViet> listMonAn;
     private ArrayList<HinhAnh> listHinhAnh;
+    private ArrayList<NguoiDung> listNguoiDung;
+    private ArrayList<DanhGiaBaiViet> listDanhGiaBaiViet;
 
-    private static final String HeadURLImage = "https://firebasestorage.googleapis.com/v0/b/nghethuatamthuc.appspot.com/o/";
-    private static final String EndURLImage = ".jpg?alt=media&token=255076b3-6ce9-4a1d-8762-99a21d2dbd60";
+    //SAVE DATE SEND DETAIL
+    private Uri uriSend = null;
+    private final static int REQUEST_CODE_URL_IMAGE = 1;
 
     FirebaseStorage storage = FirebaseStorage.getInstance();
     final StorageReference storageRef = storage.getReference();
@@ -56,14 +63,15 @@ public class NoiBatAdapter extends BaseAdapter {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference();
 
-    public NoiBatAdapter(Activity context, int layoutID, ArrayList<BaiViet> listBaiViet, ArrayList<HinhAnh> listHinhAnh) {
+    public NoiBatAdapter(Activity context, int layoutID, ArrayList<BaiViet> listBaiViet, ArrayList<HinhAnh> listHinhAnh, ArrayList<DanhGiaBaiViet> listDanhGiaBaiViet, ArrayList<NguoiDung> listNguoiDung) {
         this.context = context;
         this.layoutID = layoutID;
         this.listMonAn = listBaiViet;
         this.listHinhAnh = listHinhAnh;
+        this.listDanhGiaBaiViet = listDanhGiaBaiViet;
     }
 
-    public NoiBatAdapter(YeuThichActivity context, int item_info_monan, ArrayList<BaiViet> listMembers, ArrayList<BaiViet> listImages) {
+    public NoiBatAdapter(YeuThichActivity context, int item_info_monan, ArrayList<BaiViet> listMembers, ArrayList<BaiViet> listImages, ArrayList<DanhGiaBaiViet> listDanhGiaBaiViet, ArrayList<NguoiDung> listNguoiDung) {
     }
 
     @Override
@@ -88,7 +96,7 @@ public class NoiBatAdapter extends BaseAdapter {
 
         view = inflater.inflate(layoutID,null);
 
-        TextView tenNguoiDang = (TextView) view.findViewById(R.id.txtTenNguoiDang);
+        final TextView tenNguoiDang = (TextView) view.findViewById(R.id.txtTenNguoiDang);
         final ImageView hinhMonAn = (ImageView) view.findViewById(R.id.imgMonAn);
         final TextView tenMonAn = (TextView) view.findViewById(R.id.txtTenMonAn);
         TextView luotThich = (TextView) view.findViewById(R.id.txtLuotThich);
@@ -97,10 +105,51 @@ public class NoiBatAdapter extends BaseAdapter {
         //final Button btnLike = (Button) view.findViewById(R.id.btnlike);
         //final Button btnLove = (Button) view.findViewById(R.id.btnlove);
         //soluotdanhgia.setEnabled(false);
-        soluotdanhgia.setIsIndicator(false);
+        soluotdanhgia.setIsIndicator(true);
 
 
         final BaiViet baiViet = listMonAn.get(position);
+        //final HinhAnh hinhAnh = listHinhAnh.get(position);
+
+        myRef.child("DanhGiaBaiViet").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                for(DanhGiaBaiViet danhGiaBaiViet : listDanhGiaBaiViet)
+                {
+                    if (baiViet.getIDDanhGia().equals(danhGiaBaiViet.getIDDanhGia())) {
+                        float soDanhGiaTrungBinh = 0f;
+                        float soLuotDanhGia = danhGiaBaiViet.getDanhGia1()+danhGiaBaiViet.getDanhGia2()+danhGiaBaiViet.getDanhGia3()+danhGiaBaiViet.getDanhGia4()+danhGiaBaiViet.getDanhGia5();
+                        //Log.d("soLuotDanhGia", soLuotDanhGia + "");
+                        if(soLuotDanhGia!=0) {
+                            soDanhGiaTrungBinh = (((danhGiaBaiViet.getDanhGia1()) + (danhGiaBaiViet.getDanhGia2() * 2) + (danhGiaBaiViet.getDanhGia3() * 3) + (danhGiaBaiViet.getDanhGia4() * 4) + (danhGiaBaiViet.getDanhGia5() * 5))/soLuotDanhGia);
+                            //Log.d("soDanhGiaTrungBinh", soDanhGiaTrungBinh + "");
+                            baiViet.DanhGiaTrungBinh(soDanhGiaTrungBinh);
+                            soluotdanhgia.setRating(soDanhGiaTrungBinh);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         myRef.child("HinhAnh").addChildEventListener(new ChildEventListener() {
             @Override
@@ -109,16 +158,20 @@ public class NoiBatAdapter extends BaseAdapter {
                 for(HinhAnh hinhAnh : listHinhAnh)
                 {
                     if (baiViet.getID().equals(hinhAnh.getIDLoai())) {
-                        Log.d("ListHinhAnh", baiViet.getID() + "  " + hinhAnh.getIDLoai() + "");
+                        //Log.d("ListHinhAnh", baiViet.getID() + "  " + hinhAnh.getIDLoai() + "");
                         storageRef.child("images/" + hinhAnh.getDuongDan()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
-                                Log.d("TestDuongDan", uri+"");
+                                //Log.d("TestDuongDan", uri+"");
+
+                                uriSend = uri;
 
                                 //MyAppGlideModule Glide = new MyAppGlideModule();
-                                Glide.with(context)
-                                        .load(uri)
-                                        .into(hinhMonAn);
+                                if(!context.isFinishing()) {
+                                    Glide.with(context)
+                                            .load(uri)
+                                            .into(hinhMonAn);
+                                }
                             }
                         });
                     }
@@ -145,8 +198,38 @@ public class NoiBatAdapter extends BaseAdapter {
 
             }
         });
+        myRef.child("NguoiDung").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                for(NguoiDung nguoiDung : listNguoiDung)
+                {
+                    if (baiViet.getID().equals(nguoiDung.getIDNguoiDung())) {
+                        tenNguoiDang.setText(nguoiDung.getHoTen());
+                    }
+                }
+            }
 
-        tenNguoiDang.setText(baiViet.getIDNguoiDung()+"ID");
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
 
         /*final long ONE_MEGABYTE = 1024 * 1024;
@@ -164,6 +247,21 @@ public class NoiBatAdapter extends BaseAdapter {
 
         tenMonAn.setText(baiViet.getTenBaiViet());
 
+        hinhMonAn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ManHinhChiTietAcivity.class);
+                Bundle bundle = new Bundle();
+
+
+                bundle.putString("urlImage",uriSend+"");
+                intent.putExtras(bundle);
+                //intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                context.startActivity(intent);
+                //context.startActivityForResult(intent,REQUEST_CODE_URL_IMAGE);
+            }
+        });
+
 
 
         luotThich.setText(baiViet.getLuotThich() + " Lượt thích");
@@ -177,8 +275,6 @@ public class NoiBatAdapter extends BaseAdapter {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-        soluotdanhgia.setRating(5);
 
         /*btnLike.setOnClickListener(new View.OnClickListener() {
             @Override

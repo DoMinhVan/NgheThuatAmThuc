@@ -5,6 +5,7 @@ import android.widget.Spinner;
 import java.util.Date;
 
 public class NguoiDung {
+    private String IDNguoiDung;
     private String HoTen;
     private String TenDangNhap;
     private String MatKhau;
@@ -17,6 +18,33 @@ public class NguoiDung {
     private String HinhDaiDien;
     private Date ThoiGian;
     private int TrangThai;
+
+    public NguoiDung(String IDNguoiDung, String hoTen, String tenDangNhap, String matKhau, String soDienThoai, String gmail, Date ngaySinh, int gioiTinh, int loaiNguoiDung, String hinhNen, String hinhDaiDien, Date thoiGian, int trangThai) {
+        this.IDNguoiDung = IDNguoiDung;
+        HoTen = hoTen;
+        TenDangNhap = tenDangNhap;
+        MatKhau = matKhau;
+        SoDienThoai = soDienThoai;
+        Gmail = gmail;
+        NgaySinh = ngaySinh;
+        GioiTinh = gioiTinh;
+        LoaiNguoiDung = loaiNguoiDung;
+        HinhNen = hinhNen;
+        HinhDaiDien = hinhDaiDien;
+        ThoiGian = thoiGian;
+        TrangThai = trangThai;
+    }
+
+    public NguoiDung() {
+    }
+
+    public String getIDNguoiDung() {
+        return IDNguoiDung;
+    }
+
+    public void setIDNguoiDung(String IDNguoiDung) {
+        this.IDNguoiDung = IDNguoiDung;
+    }
 
     public void setHoTen(String hoTen) {
         HoTen = hoTen;
