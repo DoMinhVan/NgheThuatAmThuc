@@ -99,7 +99,6 @@ public class DangKyActivity extends AppCompatActivity implements View.OnClickLis
         btnDangKy = (Button) findViewById(R.id.btnDangKy);
         btnHuy=(Button) findViewById(R.id.btnHuy);
         edtTenDangNhap = (EditText)  findViewById(R.id.edtHoTen2);
-
     }
 
     @Override

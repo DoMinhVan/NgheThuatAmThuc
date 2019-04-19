@@ -11,15 +11,15 @@ public class NguoiDung {
     private String MatKhau;
     private String SoDienThoai;
     private String Gmail;
-    private Date NgaySinh;
+    private String NgaySinh;
     private int GioiTinh;
     private int LoaiNguoiDung;
     private String HinhNen;
     private String HinhDaiDien;
-    private Date ThoiGian;
+    private String ThoiGian;
     private int TrangThai;
 
-    public NguoiDung(String IDNguoiDung, String hoTen, String tenDangNhap, String matKhau, String soDienThoai, String gmail, Date ngaySinh, int gioiTinh, int loaiNguoiDung, String hinhNen, String hinhDaiDien, Date thoiGian, int trangThai) {
+    public NguoiDung(String IDNguoiDung, String hoTen, String tenDangNhap, String matKhau, String soDienThoai, String gmail, String ngaySinh, int gioiTinh, int loaiNguoiDung, String hinhNen, String hinhDaiDien, String thoiGian, int trangThai) {
         this.IDNguoiDung = IDNguoiDung;
         HoTen = hoTen;
         TenDangNhap = tenDangNhap;
@@ -62,7 +62,7 @@ public class NguoiDung {
         Gmail = gmail;
     }
 
-    public void setNgaySinh(Date ngaySinh) {
+    public void setNgaySinh(String ngaySinh) {
         NgaySinh = ngaySinh;
     }
 
@@ -82,7 +82,7 @@ public class NguoiDung {
         HinhDaiDien = hinhDaiDien;
     }
 
-    public void setThoiGian(Date thoiGian) {
+    public void setThoiGian(String thoiGian) {
         ThoiGian = thoiGian;
     }
 
@@ -110,7 +110,7 @@ public class NguoiDung {
         return Gmail;
     }
 
-    public Date getNgaySinh() {
+    public String getNgaySinh() {
         return NgaySinh;
     }
 
@@ -130,7 +130,7 @@ public class NguoiDung {
         return HinhDaiDien;
     }
 
-    public Date getThoiGian() {
+    public String getThoiGian() {
         return ThoiGian;
     }
 
