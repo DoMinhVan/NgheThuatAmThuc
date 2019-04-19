@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.example.nghethuatamthuc.models.BaiViet;
 import com.example.nghethuatamthuc.models.DanhGiaBaiViet;
 import com.example.nghethuatamthuc.models.HinhAnh;
+import com.example.nghethuatamthuc.models.NguoiDung;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
@@ -40,7 +41,8 @@ import java.util.List;
 public class TrangChuActivity extends AppCompatActivity {
     Toolbar toolbarTrangChu;
     //Button btnLike;
-    private static ArrayList<BaiViet> listMembers = new ArrayList<BaiViet>();
+    private static ArrayList<BaiViet> listBaiViet = new ArrayList<BaiViet>();
+    private static ArrayList<NguoiDung> listNguoiDung = new ArrayList<NguoiDung>();
     private static ArrayList<HinhAnh> listHinhAnh = new ArrayList<>();
     private static ArrayList<DanhGiaBaiViet> listDanhGiaBaiViet = new ArrayList<>();
     private NoiBatAdapter adapter;
@@ -120,7 +122,7 @@ public class TrangChuActivity extends AppCompatActivity {
 
                 if(dataSnapshot.exists()) {
                     BaiViet value = dataSnapshot.getValue(BaiViet.class);
-                    listMembers.add(value);
+                    listBaiViet.add(value);
                     adapter.notifyDataSetChanged();
                 }
             }
@@ -138,6 +140,37 @@ public class TrangChuActivity extends AppCompatActivity {
             @Override
             public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        //ĐỌC TẤT CẢ CÁC NGUOI DUNG VÀ ĐỔ VÀO ARRAYLIST
+        myRef.child("NguoiDung").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                if(dataSnapshot.exists()) {
+                    NguoiDung nguoiDung = dataSnapshot.getValue(NguoiDung.class);
+                    listNguoiDung.add(nguoiDung);
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
             }
 
             @Override
@@ -255,14 +288,14 @@ public class TrangChuActivity extends AppCompatActivity {
             }
         });*/
 
-        adapter = new NoiBatAdapter(this, R.layout.item_info_monan,listMembers,listHinhAnh,listDanhGiaBaiViet);
+        adapter = new NoiBatAdapter(this, R.layout.item_info_monan,listBaiViet,listHinhAnh,listDanhGiaBaiViet,listNguoiDung);
 
 
         btnMonNgonMoiNgay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(TrangChuActivity.this, "Update list view - Món ngon mỗi ngày!", Toast.LENGTH_SHORT).show();
-                Collections.sort(listMembers, new Comparator<BaiViet>() {
+                Collections.sort(listBaiViet, new Comparator<BaiViet>() {
                     @Override
                     public int compare(BaiViet baiViet1, BaiViet baiViet2) {
                         try {
@@ -289,7 +322,7 @@ public class TrangChuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(TrangChuActivity.this, "Update list view - Đánh giá cao!", Toast.LENGTH_SHORT).show();
-                Collections.sort(listMembers, new Comparator<BaiViet>() {
+                Collections.sort(listBaiViet, new Comparator<BaiViet>() {
                     @Override
                     public int compare(BaiViet baiViet1, BaiViet baiViet2) {
                         if (baiViet1.LayDanhGiaTrungBinh() > (baiViet2.LayDanhGiaTrungBinh())) {
@@ -311,7 +344,7 @@ public class TrangChuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(TrangChuActivity.this, "Update list view - Sôi nổi!", Toast.LENGTH_SHORT).show();
-                Collections.sort(listMembers, new Comparator<BaiViet>() {
+                Collections.sort(listBaiViet, new Comparator<BaiViet>() {
                     @Override
                     public int compare(BaiViet baiViet1, BaiViet baiViet2) {
                         if (baiViet1.getLuotBinhLuan() > (baiViet2.getLuotBinhLuan())) {
@@ -385,7 +418,7 @@ public class TrangChuActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        listMembers.clear();
+        listBaiViet.clear();
         listHinhAnh.clear();
         listDanhGiaBaiViet.clear();
         super.onResume();

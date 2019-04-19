@@ -27,6 +27,7 @@ import com.example.nghethuatamthuc.models.BaiViet;
 import com.example.nghethuatamthuc.models.DanhGiaBaiViet;
 import com.example.nghethuatamthuc.models.HinhAnh;
 import com.example.nghethuatamthuc.models.MonAn_NoiBat;
+import com.example.nghethuatamthuc.models.NguoiDung;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -49,6 +50,7 @@ public class NoiBatAdapter extends BaseAdapter {
     private int layoutID;
     private ArrayList<BaiViet> listMonAn;
     private ArrayList<HinhAnh> listHinhAnh;
+    private ArrayList<NguoiDung> listNguoiDung;
     private ArrayList<DanhGiaBaiViet> listDanhGiaBaiViet;
 
     //SAVE DATE SEND DETAIL
@@ -61,7 +63,7 @@ public class NoiBatAdapter extends BaseAdapter {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference();
 
-    public NoiBatAdapter(Activity context, int layoutID, ArrayList<BaiViet> listBaiViet, ArrayList<HinhAnh> listHinhAnh, ArrayList<DanhGiaBaiViet> listDanhGiaBaiViet) {
+    public NoiBatAdapter(Activity context, int layoutID, ArrayList<BaiViet> listBaiViet, ArrayList<HinhAnh> listHinhAnh, ArrayList<DanhGiaBaiViet> listDanhGiaBaiViet, ArrayList<NguoiDung> listNguoiDung) {
         this.context = context;
         this.layoutID = layoutID;
         this.listMonAn = listBaiViet;
@@ -69,7 +71,7 @@ public class NoiBatAdapter extends BaseAdapter {
         this.listDanhGiaBaiViet = listDanhGiaBaiViet;
     }
 
-    public NoiBatAdapter(YeuThichActivity context, int item_info_monan, ArrayList<BaiViet> listMembers, ArrayList<BaiViet> listImages, ArrayList<DanhGiaBaiViet> listDanhGiaBaiViet) {
+    public NoiBatAdapter(YeuThichActivity context, int item_info_monan, ArrayList<BaiViet> listMembers, ArrayList<BaiViet> listImages, ArrayList<DanhGiaBaiViet> listDanhGiaBaiViet, ArrayList<NguoiDung> listNguoiDung) {
     }
 
     @Override
@@ -94,7 +96,7 @@ public class NoiBatAdapter extends BaseAdapter {
 
         view = inflater.inflate(layoutID,null);
 
-        TextView tenNguoiDang = (TextView) view.findViewById(R.id.txtTenNguoiDang);
+        final TextView tenNguoiDang = (TextView) view.findViewById(R.id.txtTenNguoiDang);
         final ImageView hinhMonAn = (ImageView) view.findViewById(R.id.imgMonAn);
         final TextView tenMonAn = (TextView) view.findViewById(R.id.txtTenMonAn);
         TextView luotThich = (TextView) view.findViewById(R.id.txtLuotThich);
@@ -196,8 +198,38 @@ public class NoiBatAdapter extends BaseAdapter {
 
             }
         });
+        myRef.child("NguoiDung").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                for(NguoiDung nguoiDung : listNguoiDung)
+                {
+                    if (baiViet.getID().equals(nguoiDung.getIDNguoiDung())) {
+                        tenNguoiDang.setText(nguoiDung.getHoTen());
+                    }
+                }
+            }
 
-        tenNguoiDang.setText(baiViet.getIDNguoiDung()+"ID");
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
 
         /*final long ONE_MEGABYTE = 1024 * 1024;
@@ -221,16 +253,6 @@ public class NoiBatAdapter extends BaseAdapter {
                 Intent intent = new Intent(context, ManHinhChiTietAcivity.class);
                 Bundle bundle = new Bundle();
 
-
-
-                /*storageRef.child("images/" + hinhAnh.getDuongDan()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        //Log.d("TestDuongDan", uri+"");
-
-                        uriSend = uri;
-                    }
-                });*/
 
                 bundle.putString("urlImage",uriSend+"");
                 intent.putExtras(bundle);
