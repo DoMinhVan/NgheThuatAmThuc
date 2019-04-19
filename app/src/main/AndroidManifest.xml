@@ -37,6 +37,7 @@
         <activity android:name=".YeuThichActivity" />
         <activity android:name=".TrangChuActivity" />
         <activity android:name=".ThemBaiVietActivity" />
+        <activity android:name=".ManHinhChiTietAcivity" />
     </application>
 
 </manifest>

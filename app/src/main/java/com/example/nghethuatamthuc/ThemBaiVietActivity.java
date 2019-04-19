@@ -90,14 +90,14 @@ public class ThemBaiVietActivity extends AppCompatActivity{
         imageView = (ImageView) findViewById(R.id.imageView);
         spnLoaiMon = (Spinner) findViewById(R.id.spnLoaiMon);
         spnDoiTuong = (Spinner) findViewById(R.id.spnDoiTuong);
-        txtTenMonAn = (TextView) findViewById(R.id.txtMonAn);
-        txtNguyenLieu = (TextView) findViewById(R.id.txtNguyenLieu);
-        txtBuocLam = (TextView) findViewById(R.id.txtBuocLam);
+        txtTenMonAn = (TextView) findViewById(R.id.edtMonAn);
+        txtNguyenLieu = (TextView) findViewById(R.id.edtNguyenLieu);
+        txtBuocLam = (TextView) findViewById(R.id.edtBuocLam);
         txtTenDD = (TextView) findViewById(R.id.edtTenDinhDuong);
         txtKhoiLuong = (TextView) findViewById(R.id.edtKhoiLuong);
         txtPhanTram = (TextView) findViewById(R.id.edtPhanTram);
-        txtDiaChi = (TextView) findViewById(R.id.txtDiaChi);
-        txtThongTinThem = (TextView) findViewById(R.id.txtThongTinThem);
+        txtDiaChi = (TextView) findViewById(R.id.edtDiaChi);
+        txtThongTinThem = (TextView) findViewById(R.id.edtThongTinThem);
 
         listSpinnerLoaiMon = new ArrayList<String>();
         listSpinnerDoiTuong = new ArrayList<String>();

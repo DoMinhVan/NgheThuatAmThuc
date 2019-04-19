@@ -66,4 +66,6 @@
     <string name="txtNgayTG">Ngày tham gia 29/3/2009</string>
     <string name="txtQlBv">Quản lý bài viết</string>
     <string name="txtQlTK">Quản lý tài khoản</string>
+    //ChiTiet
+    <string name="btn_gui">Gửi</string>
 </resources>

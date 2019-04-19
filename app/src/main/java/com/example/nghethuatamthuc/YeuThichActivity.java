@@ -14,6 +14,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.nghethuatamthuc.models.BaiViet;
+import com.example.nghethuatamthuc.models.DanhGiaBaiViet;
 import com.example.nghethuatamthuc.models.MonAn_NoiBat;
 
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class YeuThichActivity extends AppCompatActivity {
 
     private ArrayList<BaiViet> listMembers = new ArrayList<BaiViet>();
     private ArrayList<BaiViet> listImages = new ArrayList<BaiViet>();
+    private ArrayList<DanhGiaBaiViet> listDanhGiaVaiBiet = new ArrayList<DanhGiaBaiViet>();
     private NoiBatAdapter adapter;
     private boolean DangNhap = false;
 
@@ -41,7 +43,7 @@ public class YeuThichActivity extends AppCompatActivity {
 
         //listMembers.add(new MonAn_NoiBat("Ngô Hiếu","Hamburger","696","Mới đây",5f,0,0));
 
-        adapter = new NoiBatAdapter(this, R.layout.item_info_monan,listMembers,listImages);
+        adapter = new NoiBatAdapter(this, R.layout.item_info_monan,listMembers,listImages, listDanhGiaVaiBiet);
         listView.setAdapter(adapter);
     }
 
