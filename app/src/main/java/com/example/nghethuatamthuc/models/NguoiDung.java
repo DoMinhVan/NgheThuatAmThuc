@@ -35,6 +35,10 @@ public class NguoiDung {
         TrangThai = trangThai;
     }
 
+    public String getMatKhau() {
+        return MatKhau;
+    }
+
     public NguoiDung() {
     }
 
