@@ -13,9 +13,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarChiTiet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/toolBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </android.support.v7.widget.Toolbar>
+
 
     <ImageView
-        android:id="@+id/imgChiTiet"
+        android:id="@+id/img_ChiTiet"
         android:layout_width="0dp"
         android:layout_height="180dp"
         android:layout_marginStart="8dp"
@@ -23,28 +35,29 @@
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTenMonAn_ChiTiet"
         app:srcCompat="@android:color/holo_blue_light" />
 
     <TextView
-        android:id="@+id/txtDanhGiaTrunginh"
+        android:id="@+id/txtDanhGiaTrunginh_ChiTiet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         android:text="0"
+        android:textAlignment="center"
         android:textColor="@color/btnDNGmail"
         android:textSize="75dp"
-        app:layout_constraintBottom_toBottomOf="@+id/ratingBar5"
+        app:layout_constraintBottom_toBottomOf="@+id/ratingBar5_ChiTiet"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ratingBar1"
-        app:layout_constraintTop_toTopOf="@+id/ratingBar1" />
+        app:layout_constraintStart_toEndOf="@+id/ratingBar1_ChiTiet"
+        app:layout_constraintTop_toTopOf="@+id/ratingBar1_ChiTiet" />
 
 
     <RatingBar
-        android:id="@+id/ratingBar1"
+        android:id="@+id/ratingBar1_ChiTiet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleX="0.5"
@@ -52,21 +65,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgChiTiet" />
+        app:layout_constraintTop_toBottomOf="@+id/img_ChiTiet" />
 
     <TextView
-        android:id="@+id/txt1"
+        android:id="@+id/txt1_ChiTiet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0"
-        app:layout_constraintBottom_toBottomOf="@+id/ratingBar1"
-        app:layout_constraintEnd_toEndOf="@+id/ratingBar1"
+        app:layout_constraintBottom_toBottomOf="@+id/ratingBar1_ChiTiet"
+        app:layout_constraintEnd_toEndOf="@+id/ratingBar1_ChiTiet"
         app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="@+id/ratingBar1"
-        app:layout_constraintTop_toTopOf="@+id/ratingBar1" />
+        app:layout_constraintStart_toStartOf="@+id/ratingBar1_ChiTiet"
+        app:layout_constraintTop_toTopOf="@+id/ratingBar1_ChiTiet" />
 
     <RatingBar
-        android:id="@+id/ratingBar2"
+        android:id="@+id/ratingBar2_ChiTiet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -75,21 +88,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ratingBar1" />
+        app:layout_constraintTop_toTopOf="@+id/ratingBar1_ChiTiet" />
 
     <TextView
-        android:id="@+id/txt2"
+        android:id="@+id/txt2_ChiTiet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0"
-        app:layout_constraintBottom_toBottomOf="@+id/ratingBar2"
-        app:layout_constraintEnd_toEndOf="@+id/ratingBar2"
+        app:layout_constraintBottom_toBottomOf="@+id/ratingBar2_ChiTiet"
+        app:layout_constraintEnd_toEndOf="@+id/ratingBar2_ChiTiet"
         app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="@+id/ratingBar2"
-        app:layout_constraintTop_toTopOf="@+id/ratingBar2" />
+        app:layout_constraintStart_toStartOf="@+id/ratingBar2_ChiTiet"
+        app:layout_constraintTop_toTopOf="@+id/ratingBar2_ChiTiet" />
 
     <RatingBar
-        android:id="@+id/ratingBar3"
+        android:id="@+id/ratingBar3_ChiTiet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
@@ -98,21 +111,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ratingBar1" />
+        app:layout_constraintTop_toTopOf="@+id/ratingBar1_ChiTiet" />
 
     <TextView
-        android:id="@+id/txt3"
+        android:id="@+id/txt3_ChiTiet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0"
-        app:layout_constraintBottom_toBottomOf="@+id/ratingBar3"
-        app:layout_constraintEnd_toEndOf="@+id/ratingBar3"
+        app:layout_constraintBottom_toBottomOf="@+id/ratingBar3_ChiTiet"
+        app:layout_constraintEnd_toEndOf="@+id/ratingBar3_ChiTiet"
         app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="@+id/ratingBar3"
-        app:layout_constraintTop_toTopOf="@+id/ratingBar3" />
+        app:layout_constraintStart_toStartOf="@+id/ratingBar3_ChiTiet"
+        app:layout_constraintTop_toTopOf="@+id/ratingBar3_ChiTiet" />
 
     <RatingBar
-        android:id="@+id/ratingBar4"
+        android:id="@+id/ratingBar4_ChiTiet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
@@ -121,20 +134,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ratingBar1" />
+        app:layout_constraintTop_toTopOf="@+id/ratingBar1_ChiTiet" />
 
     <TextView
-        android:id="@+id/txt4"
+        android:id="@+id/txt4_ChiTiet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0"
-        app:layout_constraintBottom_toBottomOf="@+id/ratingBar4"
-        app:layout_constraintEnd_toEndOf="@+id/ratingBar4"
+        app:layout_constraintBottom_toBottomOf="@+id/ratingBar4_ChiTiet"
+        app:layout_constraintEnd_toEndOf="@+id/ratingBar4_ChiTiet"
         app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="@+id/ratingBar4"
-        app:layout_constraintTop_toTopOf="@+id/ratingBar4" />
+        app:layout_constraintStart_toStartOf="@+id/ratingBar4_ChiTiet"
+        app:layout_constraintTop_toTopOf="@+id/ratingBar4_ChiTiet" />
     <RatingBar
-        android:id="@+id/ratingBar5"
+        android:id="@+id/ratingBar5_ChiTiet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="96dp"
@@ -143,104 +156,104 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ratingBar1" />
+        app:layout_constraintTop_toTopOf="@+id/ratingBar1_ChiTiet" />
 
     <TextView
-        android:id="@+id/txt5"
+        android:id="@+id/txt5_ChiTiet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0"
-        app:layout_constraintBottom_toBottomOf="@+id/ratingBar5"
-        app:layout_constraintEnd_toEndOf="@+id/ratingBar5"
+        app:layout_constraintBottom_toBottomOf="@+id/ratingBar5_ChiTiet"
+        app:layout_constraintEnd_toEndOf="@+id/ratingBar5_ChiTiet"
         app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="@+id/ratingBar5"
-        app:layout_constraintTop_toTopOf="@+id/ratingBar5" />
+        app:layout_constraintStart_toStartOf="@+id/ratingBar5_ChiTiet"
+        app:layout_constraintTop_toTopOf="@+id/ratingBar5_ChiTiet" />
 
     <TextView
-        android:id="@+id/txtNguyenLieu"
+        android:id="@+id/txtNguyenLieu_ChiTiet"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="TextView"
+        android:text="Nguyên liệu: "
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ratingBar5" />
+        app:layout_constraintTop_toBottomOf="@+id/ratingBar5_ChiTiet" />
 
     <TextView
-        android:id="@+id/txtBuocLam"
+        android:id="@+id/txtBuocLam_ChiTiet"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="TextView"
+        android:text="Bước làm: "
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNguyenLieu" />
+        app:layout_constraintTop_toBottomOf="@+id/txtNguyenLieu_ChiTiet" />
 
     <TextView
-        android:id="@+id/txtDinhDuong"
+        android:id="@+id/txtDinhDuong_ChiTiet"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="TextView"
+        android:text="Dinh dưỡng: "
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtBuocLam" />
+        app:layout_constraintTop_toBottomOf="@+id/txtBuocLam_ChiTiet" />
     <TextView
-        android:id="@+id/txtDiaChi"
+        android:id="@+id/txtDiaChi_ChiTiet"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="TextView"
+        android:text="Địa chỉ: "
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtDinhDuong" />
+        app:layout_constraintTop_toBottomOf="@+id/txtDoiTuong_ChiTiet" />
 
     <TextView
-        android:id="@+id/txtThongTinChiTiet"
+        android:id="@+id/txtThongTinChiTiet_ChiTiet"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="TextView"
+        android:text="Thông tin chi tiết"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtDiaChi" />
+        app:layout_constraintTop_toBottomOf="@+id/txtDiaChi_ChiTiet" />
 
     <TextView
-        android:id="@+id/txtDoiTuong"
+        android:id="@+id/txtDoiTuong_ChiTiet"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="TextView"
+        android:text="Đối tượng: "
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtThongTinChiTiet" />
+        app:layout_constraintTop_toBottomOf="@+id/txtDinhDuong_ChiTiet" />
 
     <TextView
-        android:id="@+id/txtThongTinTuVan"
+        android:id="@+id/txtThongTinTuVan_ChiTiet"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="TextView"
+        android:text="Thông tin từ vấn từ các chuyên gia:"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtDoiTuong" />
+        app:layout_constraintTop_toBottomOf="@+id/txtThongTinChiTiet_ChiTiet" />
 
     <ListView
-        android:id="@+id/listThongTinTuVan"
+        android:id="@+id/listThongTinTuVan_ChiTiet"
         android:layout_width="395dp"
         android:layout_height="184dp"
         android:layout_marginStart="8dp"
@@ -248,10 +261,10 @@
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtThongTinTuVan" />
+        app:layout_constraintTop_toBottomOf="@+id/txtThongTinTuVan_ChiTiet" />
 
     <TextView
-        android:id="@+id/txtBinhLuanNguoiDung"
+        android:id="@+id/txtBinhLuanNguoiDung_ChiTiet"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -260,10 +273,10 @@
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listThongTinTuVan" />
+        app:layout_constraintTop_toBottomOf="@+id/listThongTinTuVan_ChiTiet" />
 
     <ListView
-        android:id="@+id/listBinhLuanNguoiDung"
+        android:id="@+id/listBinhLuanNguoiDung_ChiTiet"
         android:layout_width="395dp"
         android:layout_height="184dp"
         android:layout_marginStart="8dp"
@@ -271,20 +284,20 @@
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtBinhLuanNguoiDung" />
+        app:layout_constraintTop_toBottomOf="@+id/txtBinhLuanNguoiDung_ChiTiet" />
 
     <TextView
-        android:id="@+id/txtBinhLuan"
+        android:id="@+id/txtBinhLuan_ChiTiet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listBinhLuanNguoiDung" />
+        app:layout_constraintTop_toBottomOf="@+id/listBinhLuanNguoiDung_ChiTiet" />
 
     <ListView
-        android:id="@+id/listBinhLuan"
+        android:id="@+id/listBinhLuan_ChiTiet"
         android:layout_width="395dp"
         android:layout_height="184dp"
         android:layout_marginStart="8dp"
@@ -292,22 +305,22 @@
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtBinhLuan" />
+        app:layout_constraintTop_toBottomOf="@+id/txtBinhLuan_ChiTiet" />
 
     <TextView
-        android:id="@+id/txtDanhGia"
+        android:id="@+id/txtDanhGia_ChiTiet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/btnDanhGia"
+        app:layout_constraintBottom_toTopOf="@+id/btnDanhGia_ChiTiet"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listBinhLuan" />
+        app:layout_constraintTop_toBottomOf="@+id/listBinhLuan_ChiTiet" />
 
     <Button
-        android:id="@+id/btnDanhGia"
+        android:id="@+id/btnDanhGia_ChiTiet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -317,18 +330,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ratingBarNguoiDung" />
+        app:layout_constraintTop_toBottomOf="@+id/ratingBarNguoiDung_ChiTiet" />
 
     <RatingBar
-        android:id="@+id/ratingBarNguoiDung"
+        android:id="@+id/ratingBarNguoiDung_ChiTiet"
         android:layout_width="wrap_content"
         android:layout_height="44dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtDanhGia"
-        app:layout_constraintTop_toBottomOf="@+id/listBinhLuan" />
+        app:layout_constraintStart_toEndOf="@+id/txtDanhGia_ChiTiet"
+        app:layout_constraintTop_toBottomOf="@+id/listBinhLuan_ChiTiet" />
+
+    <TextView
+        android:id="@+id/txtTenMonAn_ChiTiet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="TextView"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarChiTiet" />
 
 </android.support.constraint.ConstraintLayout>
 

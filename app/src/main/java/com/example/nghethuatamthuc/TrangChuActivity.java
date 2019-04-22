@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -45,6 +46,7 @@ public class TrangChuActivity extends AppCompatActivity {
     private static ArrayList<NguoiDung> listNguoiDung = new ArrayList<NguoiDung>();
     private static ArrayList<HinhAnh> listHinhAnh = new ArrayList<>();
     private static ArrayList<DanhGiaBaiViet> listDanhGiaBaiViet = new ArrayList<>();
+    private NguoiDung nguoiDung = new NguoiDung();
     private NoiBatAdapter adapter;
     private ListView listView;
     private Button btnLike;
@@ -71,6 +73,9 @@ public class TrangChuActivity extends AppCompatActivity {
         final Spinner buttonMucKhac = (Spinner) findViewById(R.id.btnMucKhac);
         listSpinnerLoaiMon = new ArrayList<String>();
         listSpinnerLoaiMon.add("MÓN KHÁC");
+
+        //Giả lập người dùng
+        nguoiDung = new NguoiDung("LctqUfnB9x3d9OVGQow","HuuPhu","Huuphudn2015","123","0123456789","Huuphudn2015@gmail.com","16/04/1998",1,1,"","","20/04/2019",1);
 
         //ĐỔ DỮ LIỆU TỪ FIREBASE VỀ CHO SPIINER
         myRef.child("LoaiMon").addChildEventListener(new ChildEventListener() {
@@ -119,7 +124,6 @@ public class TrangChuActivity extends AppCompatActivity {
         myRef.child("BaiViet").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
                 if(dataSnapshot.exists()) {
                     BaiViet value = dataSnapshot.getValue(BaiViet.class);
                     listBaiViet.add(value);
@@ -148,36 +152,7 @@ public class TrangChuActivity extends AppCompatActivity {
             }
         });
 
-        //ĐỌC TẤT CẢ CÁC NGUOI DUNG VÀ ĐỔ VÀO ARRAYLIST
-        myRef.child("NguoiDung").addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                if(dataSnapshot.exists()) {
-                    NguoiDung nguoiDung = dataSnapshot.getValue(NguoiDung.class);
-                    listNguoiDung.add(nguoiDung);
-                }
-            }
 
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
 
         //ĐỌC TẤT CẢ HÌNH ẢNH ĐỔ VÀO LISTHINHANH
         myRef.child("HinhAnh").addChildEventListener(new ChildEventListener() {
@@ -225,6 +200,54 @@ public class TrangChuActivity extends AppCompatActivity {
 
             }
         });
+
+        //ĐỌC TẤT CẢ NGƯỜI DÙNG VÀ ĐỔ VÀO LISTNGUOIDUNG
+        myRef.child("NguoiDung").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                NguoiDung nguoiDung = dataSnapshot.getValue(NguoiDung.class);
+                listNguoiDung.add(nguoiDung);
+                /*if(dataSnapshot==null) Toast.makeText(context, "Null", Toast.LENGTH_LONG);
+                else {
+                    final HinhAnh value = dataSnapshot.getValue(HinhAnh.class);
+                    //listHinhAnh.add(value);
+                    if (baiViet.getID() == value.getIDLoai()) {
+
+                        Toast.makeText(context, baiViet.getID() + "  " + value.getIDLoai() + "", Toast.LENGTH_LONG);
+
+                        StorageReference islandRef = storageRef.child(value.getDuongDan());
+
+                        Log.d("TestDuongDan", islandRef + "");
+
+                        //MyAppGlideModule Glide = new MyAppGlideModule();
+                        Glide.with(context)
+                                .load(islandRef)
+                                .into(hinhMonAn);
+                    }
+                }*/
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
         //ĐỌC TẤT CẢ HÌNH ẢNH ĐỔ VÀO LISTDANHGIA
         myRef.child("DanhGiaBaiViet").addChildEventListener(new ChildEventListener() {
@@ -288,8 +311,7 @@ public class TrangChuActivity extends AppCompatActivity {
             }
         });*/
 
-        adapter = new NoiBatAdapter(this, R.layout.item_info_monan,listBaiViet,listHinhAnh,listDanhGiaBaiViet,listNguoiDung);
-
+        adapter = new NoiBatAdapter(this, R.layout.item_info_monan, listBaiViet, listHinhAnh, listDanhGiaBaiViet, listNguoiDung, nguoiDung);
 
         btnMonNgonMoiNgay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -299,10 +321,10 @@ public class TrangChuActivity extends AppCompatActivity {
                     @Override
                     public int compare(BaiViet baiViet1, BaiViet baiViet2) {
                         try {
-                            if (baiViet1.LayNgaySuaTheoNgayThang().compareTo(baiViet2.LayNgaySuaTheoNgayThang()) == 1) {
+                            if (baiViet1.LayNgayVietTheoNgayThang().compareTo(baiViet2.LayNgayVietTheoNgayThang()) == 1) {
                                 return -1;
                             } else {
-                                if (baiViet1.LayNgaySuaTheoNgayThang().compareTo(baiViet2.LayNgaySuaTheoNgayThang()) == 0) {
+                                if (baiViet1.LayNgayVietTheoNgayThang().compareTo(baiViet2.LayNgayVietTheoNgayThang()) == 0) {
                                     return 0;
                                 } else {
                                     return 1;
@@ -418,9 +440,10 @@ public class TrangChuActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+        /*listNguoiDung.clear();
         listBaiViet.clear();
         listHinhAnh.clear();
-        listDanhGiaBaiViet.clear();
+        listDanhGiaBaiViet.clear();*/
         super.onResume();
     }
 }

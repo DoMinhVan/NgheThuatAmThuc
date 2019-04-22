@@ -210,25 +210,25 @@ public class ThemBaiVietActivity extends AppCompatActivity{
         btnThem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(txtTenMonAn.getText() == ""){
+                if(txtTenMonAn.getText().toString().equals("")){
                     Toast.makeText(ThemBaiVietActivity.this, "Bạn chưa nhập tên món ăn", Toast.LENGTH_SHORT).show();
                 }
-                    else if(txtNguyenLieu.getText() == ""){
+                    else if(txtNguyenLieu.getText().toString().equals("")){
                         Toast.makeText(ThemBaiVietActivity.this, "Bạn chưa nhập nguyên liệu", Toast.LENGTH_SHORT).show();
                     }
-                        else if(txtBuocLam.getText() == ""){
+                        else if(txtBuocLam.getText().toString().equals("")){
                                 Toast.makeText(ThemBaiVietActivity.this, "Bạn chưa nhập bước làm", Toast.LENGTH_SHORT).show();
                             }
-                                else if(txtTenDD.getText() == ""){
+                                /*else if(txtTenDD.getText().toString().equals("")){
                                     Toast.makeText(ThemBaiVietActivity.this, "Bạn chưa nhập tên dinh dưỡng", Toast.LENGTH_SHORT).show();
                                 }
-                                    else if(txtKhoiLuong.getText() == ""){
+                                    else if(txtKhoiLuong.getText().toString(.equals("")){
                                         Toast.makeText(ThemBaiVietActivity.this, "Bạn chưa nhập khối lượng", Toast.LENGTH_SHORT).show();
                                     }
-                                        else if(txtPhanTram.getText() == ""){
+                                        else if(txtPhanTram.getText().toString(.equals("")){
                                             Toast.makeText(ThemBaiVietActivity.this, "Bạn chưa nhập phần trăm", Toast.LENGTH_SHORT).show();
-                                        }
-                                            else if(txtDiaChi.getText() == ""){
+                                        }*/
+                                            else if(txtDiaChi.getText().toString().equals("")){
                                                 Toast.makeText(ThemBaiVietActivity.this, "Bạn chưa nhập địa chỉ", Toast.LENGTH_SHORT).show();
                                             }
                                                 else{
@@ -253,10 +253,10 @@ public class ThemBaiVietActivity extends AppCompatActivity{
             public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
                 if(databaseError !=null)
                 {
-                    Toast.makeText(ThemBaiVietActivity.this, "Lưu thành công", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ThemBaiVietActivity.this, "Lưu thất bại", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Toast.makeText(ThemBaiVietActivity.this, "Lưu thất bại", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ThemBaiVietActivity.this, "Lưu thành công", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -314,9 +314,9 @@ public class ThemBaiVietActivity extends AppCompatActivity{
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 71 && resultCode == RESULT_OK && data != null){
-            Uri uri = data.getData();
+            filePath = data.getData();
             try {
-                InputStream inputStream = getContentResolver().openInputStream(uri);
+                InputStream inputStream = getContentResolver().openInputStream(filePath);
                 Bitmap b = BitmapFactory.decodeStream(inputStream);
                 imageView.setImageBitmap(b);
             } catch (FileNotFoundException e) {

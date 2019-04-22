@@ -31,7 +31,7 @@ public class DangNhapActivity extends AppCompatActivity {
     DatabaseReference myRef;
     private ArrayList<NguoiDung> nguoiDungArrayList = new ArrayList<>();
     private int idNguoiDung = 0;
-    private String idDangNhap;
+    private NguoiDung nguoiDung;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,7 +94,7 @@ public class DangNhapActivity extends AppCompatActivity {
                         idNguoiDung = 1;
                         for(int i = 0 ;  i < nguoiDungArrayList.size(); i++){
                             if(idNguoiDung ==  (int)nguoiDungArrayList.get(i).getLoaiNguoiDung()) {
-                                idDangNhap = nguoiDungArrayList.get(i).getIDNguoiDung();
+                                nguoiDung = nguoiDungArrayList.get(i);
                                 Login(nguoiDungArrayList.get(i).getTenDangNhap(), nguoiDungArrayList.get(i).getMatKhau());
                             }
                         }
@@ -103,7 +103,7 @@ public class DangNhapActivity extends AppCompatActivity {
                         idNguoiDung = 3;
                         for(int i = 0 ;  i < nguoiDungArrayList.size(); i++){
                             if(idNguoiDung ==  (int)nguoiDungArrayList.get(i).getLoaiNguoiDung()) {
-                                idDangNhap = nguoiDungArrayList.get(i).getIDNguoiDung();
+                                nguoiDung = nguoiDungArrayList.get(i);
                                 Login(nguoiDungArrayList.get(i).getTenDangNhap(), nguoiDungArrayList.get(i).getMatKhau());
                             }
                         }
@@ -112,7 +112,7 @@ public class DangNhapActivity extends AppCompatActivity {
                         idNguoiDung = 2;
                         for(int i = 0 ;  i < nguoiDungArrayList.size(); i++){
                             if(idNguoiDung ==  (int)nguoiDungArrayList.get(i).getLoaiNguoiDung()) {
-                                idDangNhap = nguoiDungArrayList.get(i).getIDNguoiDung();
+                                nguoiDung = nguoiDungArrayList.get(i);
                                 Login(nguoiDungArrayList.get(i).getTenDangNhap(), nguoiDungArrayList.get(i).getMatKhau());
                             }
                         }
@@ -158,9 +158,7 @@ public class DangNhapActivity extends AppCompatActivity {
                     startActivity(i);
                 } else {
                     Intent i = new Intent(DangNhapActivity.this, ManHinhTrangCaNhanActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("idnguoidung",idDangNhap+"");
-                    i.putExtras(bundle);
+                    i.putExtra("NguoiDung", nguoiDung);
                     startActivity(i);
                     Toast.makeText(getApplicationContext(), "chuyển sang trang ca nhan", Toast.LENGTH_SHORT).show();
                 }

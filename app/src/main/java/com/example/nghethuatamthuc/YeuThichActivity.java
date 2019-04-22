@@ -27,6 +27,7 @@ public class YeuThichActivity extends AppCompatActivity {
     private ArrayList<BaiViet> listImages = new ArrayList<BaiViet>();
     private ArrayList<DanhGiaBaiViet> listDanhGiaVaiBiet = new ArrayList<DanhGiaBaiViet>();
     private ArrayList<NguoiDung> listNguoiDung = new ArrayList<NguoiDung>();
+    NguoiDung nguoiDung;
     private NoiBatAdapter adapter;
     private boolean DangNhap = false;
 
@@ -45,7 +46,7 @@ public class YeuThichActivity extends AppCompatActivity {
 
         //listMembers.add(new MonAn_NoiBat("Ngô Hiếu","Hamburger","696","Mới đây",5f,0,0));
 
-        adapter = new NoiBatAdapter(this, R.layout.item_info_monan,listMembers,listImages, listDanhGiaVaiBiet,listNguoiDung);
+        adapter = new NoiBatAdapter(this, R.layout.item_info_monan,listMembers,listImages, listDanhGiaVaiBiet,listNguoiDung,nguoiDung);
         listView.setAdapter(adapter);
     }
 

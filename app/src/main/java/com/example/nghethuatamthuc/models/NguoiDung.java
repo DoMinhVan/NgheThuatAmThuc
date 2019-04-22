@@ -2,9 +2,10 @@ package com.example.nghethuatamthuc.models;
 
 import android.widget.Spinner;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class NguoiDung {
+public class NguoiDung implements Serializable {
     private String IDNguoiDung;
     private String HoTen;
     private String TenDangNhap;
@@ -19,6 +20,9 @@ public class NguoiDung {
     private String ThoiGian;
     private int TrangThai;
 
+
+    public NguoiDung() {
+    }
     public NguoiDung(String IDNguoiDung, String hoTen, String tenDangNhap, String matKhau, String soDienThoai, String gmail, String ngaySinh, int gioiTinh, int loaiNguoiDung, String hinhNen, String hinhDaiDien, String thoiGian, int trangThai) {
         this.IDNguoiDung = IDNguoiDung;
         HoTen = hoTen;
@@ -39,8 +43,7 @@ public class NguoiDung {
         return MatKhau;
     }
 
-    public NguoiDung() {
-    }
+
 
     public String getIDNguoiDung() {
         return IDNguoiDung;

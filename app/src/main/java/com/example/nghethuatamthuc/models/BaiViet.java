@@ -1,10 +1,11 @@
 package com.example.nghethuatamthuc.models;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class BaiViet {
+public class BaiViet implements Serializable {
     private String ID;
     private String TenBaiViet;
     private String DuongDan;
