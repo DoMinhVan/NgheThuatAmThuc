@@ -1,5 +1,6 @@
 package com.example.nghethuatamthuc;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -33,8 +34,6 @@ public class DangKyActivity extends AppCompatActivity implements View.OnClickLis
     NguoiDung nguoiDung;
     FirebaseDatabase database;
     DatabaseReference myRef;
-    int nd = 0;
-    int gt = 0;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,26 +62,65 @@ public class DangKyActivity extends AppCompatActivity implements View.OnClickLis
         ArrayAdapter<String> adapterSpinner1 = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item, list1);
         adapterSpinner.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spNguoiDung.setAdapter(adapterSpinner1);
-
-        spNguoiDung.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        //bat su kien cac editext
+        edtHoTen.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view,  int position, long id) {
-               nd = position;
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(kiemTraHoten(edtHoTen.getText().toString())){
+                    Toast.makeText(DangKyActivity.this, "Họp lệ" ,Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(DangKyActivity.this, "Họ ten không đúng định dạng" ,Toast.LENGTH_SHORT).show();
+                }
             }
         });
-        spGioiTinh.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        edtTenDangNhap.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                gt = position;
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(kiemTraHoten(edtHoTen.getText().toString())){
+                    Toast.makeText(DangKyActivity.this, "Họp lệ" ,Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(DangKyActivity.this, "Họ ten không đúng định dạng" ,Toast.LENGTH_SHORT).show();
+                }
             }
+        });
+        edtEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(kiemTraEmail(edtEmail.getText().toString())){
+                    Toast.makeText(DangKyActivity.this, "Họp lệ" ,Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(DangKyActivity.this, "Email không đúng định dạng" ,Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        edtSDT.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(kiemTraSDT(edtSDT.getText().toString())){
+                    Toast.makeText(DangKyActivity.this, "Họp lệ" ,Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(DangKyActivity.this, "SDT không đúng định dạng" ,Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        edtNgaySinh.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(kiemTraNgay(edtNgaySinh.getText().toString())){
+                    Toast.makeText(DangKyActivity.this, "Họp lệ" ,Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(DangKyActivity.this, "Ngay Sinh không đúng định dạng" ,Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        edtMatKhau.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(kiemTraMatKhau(edtMatKhau.getText().toString())){
+                    Toast.makeText(DangKyActivity.this, "Họp lệ" ,Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(DangKyActivity.this, "Mat Khau không đúng định dạng" ,Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -104,16 +142,16 @@ public class DangKyActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         if(v == btnDangKy){
-           Calendar calendar = Calendar.getInstance();
-           final String key = myRef.child("NguoiDung").push().getKey();
-           nguoiDung = new NguoiDung(key,edtHoTen.getText().toString(),edtTenDangNhap.getText().toString()
-           ,edtMatKhau.getText().toString(),edtSDT.getText().toString(),edtEmail.getText().toString(),edtNgaySinh.getText().toString(), spGioiTinh.getSelectedItemPosition(),spNguoiDung.getSelectedItemPosition(),"","", calendar.getTime()
-                   +"",0);
-
-           myRef.child("NguoiDung").child(key).setValue(nguoiDung);
+                Calendar calendar = Calendar.getInstance();
+                final String key = myRef.child("NguoiDung").push().getKey();
+                nguoiDung = new NguoiDung(key,edtHoTen.getText().toString(),edtTenDangNhap.getText().toString()
+                        ,edtMatKhau.getText().toString(),edtSDT.getText().toString(),edtEmail.getText().toString(),edtNgaySinh.getText().toString(), spGioiTinh.getSelectedItemPosition(),spNguoiDung.getSelectedItemPosition(),"","", calendar.getTime()
+                        +"",0);
+                myRef.child("NguoiDung").child(key).setValue(nguoiDung);
         }
         if(v == btnHuy){
-           Toast.makeText(getApplicationContext(), "Huy", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(DangKyActivity.this,DangNhapActivity.class);
+            startActivity(i);
         }
     }
     private boolean KiemTra(){

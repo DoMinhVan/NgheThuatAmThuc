@@ -5,204 +5,211 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <android.support.constraint.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="@dimen/magrinScreen"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="@string/tenTieuDe"
-            android:textColor="@color/textnomarl"
-            android:textSize="@dimen/sizeTieuDeManHinhDangKy"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0"
-            tools:text="@string/tenTieuDe" />
-
-        <Spinner
-            android:id="@+id/spnNguoiDung"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/magrinScreen"
-            android:layout_marginTop="@dimen/magrinScreen"
-            android:layout_marginRight="@dimen/magrinScreen"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:layout_constraintVertical_bias="0.01999998" />
-
-        <Spinner
-            android:id="@+id/spnGioiTinh"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/magrinScreen"
-            android:layout_marginTop="@dimen/magrinScreen"
-            android:layout_marginRight="@dimen/magrinScreen"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtSDT"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <EditText
-            android:id="@+id/edtHoTen"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/constrant"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="@dimen/magrinScreen"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="8dp"
-            android:hint="@string/nhapHoTen"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spnNguoiDung"
-            app:layout_constraintVertical_bias="0.0" />
+            android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/edtHoTen2"
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="@dimen/magrinScreen"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/tenTieuDe"
+                android:textColor="@color/textnomarl"
+                android:textSize="@dimen/sizeTieuDeManHinhDangKy"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0"
+                tools:text="@string/tenTieuDe" />
+
+            <Spinner
+                android:id="@+id/spnNguoiDung"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/magrinScreen"
+                android:layout_marginTop="@dimen/magrinScreen"
+                android:layout_marginRight="@dimen/magrinScreen"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                app:layout_constraintVertical_bias="0.01999998" />
+
+            <Spinner
+                android:id="@+id/spnGioiTinh"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/magrinScreen"
+                android:layout_marginTop="@dimen/magrinScreen"
+                android:layout_marginRight="@dimen/magrinScreen"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtSDT"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <EditText
+                android:id="@+id/edtHoTen"
+                android:gravity="center"
+                android:background="@drawable/custom_editext"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="@dimen/magrinScreen"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="8dp"
+                android:hint="@string/nhapHoTen"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spnNguoiDung"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <EditText
+                android:id="@+id/edtHoTen2"
+                android:gravity="center"
+                android:background="@drawable/custom_editext"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="16dp"
+                android:hint="@string/tendn"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtHoTen"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <EditText
+                android:id="@+id/edtSDT"
+                android:gravity="center"
+                android:background="@drawable/custom_editext"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="@dimen/magrinScreen"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="@dimen/magrinScreen"
+                android:layout_marginBottom="8dp"
+                android:hint="@string/nhapSoDienThoai"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtEmail"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <EditText
+                android:gravity="center"
+                android:background="@drawable/custom_editext"
+                android:id="@+id/edtNgaySinh"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="@dimen/magrinScreen"
+                android:layout_marginTop="@dimen/magrinScreen"
+                android:layout_marginRight="@dimen/magrinScreen"
+                android:layout_marginBottom="8dp"
+                android:hint="@string/nhapNgaySinh"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spnGioiTinh"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <EditText
+                android:id="@+id/edtMatKhau"
+                android:gravity="center"
+                android:background="@drawable/custom_editext"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="@dimen/magrinScreen"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="@dimen/magrinScreen"
+                android:layout_marginBottom="8dp"
+                android:hint="@string/nhapMatKhau"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtNgaySinh"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <EditText
+                android:id="@+id/edtNhapLaiMatKhau"
+                android:gravity="center"
+                android:background="@drawable/custom_editext"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="@dimen/magrinScreen"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="@dimen/magrinScreen"
+                android:layout_marginBottom="8dp"
+                android:hint="@string/nhapLaiMatKhau"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtMatKhau"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <EditText
+                android:id="@+id/edtEmail"
+                android:gravity="center"
+                android:background="@drawable/custom_editext"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="@dimen/magrinScreen"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="@dimen/magrinScreen"
+                android:layout_marginBottom="8dp"
+                android:hint="@string/nhapEmail"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtHoTen2"
+                app:layout_constraintVertical_bias="0.0" />
+        </android.support.constraint.ConstraintLayout>
+        <LinearLayout
+            android:layout_below="@+id/constrant"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="16dp"
-            android:hint="@string/nhapHoTen"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtHoTen"
-            app:layout_constraintVertical_bias="0.0" />
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btnDangKy"
+                android:text="@string/btnDangKy"
+                android:background="@drawable/custom_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="40dp"/>
+            <Button
+                android:id="@+id/btnHuy"
+                android:text="@string/btnHuy"
+                android:background="@drawable/custom_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </RelativeLayout>
 
-        <EditText
-            android:id="@+id/edtSDT"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/magrinScreen"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="@dimen/magrinScreen"
-            android:layout_marginBottom="8dp"
-            android:hint="@string/nhapSoDienThoai"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtEmail"
-            app:layout_constraintVertical_bias="0.0" />
 
-        <EditText
-            android:id="@+id/edtNgaySinh"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/magrinScreen"
-            android:layout_marginTop="@dimen/magrinScreen"
-            android:layout_marginRight="@dimen/magrinScreen"
-            android:layout_marginBottom="8dp"
-            android:hint="@string/nhapNgaySinh"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spnGioiTinh"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <EditText
-            android:id="@+id/edtMatKhau"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/magrinScreen"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="@dimen/magrinScreen"
-            android:layout_marginBottom="8dp"
-            android:hint="@string/nhapMatKhau"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtNgaySinh"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <EditText
-            android:id="@+id/edtNhapLaiMatKhau"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/magrinScreen"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="@dimen/magrinScreen"
-            android:layout_marginBottom="8dp"
-            android:hint="@string/nhapLaiMatKhau"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtMatKhau"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <EditText
-            android:id="@+id/edtEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/magrinScreen"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="@dimen/magrinScreen"
-            android:layout_marginBottom="8dp"
-            android:hint="@string/nhapEmail"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtHoTen2"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <Button
-            android:id="@+id/btnDangKy"
-            style="@style/btnDangKy"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="@dimen/magrinScreen"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/custom_button_dn_fb"
-            android:text="@string/btnDangKy"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.118"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtNhapLaiMatKhau"
-            app:layout_constraintVertical_bias="0.414"
-            tools:text="@string/btnDangKy" />
-
-        <Button
-            android:id="@+id/btnHuy"
-            style="@style/btnDangKy"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="@dimen/magrinScreen"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/custom_button_dn_fb"
-            android:text="@string/btnHuy"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.893"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtNhapLaiMatKhau"
-            app:layout_constraintVertical_bias="0.414"
-            tools:text="@string/btnHuy" />
-
-    </android.support.constraint.ConstraintLayout>
 
 </ScrollView>

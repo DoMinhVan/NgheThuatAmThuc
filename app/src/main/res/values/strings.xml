@@ -10,6 +10,7 @@
     <string name="nhapLaiMatKhau">Nhập lại mật khẩu</string>
     <string name="btnDangKy">Đăng ký</string>
     <string name="btnHuy">Hủy</string>
+    <string name="tendn">Tên Đăng Nhập</string>
     //Màn hình thêm bài viết
     <string name="txtTenMonAn">Nhập tên món ăn</string>
     <string name="txtNguyenLieu">Nhập nguyên liệu</string>
@@ -44,10 +45,6 @@
     <string name="txtDNhapGM">ĐĂNG NHẬP BẰNG GMAIL</string>
     <string name="txtDN">ĐĂNG NHẬP</string>
     <string name="txtHuy">HỦY</string>
-    <string name="txtNoiTro">Nội Trợ</string>
-    <string name="txtAThuc">Chuyên Gia Ẩm Thực</string>
-    <string name="txtDD">Chuyên Gia Dinh Dưỡng</string>
-    <string name="txtLuu">Lưu đăng nhập</string>
     //MÀN HÌNH TIM KIẾM
     <string name="txtTim">TÌM KIẾM</string>
     <string name="txtDanhCho">Dành Cho :</string>
@@ -68,4 +65,15 @@
     <string name="txtQlTK">Quản lý tài khoản</string>
     //ChiTiet
     <string name="btn_gui">Gửi</string>
+    //Facebook
+    <string name="facebook_app_id">271088083797292</string> <string name="fb_login_protocol_scheme">fb271088083797292</string>
+    <string name="txtNoiTro">Nội Trợ</string>
+    <string name="txtDinhDuong">Chuyên Gia Dinh Dưỡng</string>
+    <string name="txtAmThuc">Chuyên Gia Ẩm Thực</string>
+    <string name="hintDangNhap">Nhập Tên Đăng Nhập</string>
+    <string name="hintMatKhau">Nhập Mật Khẩu</string>
+    <string name="chkLuuDN">Lưu Đăng Nhập</string>
+    <string name="txtDNVVoi">Đăng nhập với</string>
+    <string name="txtDangKy">Bạn Chưa Có Tài Khoản</string>
+    <string name="btnDN">Đăng Nhập</string>
 </resources>
