@@ -11,4 +11,6 @@
     <color name="txtBtnNoiBat">#fff</color>
     <color name="txtUser">#000000</color>
     <color name="toolBar">#4d8ab7</color>
+    <color name="txtLink">#07C</color>
+
 </resources>

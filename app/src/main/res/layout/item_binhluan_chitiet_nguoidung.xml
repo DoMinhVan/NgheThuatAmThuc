@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/imgNguoiDung"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
@@ -20,17 +20,35 @@
         app:srcCompat="@drawable/anhdaidien" />
 
     <TextView
-        android:id="@+id/txtTinNhanNguoiDung"
+        android:id="@+id/txtBinhLuanNguoiDung"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="Hello"
+        app:layout_constraintBottom_toTopOf="@+id/txtThoiGianNguoiDungBL"
+        app:layout_constraintStart_toEndOf="@+id/imgNguoiDung"
+        app:layout_constraintTop_toBottomOf="@+id/txtTenNguoiDung" />
+
+    <TextView
+        android:id="@+id/txtThoiGianNguoiDungBL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imgNguoiDung" />
+
+    <TextView
+        android:textColor="@color/colorPrimaryDark"
+        android:id="@+id/txtTenNguoiDung"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/imgNguoiDung"
         app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

@@ -30,6 +30,7 @@ import com.example.nghethuatamthuc.models.BaiViet;
 import com.example.nghethuatamthuc.models.DanhGia;
 import com.example.nghethuatamthuc.models.DanhGiaBaiViet;
 import com.example.nghethuatamthuc.models.HinhAnh;
+import com.example.nghethuatamthuc.models.NguoiDung;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
@@ -48,6 +49,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -55,6 +57,7 @@ public class ThemBaiVietActivity extends AppCompatActivity{
     private Toolbar mTopToolbar;
     private BaiViet baiViet;
     private HinhAnh hinhAnh;
+    private NguoiDung nguoiDung;
     private DanhGiaBaiViet danhGiaBaiViet;
     private Uri filePath;
 
@@ -103,6 +106,9 @@ public class ThemBaiVietActivity extends AppCompatActivity{
 
         listSpinnerLoaiMon = new ArrayList<String>();
         listSpinnerDoiTuong = new ArrayList<String>();
+
+        //Giả lập người dùng
+        nguoiDung = new NguoiDung("LctqUfnB9x3d9OVGQow","HuuPhu","Huuphudn2015","123","0123456789","Huuphudn2015@gmail.com","16/04/1998",1,1,"","","20/04/2019",1);
 
         //ĐỔ DỮ LIỆU TỪ FIREBASE VỀ CHO SPIINER LOAI MON
         myRef.child("LoaiMon").addChildEventListener(new ChildEventListener() {
@@ -276,7 +282,10 @@ public class ThemBaiVietActivity extends AppCompatActivity{
         int doiTuong = spnDoiTuong.getSelectedItemPosition();
         int loaiMon = spnLoaiMon.getSelectedItemPosition();
 
-        baiViet = new BaiViet(key,txtTenMonAn.getText()+"","",txtNguyenLieu.getText()+"",txtBuocLam.getText()+"",txtTenDD.getText() + "" + txtKhoiLuong.getText() + "" + txtPhanTram.getText() + "",txtDiaChi.getText()+"",txtThongTinThem.getText()+"", doiTuong, loaiMon,"11/05/2000","17/4/2019",0,0,1,113+"",keyDanhGia);
+        Date currentTime = Calendar.getInstance().getTime();
+
+
+        baiViet = new BaiViet(key,txtTenMonAn.getText()+"","",txtNguyenLieu.getText()+"",txtBuocLam.getText()+"",txtTenDD.getText() + "" + txtKhoiLuong.getText() + "" + txtPhanTram.getText() + "",txtDiaChi.getText()+"",txtThongTinThem.getText()+"", doiTuong, loaiMon,currentTime+"","17/4/2019",0,0,1,nguoiDung.getIDNguoiDung()+"",keyDanhGia);
 
 
         myRef.child("BaiViet").child(key).setValue(baiViet, new DatabaseReference.CompletionListener() {

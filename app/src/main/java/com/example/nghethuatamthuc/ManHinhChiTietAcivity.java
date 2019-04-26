@@ -14,18 +14,25 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.nghethuatamthuc.models.BaiViet;
+import com.example.nghethuatamthuc.models.BinhLuan;
 import com.example.nghethuatamthuc.models.DanhGia;
 import com.example.nghethuatamthuc.models.DanhGiaBaiViet;
 import com.example.nghethuatamthuc.models.NguoiDung;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -34,6 +41,8 @@ import com.google.firebase.storage.StorageReference;
 
 import java.io.InputStream;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ManHinhChiTietAcivity extends AppCompatActivity {
 
@@ -42,8 +51,12 @@ public class ManHinhChiTietAcivity extends AppCompatActivity {
     Toolbar toolbarChiTiet;
     BaiViet baiViet;
     DanhGiaBaiViet danhGia;
+    private static ArrayList<BinhLuan> listBinhLuan = new ArrayList<BinhLuan>();
+    private static ArrayList<NguoiDung> listNguoiDung = new ArrayList<NguoiDung>();
     private static NguoiDung nguoiDung;
     private RatingBar ratingBarNguoiDung;
+    private BinhLuanNguoiDungAdapter adapterBinhLuanNguoiDung;
+    ListView listViewBinhLuanNguoiDung;
 
     FirebaseStorage storage = FirebaseStorage.getInstance();
     final StorageReference storageRef = storage.getReference();
@@ -76,11 +89,11 @@ public class ManHinhChiTietAcivity extends AppCompatActivity {
         ratingBar4.setIsIndicator(true);
         ratingBar5.setIsIndicator(true);
 
-        ratingBar1.setRating(5);
-        ratingBar2.setRating(4);
+        ratingBar1.setRating(1);
+        ratingBar2.setRating(2);
         ratingBar3.setRating(3);
-        ratingBar4.setRating(2);
-        ratingBar5.setRating(1);
+        ratingBar4.setRating(4);
+        ratingBar5.setRating(5);
 
         TextView danhGiaTrungBinh = (TextView) findViewById(R.id.txtDanhGiaTrunginh_ChiTiet);
 
@@ -98,6 +111,62 @@ public class ManHinhChiTietAcivity extends AppCompatActivity {
         TextView diaChi = (TextView) findViewById(R.id.txtDiaChi_ChiTiet);
         TextView thongTinChiTiet = (TextView) findViewById(R.id.txtThongTinChiTiet_ChiTiet);
         Button btnGui = (Button) findViewById(R.id.btnDanhGia_ChiTiet);
+        final EditText edtbinhLuan = (EditText) findViewById(R.id.edtBinhLuanNguoiDung_ChiTiet);
+        listViewBinhLuanNguoiDung = (ListView) findViewById(R.id.listBinhLuanNguoiDung_ChiTiet);
+        TextView txtMoRong = (TextView) findViewById(R.id.txtMoRongBinhLuan);
+
+
+
+
+        //ĐỌC TẤT CẢ NGUOIDUNG VÀ ĐỔ VÀO LISTNGUOIDUNG
+        myRef.child("NguoiDung").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                NguoiDung value = dataSnapshot.getValue(NguoiDung.class);
+                listNguoiDung.add(value);
+
+                /*if(dataSnapshot==null) Toast.makeText(context, "Null", Toast.LENGTH_LONG);
+                else {
+                    final HinhAnh value = dataSnapshot.getValue(HinhAnh.class);
+                    //listHinhAnh.add(value);
+                    if (baiViet.getID() == value.getIDLoai()) {
+
+                        Toast.makeText(context, baiViet.getID() + "  " + value.getIDLoai() + "", Toast.LENGTH_LONG);
+
+                        StorageReference islandRef = storageRef.child(value.getDuongDan());
+
+                        Log.d("TestDuongDan", islandRef + "");
+
+                        //MyAppGlideModule Glide = new MyAppGlideModule();
+                        Glide.with(context)
+                                .load(islandRef)
+                                .into(hinhMonAn);
+                    }
+                }*/
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
 
         Intent intent = getIntent();
 
@@ -138,9 +207,62 @@ public class ManHinhChiTietAcivity extends AppCompatActivity {
                 thongTinChiTiet.setText("Thông tin chi tiết: " + baiViet.getThongTinChiTiet());
             }
         }
+
+        //ĐỌC TẤT CẢ BINHLUAN VÀ ĐỔ VÀO LISTBINHLUAN
+        myRef.child("BinhLuan").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                BinhLuan value = dataSnapshot.getValue(BinhLuan.class);
+                if(value.getIDBaiViet().equals(baiViet.getID())) {
+                    listBinhLuan.add(value);
+                    Log.d("KiemtraBinhLuan",listBinhLuan.size()+"");
+                    adapterBinhLuanNguoiDung.notifyDataSetChanged();
+                }
+                /*if(dataSnapshot==null) Toast.makeText(context, "Null", Toast.LENGTH_LONG);
+                else {
+                    final HinhAnh value = dataSnapshot.getValue(HinhAnh.class);
+                    //listHinhAnh.add(value);
+                    if (baiViet.getID() == value.getIDLoai()) {
+
+                        Toast.makeText(context, baiViet.getID() + "  " + value.getIDLoai() + "", Toast.LENGTH_LONG);
+
+                        StorageReference islandRef = storageRef.child(value.getDuongDan());
+
+                        Log.d("TestDuongDan", islandRef + "");
+
+                        //MyAppGlideModule Glide = new MyAppGlideModule();
+                        Glide.with(context)
+                                .load(islandRef)
+                                .into(hinhMonAn);
+                    }
+                }*/
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                adapterBinhLuanNguoiDung.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         btnGui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //DanhGia
                 String key = myRef.child("DanhGia").push().getKey();
                 final DanhGia danhGiaNguoiDung = new DanhGia(key+"",Math.round(ratingBarNguoiDung.getRating()),nguoiDung.getIDNguoiDung()+"",baiViet.getID()+"");
 
@@ -192,10 +314,48 @@ public class ManHinhChiTietAcivity extends AppCompatActivity {
 
                     }
                 });
+
+                //BinhLuan
+                if(edtbinhLuan!=null) {
+                    String keyBinhLuan = myRef.child("BinhLuan").push().getKey();
+                    final BinhLuan binhLuan = new BinhLuan(keyBinhLuan + "", edtbinhLuan.getText() + "", nguoiDung.getLoaiNguoiDung(), "", "", 1, nguoiDung.getIDNguoiDung() + "", baiViet.getID());
+
+                    myRef.child("BinhLuan").child(keyBinhLuan).setValue(binhLuan, new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
+                            if (databaseError != null) {
+                                Toast.makeText(ManHinhChiTietAcivity.this, "Có lỗi", Toast.LENGTH_SHORT).show();
+                            } else {
+                                //Toast.makeText(ManHinhChiTietAcivity.this, "Có lỗi", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
             }
 
         });
+
+        txtMoRong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ListView layout = findViewById(R.id.listBinhLuanNguoiDung_ChiTiet);
+                // Gets the layout params that will allow you to resize the layout
+                ViewGroup.LayoutParams params = layout.getLayoutParams();
+                // Changes the height and width to the specified *pixels*
+                params.height += 500;
+                layout.setLayoutParams(params);
+            }
+        });
+
+
+
+        adapterBinhLuanNguoiDung = new BinhLuanNguoiDungAdapter(listBinhLuan,this,R.layout.item_binhluan_chitiet_nguoidung,listNguoiDung);
+        listViewBinhLuanNguoiDung.setAdapter(adapterBinhLuanNguoiDung);
     }
+
+
+
+
 
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_them_bai_viet, menu);
@@ -220,5 +380,12 @@ public class ManHinhChiTietAcivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        listBinhLuan.clear();
+        adapterBinhLuanNguoiDung.notifyDataSetChanged();
     }
 }

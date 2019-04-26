@@ -76,11 +76,6 @@ public class NoiBatAdapter extends BaseAdapter {
         this.listDanhGiaBaiViet = listDanhGiaBaiViet;
         this.listNguoiDung = listNguoiDung;
         this.nguoiDung = nguoiDung;
-
-        Log.d("Now",nguoiDung.getHoTen());
-    }
-
-    public NoiBatAdapter(YeuThichActivity context, int item_info_monan, ArrayList<BaiViet> listMembers, ArrayList<BaiViet> listImages, ArrayList<DanhGiaBaiViet> listDanhGiaBaiViet, ArrayList<NguoiDung> listNguoiDung, NguoiDung nguoiDung) {
     }
 
     @Override
@@ -160,6 +155,8 @@ public class NoiBatAdapter extends BaseAdapter {
 
 
         for(NguoiDung nguoiDung : listNguoiDung) {
+            Log.d("anguoidung", baiViet.getIDNguoiDung());
+            Log.d("bnguoidung", nguoiDung.getIDNguoiDung());
             if (baiViet.getIDNguoiDung().equals(nguoiDung.getIDNguoiDung())) {
                 tenNguoiDang.setText(nguoiDung.getHoTen());
             }

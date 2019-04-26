@@ -440,10 +440,10 @@ public class TrangChuActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+        super.onResume();
         /*listNguoiDung.clear();
         listBaiViet.clear();
         listHinhAnh.clear();
         listDanhGiaBaiViet.clear();*/
-        super.onResume();
     }
 }

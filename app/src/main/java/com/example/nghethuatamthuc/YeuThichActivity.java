@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.nghethuatamthuc.models.BaiViet;
 import com.example.nghethuatamthuc.models.DanhGiaBaiViet;
+import com.example.nghethuatamthuc.models.HinhAnh;
 import com.example.nghethuatamthuc.models.MonAn_NoiBat;
 import com.example.nghethuatamthuc.models.NguoiDung;
 
@@ -24,7 +25,7 @@ public class YeuThichActivity extends AppCompatActivity {
     Toolbar toolbarYeuThich;
 
     private ArrayList<BaiViet> listMembers = new ArrayList<BaiViet>();
-    private ArrayList<BaiViet> listImages = new ArrayList<BaiViet>();
+    private ArrayList<HinhAnh> listImages = new ArrayList<HinhAnh>();
     private ArrayList<DanhGiaBaiViet> listDanhGiaVaiBiet = new ArrayList<DanhGiaBaiViet>();
     private ArrayList<NguoiDung> listNguoiDung = new ArrayList<NguoiDung>();
     NguoiDung nguoiDung;

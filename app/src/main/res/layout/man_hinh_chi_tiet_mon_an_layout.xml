@@ -170,6 +170,7 @@
         app:layout_constraintTop_toTopOf="@+id/ratingBar5_ChiTiet" />
 
     <TextView
+        android:textColor="@color/colorPrimaryDark"
         android:id="@+id/txtNguyenLieu_ChiTiet"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -182,6 +183,7 @@
         app:layout_constraintTop_toBottomOf="@+id/ratingBar5_ChiTiet" />
 
     <TextView
+        android:textColor="@color/colorPrimaryDark"
         android:id="@+id/txtBuocLam_ChiTiet"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -194,6 +196,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtNguyenLieu_ChiTiet" />
 
     <TextView
+        android:textColor="@color/colorPrimaryDark"
         android:id="@+id/txtDinhDuong_ChiTiet"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -205,6 +208,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtBuocLam_ChiTiet" />
     <TextView
+        android:textColor="@color/colorPrimaryDark"
         android:id="@+id/txtDiaChi_ChiTiet"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -217,6 +221,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtDoiTuong_ChiTiet" />
 
     <TextView
+        android:textColor="@color/colorPrimaryDark"
         android:id="@+id/txtThongTinChiTiet_ChiTiet"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -229,6 +234,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtDiaChi_ChiTiet" />
 
     <TextView
+        android:textColor="@color/colorPrimaryDark"
         android:id="@+id/txtDoiTuong_ChiTiet"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -241,6 +247,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtDinhDuong_ChiTiet" />
 
     <TextView
+        android:textColor="@color/colorPrimaryDark"
         android:id="@+id/txtThongTinTuVan_ChiTiet"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -254,7 +261,7 @@
 
     <ListView
         android:id="@+id/listThongTinTuVan_ChiTiet"
-        android:layout_width="395dp"
+        android:layout_width="match_parent"
         android:layout_height="184dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -264,20 +271,21 @@
         app:layout_constraintTop_toBottomOf="@+id/txtThongTinTuVan_ChiTiet" />
 
     <TextView
+        android:textColor="@color/colorPrimaryDark"
         android:id="@+id/txtBinhLuanNguoiDung_ChiTiet"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="TextView"
+        android:text="Bình luận bài viết: "
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/listThongTinTuVan_ChiTiet" />
 
     <ListView
         android:id="@+id/listBinhLuanNguoiDung_ChiTiet"
-        android:layout_width="395dp"
+        android:layout_width="match_parent"
         android:layout_height="184dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -287,19 +295,31 @@
         app:layout_constraintTop_toBottomOf="@+id/txtBinhLuanNguoiDung_ChiTiet" />
 
     <TextView
+        android:textColor="@color/colorPrimaryDark"
+        android:id="@+id/txtMoRongBinhLuan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Xem thêm"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listBinhLuanNguoiDung_ChiTiet" />
+
+    <TextView
+        android:textColor="@color/colorPrimaryDark"
         android:id="@+id/txtBinhLuan_ChiTiet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="TextView"
+        android:text="Bình luận của bạn: "
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listBinhLuanNguoiDung_ChiTiet" />
+        app:layout_constraintTop_toBottomOf="@+id/txtMoRongBinhLuan" />
 
-    <ListView
-        android:id="@+id/listBinhLuan_ChiTiet"
-        android:layout_width="395dp"
-        android:layout_height="184dp"
+    <EditText
+        android:id="@+id/edtBinhLuanNguoiDung_ChiTiet"
+        android:layout_width="match_parent"
+        android:layout_height="119dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -308,18 +328,20 @@
         app:layout_constraintTop_toBottomOf="@+id/txtBinhLuan_ChiTiet" />
 
     <TextView
+        android:textColor="@color/colorPrimaryDark"
         android:id="@+id/txtDanhGia_ChiTiet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:text="TextView"
+        android:text="Đánh giá: "
         app:layout_constraintBottom_toTopOf="@+id/btnDanhGia_ChiTiet"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listBinhLuan_ChiTiet" />
+        app:layout_constraintTop_toBottomOf="@+id/edtBinhLuanNguoiDung_ChiTiet" />
 
     <Button
+        android:textColor="@color/colorPrimaryDark"
         android:id="@+id/btnDanhGia_ChiTiet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -336,14 +358,16 @@
         android:id="@+id/ratingBarNguoiDung_ChiTiet"
         android:layout_width="wrap_content"
         android:layout_height="44dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/txtDanhGia_ChiTiet"
-        app:layout_constraintTop_toBottomOf="@+id/listBinhLuan_ChiTiet" />
+        app:layout_constraintTop_toBottomOf="@+id/edtBinhLuanNguoiDung_ChiTiet" />
 
     <TextView
+        android:textColor="@color/colorPrimaryDark"
         android:id="@+id/txtTenMonAn_ChiTiet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
