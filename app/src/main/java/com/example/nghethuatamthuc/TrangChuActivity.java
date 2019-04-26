@@ -124,6 +124,7 @@ public class TrangChuActivity extends AppCompatActivity {
         myRef.child("BaiViet").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
                 if(dataSnapshot.exists()) {
                     BaiViet value = dataSnapshot.getValue(BaiViet.class);
                     listBaiViet.add(value);

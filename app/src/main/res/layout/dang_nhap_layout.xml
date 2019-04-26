@@ -1,173 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="293dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
-        android:layout_weight="2"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3">
-
-        <RadioButton
-            android:checked="true"
-            android:id="@+id/radNoiTro"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/txtDangNhap"
+            android:text="@string/txtDN"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:textColor="@color/colorDN"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/txtNoiTro" />
-
-        <RadioButton
-            android:id="@+id/radDinhDuong"
+            android:layout_alignParentTop="true"/>
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="vertical"
+            android:id="@+id/line1"
+            android:layout_below="@+id/txtDangNhap"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/txtDD" />
-
-        <RadioButton
-            android:id="@+id/radAmThuc"
+            android:layout_height="wrap_content">
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <RadioButton
+                    android:checked="true"
+                    android:id="@+id/radNoiTro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txtNoiTro"/>
+                <RadioButton
+                    android:id="@+id/radDinhDuong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txtDinhDuong"/>
+                <RadioButton
+                    android:id="@+id/radAmThuc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txtAmThuc"/>
+            </RadioGroup>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/line2"
+            android:layout_below="@+id/line1"
+            android:gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/txtAThuc" />
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_margin="30dp"
+                android:layout_below="@+id/line1"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/login"/>
+        </LinearLayout>
 
-    </RadioGroup>
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/txtDN"
-        android:textColor="@color/btnDNFb"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="95dp"
-        android:layout_height="94dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
-
-    <EditText
-        android:id="@+id/edtTenDangNhap"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="20dp"
-        android:ems="10"
-        android:hint="Nhập tên đăng nhập"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
-
-    <EditText
-        android:id="@+id/edtMatKhau"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="20dp"
-        android:ems="10"
-        android:hint="Nhập Password"
-        android:inputType="textPersonName|textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtTenDangNhap" />
-
-
-    <CheckBox
-        android:id="@+id/chkLuuDangNhap"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/txtLuu"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtMatKhau" />
-
-    <Button
-        android:id="@+id/btnDangNhapBangFB"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/custom_button_dn_fb"
-        android:text="@string/txtDNhapfb"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chkLuuDangNhap" />
-
-    <Button
-        android:id="@+id/btnDangNhapBangGmail"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/custom_button_dn_gmail"
-        android:text="@string/txtDNhapGM"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnDangNhapBangFB" />
-
-    <Button
-        android:id="@+id/btnDangNhap"
-        android:layout_width="100dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/custom_button_dn_fb"
-        android:text="@string/txtDN"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnHuy"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnDangNhapBangGmail"
-        app:layout_constraintVertical_bias="0.511" />
-
-    <Button
-        android:id="@+id/btnHuy"
-        android:layout_width="100dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/custom_button_dn_fb"
-        android:text="@string/txtHuy"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnDangNhapBangGmail"
-        app:layout_constraintVertical_bias="0.511" />
-
-</android.support.constraint.ConstraintLayout>
+        <EditText
+            android:id="@+id/edtTenDangNhap"
+            android:drawableLeft="@drawable/ic_person_black_24dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:hint="@string/hintDangNhap"
+            android:paddingLeft="30dp"
+            android:gravity="center"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/custom_editext"
+            android:layout_below="@+id/line2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+        <EditText
+            android:id="@+id/edtMatKhau"
+            android:gravity="center"
+            android:drawableLeft="@drawable/ic_vpn_key_black_24dp"
+            android:password="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:paddingLeft="30dp"
+            android:hint="@string/hintMatKhau"
+            android:background="@drawable/custom_editext"
+            android:layout_below="@+id/edtTenDangNhap"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+        <LinearLayout
+            android:id="@+id/line3"
+            android:gravity="center"
+            android:layout_below="@id/edtMatKhau"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <CheckBox
+                android:id="@+id/chkLuuDangNhap"
+                android:text="@string/chkLuuDN"
+                android:gravity="center"
+                android:layout_below="@id/edtMatKhau"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/line4"
+            android:gravity="center"
+            android:layout_below="@+id/line3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textColor="@color/colorDNVoi"
+                android:textSize="20sp"
+                android:text="@string/txtDNVVoi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="30dp"/>
+            <LinearLayout
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/btnFacebook"
+                    android:layout_marginRight="30dp"
+                    android:background="@drawable/custom_facebook"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" />
+                <Button
+                    android:id="@+id/btnEmail"
+                    android:background="@drawable/custom_email"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" />
+            </LinearLayout>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/txtDangKy"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:textColor="@color/colorDangKy"
+            android:layout_below="@+id/line4"
+            android:text="@string/txtDangKy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_below="@+id/txtDangKy"
+            android:id="@+id/line5"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <Button
+                android:id="@+id/btnDangNhap"
+                android:background="@drawable/custom_button"
+                android:text="@string/btnDN"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"/>
+            <Button
+                android:id="@+id/btnHuy"
+                android:background="@drawable/custom_button"
+                android:text="@string/btnHuy"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

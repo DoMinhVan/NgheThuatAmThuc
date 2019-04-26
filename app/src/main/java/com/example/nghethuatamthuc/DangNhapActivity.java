@@ -1,6 +1,8 @@
 package com.example.nghethuatamthuc;
 
 import android.content.Intent;
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -10,9 +12,18 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nghethuatamthuc.models.NguoiDung;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookActivity;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.internal.FacebookDialogFragment;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,11 +33,12 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class DangNhapActivity extends AppCompatActivity {
+public class DangNhapActivity extends AppCompatActivity  implements View.OnClickListener {
     EditText edtTenDangNhap, edtMatKhau;
-    Button btnDangNhap, btnHuy, btnDanhNhapBangFB, btnDangNhapBangGmail;
+    Button btnDangNhap, btnHuy,btnFacebook,btnEmail;
     RadioGroup radioGroup;
     CheckBox chkLuuDangNhap;
+    TextView txtDangKy;
     FirebaseDatabase database;
     DatabaseReference myRef;
     private ArrayList<NguoiDung> nguoiDungArrayList = new ArrayList<>();
@@ -40,14 +52,26 @@ public class DangNhapActivity extends AppCompatActivity {
         edtTenDangNhap = (EditText) findViewById(R.id.edtTenDangNhap);
         edtMatKhau = (EditText) findViewById(R.id.edtMatKhau);
         btnDangNhap = (Button) findViewById(R.id.btnDangNhap);
-        btnDanhNhapBangFB = (Button) findViewById(R.id.btnDangNhapBangFB);
-        btnDangNhapBangGmail = (Button) findViewById(R.id.btnDangNhapBangGmail);
-        btnHuy = (Button) findViewById(R.id.btnHuy);
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
         chkLuuDangNhap = (CheckBox) findViewById(R.id.chkLuuDangNhap);
+        btnHuy = (Button) findViewById(R.id.btnHuy);
+        btnFacebook = (Button) findViewById(R.id.btnFacebook);
+        btnEmail = (Button) findViewById(R.id.btnEmail);
+        txtDangKy = (TextView)  findViewById(R.id.txtDangKy);
+        //gạch  dưới và in nghiêng
+        txtDangKy.setPaintFlags(txtDangKy.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        txtDangKy.setTypeface(null, Typeface.ITALIC);
+        //Bắt sự l=kiện
+        btnEmail.setOnClickListener(this);
+        btnFacebook.setOnClickListener(this);
+        btnHuy.setOnClickListener(this);
+        txtDangKy.setOnClickListener(this);
+        btnDangNhap.setOnClickListener(this);
+        //Facebook
+
         //Firebase
-        database = FirebaseDatabase.getInstance();
-        myRef = database.getReference();
+            database = FirebaseDatabase.getInstance();
+            myRef = database.getReference();
 
         //get đối tượng người dùng
         myRef.child("NguoiDung").addChildEventListener(new ChildEventListener() {
@@ -56,7 +80,6 @@ public class DangNhapActivity extends AppCompatActivity {
                 if(dataSnapshot.exists()) {
                     NguoiDung nguoiDung = dataSnapshot.getValue(NguoiDung.class);
                     nguoiDungArrayList.add(nguoiDung);
-
                 }
             }
 
@@ -78,68 +101,6 @@ public class DangNhapActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        });
-        //Xuat
-
-        //Dat gia tri khoi tao
-        final String username = "minhvan";
-        final String password = "123";
-        btnDangNhap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int id = radioGroup.getCheckedRadioButtonId();
-                switch (id) {
-                    case R.id.radNoiTro:
-                        idNguoiDung = 1;
-                        for(int i = 0 ;  i < nguoiDungArrayList.size(); i++){
-                            if(idNguoiDung ==  (int)nguoiDungArrayList.get(i).getLoaiNguoiDung()) {
-                                nguoiDung = nguoiDungArrayList.get(i);
-                                Login(nguoiDungArrayList.get(i).getTenDangNhap(), nguoiDungArrayList.get(i).getMatKhau());
-                            }
-                        }
-                        break;
-                    case R.id.radAmThuc:
-                        idNguoiDung = 3;
-                        for(int i = 0 ;  i < nguoiDungArrayList.size(); i++){
-                            if(idNguoiDung ==  (int)nguoiDungArrayList.get(i).getLoaiNguoiDung()) {
-                                nguoiDung = nguoiDungArrayList.get(i);
-                                Login(nguoiDungArrayList.get(i).getTenDangNhap(), nguoiDungArrayList.get(i).getMatKhau());
-                            }
-                        }
-                        break;
-                    case R.id.radDinhDuong:
-                        idNguoiDung = 2;
-                        for(int i = 0 ;  i < nguoiDungArrayList.size(); i++){
-                            if(idNguoiDung ==  (int)nguoiDungArrayList.get(i).getLoaiNguoiDung()) {
-                                nguoiDung = nguoiDungArrayList.get(i);
-                                Login(nguoiDungArrayList.get(i).getTenDangNhap(), nguoiDungArrayList.get(i).getMatKhau());
-                            }
-                        }
-                        break;
-                    default:
-                        Toast.makeText(getApplicationContext(), "Ban Chua Chon Doi Tuong", Toast.LENGTH_SHORT).show();
-                        break;
-                }
-            }
-        });
-        btnHuy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(DangNhapActivity.this, TrangChuActivity.class);
-                startActivity(i);
-            }
-        });
-        btnDanhNhapBangFB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Chuyen Sang Facebook", Toast.LENGTH_SHORT).show();
-            }
-        });
-        btnDangNhapBangGmail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Chuyen sang gmail", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -165,6 +126,63 @@ public class DangNhapActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(getApplicationContext(), "Sai Tài Khoản Hoặc Mật Khẩu", Toast.LENGTH_SHORT).show();
             }
+        }
+    }
+    private void DangNhap(){
+        int id = radioGroup.getCheckedRadioButtonId();
+        switch (id) {
+            case R.id.radNoiTro:
+                idNguoiDung = 1;
+                for(int i = 0 ;  i < nguoiDungArrayList.size(); i++){
+                    if(idNguoiDung ==  (int)nguoiDungArrayList.get(i).getLoaiNguoiDung()) {
+                        nguoiDung = nguoiDungArrayList.get(i);
+                        Login(nguoiDungArrayList.get(i).getTenDangNhap(), nguoiDungArrayList.get(i).getMatKhau());
+                    }
+                }
+                break;
+            case R.id.radAmThuc:
+                idNguoiDung = 3;
+                for(int i = 0 ;  i < nguoiDungArrayList.size(); i++){
+                    if(idNguoiDung ==  (int)nguoiDungArrayList.get(i).getLoaiNguoiDung()) {
+                        nguoiDung = nguoiDungArrayList.get(i);
+                        Login(nguoiDungArrayList.get(i).getTenDangNhap(), nguoiDungArrayList.get(i).getMatKhau());
+                    }
+                }
+                break;
+            case R.id.radDinhDuong:
+                idNguoiDung = 2;
+                for(int i = 0 ;  i < nguoiDungArrayList.size(); i++){
+                    if(idNguoiDung ==  (int)nguoiDungArrayList.get(i).getLoaiNguoiDung()) {
+                        nguoiDung = nguoiDungArrayList.get(i);
+                        Login(nguoiDungArrayList.get(i).getTenDangNhap(), nguoiDungArrayList.get(i).getMatKhau());
+                    }
+                }
+                break;
+            default:
+                Toast.makeText(getApplicationContext(), "Ban Chua Chon Doi Tuong", Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v == btnDangNhap){
+            DangNhap();
+            Toast.makeText(this, "Login", Toast.LENGTH_SHORT).show();
+        }
+        if(v == btnHuy){
+            finish();
+            Toast.makeText(this, "Huy", Toast.LENGTH_SHORT).show();
+        }
+        if(v == btnFacebook){
+            Toast.makeText(this, "Facebook", Toast.LENGTH_SHORT).show();
+        }
+        if (v == btnEmail){
+            Toast.makeText(this, "Email", Toast.LENGTH_SHORT).show();
+        }
+        if(v == txtDangKy){
+            Intent i = new Intent(DangNhapActivity.this,DangKyActivity.class);
+            startActivity(i);
         }
     }
 }

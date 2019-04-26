@@ -11,6 +11,11 @@
     <color name="txtBtnNoiBat">#fff</color>
     <color name="txtUser">#000000</color>
     <color name="toolBar">#4d8ab7</color>
+    <color name="colorDN">#0000EE</color>
+    <color name="colorDNVoi">#FF0033</color>
+    <color name="colorDangKy">#0033FF</color>
+    <color name="colorEditext">#CDC9C9</color>
+    <color name="colorRed">#ff00</color>
     <color name="txtLink">#07C</color>
 
 </resources>
