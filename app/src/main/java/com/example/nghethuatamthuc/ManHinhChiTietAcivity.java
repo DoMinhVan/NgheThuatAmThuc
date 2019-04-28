@@ -213,7 +213,7 @@ public class ManHinhChiTietAcivity extends AppCompatActivity {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 BinhLuan value = dataSnapshot.getValue(BinhLuan.class);
-                if(value.getIDBaiViet().equals(baiViet.getID())) {
+                if(value.getiDBaiViet().equals(baiViet.getiD())) {
                     listBinhLuan.add(value);
                     Log.d("KiemtraBinhLuan",listBinhLuan.size()+"");
                     adapterBinhLuanNguoiDung.notifyDataSetChanged();
@@ -264,7 +264,7 @@ public class ManHinhChiTietAcivity extends AppCompatActivity {
             public void onClick(View v) {
                 //DanhGia
                 String key = myRef.child("DanhGia").push().getKey();
-                final DanhGia danhGiaNguoiDung = new DanhGia(key+"",Math.round(ratingBarNguoiDung.getRating()),nguoiDung.getIDNguoiDung()+"",baiViet.getID()+"");
+                final DanhGia danhGiaNguoiDung = new DanhGia(key+"",Math.round(ratingBarNguoiDung.getRating()),nguoiDung.getIDNguoiDung()+"",baiViet.getiD()+"");
 
                 myRef.child("DanhGia").child(key).setValue(danhGiaNguoiDung, new DatabaseReference.CompletionListener() {
                     @Override
@@ -296,7 +296,7 @@ public class ManHinhChiTietAcivity extends AppCompatActivity {
                                     break;
                             }
                             //Danh gia nguoi dung xong thi cap nhat danh gia cua bai viet do
-                            myRef.child("DanhGiaBaiViet").child(danhGia.getIDDanhGia()).setValue(danhGia, new DatabaseReference.CompletionListener() {
+                            myRef.child("DanhGiaBaiViet").child(danhGia.getiDDanhGia()).setValue(danhGia, new DatabaseReference.CompletionListener() {
                                 @Override
                                 public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
                                     if(databaseError !=null)
@@ -318,7 +318,7 @@ public class ManHinhChiTietAcivity extends AppCompatActivity {
                 //BinhLuan
                 if(edtbinhLuan!=null) {
                     String keyBinhLuan = myRef.child("BinhLuan").push().getKey();
-                    final BinhLuan binhLuan = new BinhLuan(keyBinhLuan + "", edtbinhLuan.getText() + "", nguoiDung.getLoaiNguoiDung(), "", "", 1, nguoiDung.getIDNguoiDung() + "", baiViet.getID());
+                    final BinhLuan binhLuan = new BinhLuan(keyBinhLuan + "", edtbinhLuan.getText() + "", nguoiDung.getLoaiNguoiDung(), "", "", 1, nguoiDung.getIDNguoiDung() + "", baiViet.getiD());
 
                     myRef.child("BinhLuan").child(keyBinhLuan).setValue(binhLuan, new DatabaseReference.CompletionListener() {
                         @Override

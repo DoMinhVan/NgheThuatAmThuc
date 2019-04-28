@@ -57,6 +57,7 @@ public class NoiBatAdapter extends BaseAdapter {
     private ArrayList<HinhAnh> listHinhAnh;
     private ArrayList<NguoiDung> listNguoiDung;
     private ArrayList<DanhGiaBaiViet> listDanhGiaBaiViet;
+    private ArrayList<YeuThich> listYeuThich;
 
     //SAVE DATE SEND DETAIL
     private String uriSend = null;
@@ -68,7 +69,7 @@ public class NoiBatAdapter extends BaseAdapter {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference();
 
-    public NoiBatAdapter(Activity context, int layoutID, ArrayList<BaiViet> listBaiViet, ArrayList<HinhAnh> listHinhAnh, ArrayList<DanhGiaBaiViet> listDanhGiaBaiViet, ArrayList<NguoiDung> listNguoiDung, NguoiDung nguoiDung) {
+    public NoiBatAdapter(Activity context, int layoutID, ArrayList<BaiViet> listBaiViet, ArrayList<HinhAnh> listHinhAnh, ArrayList<DanhGiaBaiViet> listDanhGiaBaiViet, ArrayList<NguoiDung> listNguoiDung, NguoiDung nguoiDung, ArrayList<YeuThich> listYeuThich) {
         this.context = context;
         this.layoutID = layoutID;
         this.listMonAn = listBaiViet;
@@ -76,6 +77,7 @@ public class NoiBatAdapter extends BaseAdapter {
         this.listDanhGiaBaiViet = listDanhGiaBaiViet;
         this.listNguoiDung = listNguoiDung;
         this.nguoiDung = nguoiDung;
+        this.listYeuThich = listYeuThich;
     }
 
     @Override
@@ -98,7 +100,7 @@ public class NoiBatAdapter extends BaseAdapter {
         View view = convertView;
         final LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        view = inflater.inflate(layoutID,null);
+        view = inflater.inflate(layoutID, null);
 
         final TextView tenNguoiDang = (TextView) view.findViewById(R.id.txtTenNguoiDang);
         final ImageView hinhMonAn = (ImageView) view.findViewById(R.id.imgMonAn);
@@ -112,19 +114,16 @@ public class NoiBatAdapter extends BaseAdapter {
         soluotdanhgia.setIsIndicator(true);
 
 
-
-
         final BaiViet baiViet = listMonAn.get(position);
         //final HinhAnh hinhAnh = listHinhAnh.get(position);
 
-        for(DanhGiaBaiViet danhGiaBaiViet : listDanhGiaBaiViet)
-        {
-            if (baiViet.getIDDanhGia().equals(danhGiaBaiViet.getIDDanhGia())) {
+        for (DanhGiaBaiViet danhGiaBaiViet : listDanhGiaBaiViet) {
+            if (baiViet.getiDDanhGia().equals(danhGiaBaiViet.getiDDanhGia())) {
                 float soDanhGiaTrungBinh = 0f;
-                float soLuotDanhGia = danhGiaBaiViet.getDanhGia1()+danhGiaBaiViet.getDanhGia2()+danhGiaBaiViet.getDanhGia3()+danhGiaBaiViet.getDanhGia4()+danhGiaBaiViet.getDanhGia5();
+                float soLuotDanhGia = danhGiaBaiViet.getDanhGia1() + danhGiaBaiViet.getDanhGia2() + danhGiaBaiViet.getDanhGia3() + danhGiaBaiViet.getDanhGia4() + danhGiaBaiViet.getDanhGia5();
                 //Log.d("soLuotDanhGia", soLuotDanhGia + "");
-                if(soLuotDanhGia!=0) {
-                    soDanhGiaTrungBinh = (((danhGiaBaiViet.getDanhGia1()) + (danhGiaBaiViet.getDanhGia2() * 2) + (danhGiaBaiViet.getDanhGia3() * 3) + (danhGiaBaiViet.getDanhGia4() * 4) + (danhGiaBaiViet.getDanhGia5() * 5))/soLuotDanhGia);
+                if (soLuotDanhGia != 0) {
+                    soDanhGiaTrungBinh = (((danhGiaBaiViet.getDanhGia1()) + (danhGiaBaiViet.getDanhGia2() * 2) + (danhGiaBaiViet.getDanhGia3() * 3) + (danhGiaBaiViet.getDanhGia4() * 4) + (danhGiaBaiViet.getDanhGia5() * 5)) / soLuotDanhGia);
                     //Log.d("soDanhGiaTrungBinh", soDanhGiaTrungBinh + "");
                     //DecimalFormat decimalFormat = new DecimalFormat("#.##");
                     //baiViet.DanhGiaTrungBinh(Float.valueOf(decimalFormat.format(soDanhGiaTrungBinh)));
@@ -134,16 +133,15 @@ public class NoiBatAdapter extends BaseAdapter {
             }
         }
 
-        for(HinhAnh hinhAnh : listHinhAnh)
-        {
-            if (baiViet.getID().equals(hinhAnh.getIDLoai())) {
+        for (HinhAnh hinhAnh : listHinhAnh) {
+            if (baiViet.getiD().equals(hinhAnh.getiDLoai())) {
                 //Log.d("ListHinhAnh", baiViet.getID() + "  " + hinhAnh.getIDLoai() + "");
                 storageRef.child("images/" + hinhAnh.getDuongDan()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
                         //Log.d("TestDuongDan", uri+"");
                         //MyAppGlideModule Glide = new MyAppGlideModule();
-                        if(!context.isFinishing()) {
+                        if (!context.isFinishing()) {
                             Glide.with(context)
                                     .load(uri)
                                     .into(hinhMonAn);
@@ -154,10 +152,10 @@ public class NoiBatAdapter extends BaseAdapter {
         }
 
 
-        for(NguoiDung nguoiDung : listNguoiDung) {
-            Log.d("anguoidung", baiViet.getIDNguoiDung());
+        for (NguoiDung nguoiDung : listNguoiDung) {
+            Log.d("anguoidung", baiViet.getiDNguoiDung());
             Log.d("bnguoidung", nguoiDung.getIDNguoiDung());
-            if (baiViet.getIDNguoiDung().equals(nguoiDung.getIDNguoiDung())) {
+            if (baiViet.getiDNguoiDung().equals(nguoiDung.getIDNguoiDung())) {
                 tenNguoiDang.setText(nguoiDung.getHoTen());
             }
 
@@ -186,7 +184,6 @@ public class NoiBatAdapter extends BaseAdapter {
 
             }
         });
-
 
 
         luotThich.setText(baiViet.getLuotThich() + " Lượt thích");
@@ -218,36 +215,33 @@ public class NoiBatAdapter extends BaseAdapter {
             }
         })*/
 
-        /*btnLove.setOnClickListener(new View.OnClickListener() {
+        btnLove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(btnLove.isSelected()){
+                if (btnLove.isSelected()) {
 
                     //listMonAn.get(position).setLove(1);
                     btnLove.setBackgroundResource(R.mipmap.icons8_love_none_48);
                     btnLove.setSelected(false);
-                }
-                else {
+                } else {
                     String key = myRef.child("YeuThich").push().getKey();
-                    YeuThich yeuThich = new YeuThich(key+"",baiViet.getID()+"",nguoiDung.getIDNguoiDung()+"");
+                    YeuThich yeuThich = new YeuThich(key + "", baiViet.getiD(), nguoiDung.getIDNguoiDung());
                     myRef.child("YeuThich").child(key).setValue(yeuThich, new DatabaseReference.CompletionListener() {
                         @Override
                         public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
-                            if(databaseError == null)
-                            {
+                            if (databaseError == null) {
                                 //listMonAn.get(position).setLove(0);
                                 btnLove.setBackgroundResource(R.mipmap.icons8_love_selected_48);
                                 btnLove.setSelected(true);
-                            }
-                            else {
-                                Toast.makeText(context,"Có lỗi",Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(context, "Có lỗi", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
 
                 }
             }
-        });*/
+        });
 
         tenMonAn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -255,20 +249,18 @@ public class NoiBatAdapter extends BaseAdapter {
                 Intent intent = new Intent(context, ManHinhChiTietAcivity.class);
                 Bundle bundle = new Bundle();
                 //BaiViet baiViet = listMonAn.get(position);
-                for(HinhAnh hinhAnh : listHinhAnh)
-                {
-                    if (baiViet.getID().equals(hinhAnh.getIDLoai())) {
+                for (HinhAnh hinhAnh : listHinhAnh) {
+                    if (baiViet.getiD().equals(hinhAnh.getiDLoai())) {
                         uriSend = hinhAnh.getDuongDan();
                     }
                 }
 
-                bundle.putString("urlImage",uriSend+"");
+                bundle.putString("urlImage", uriSend + "");
                 //intent.putExtra("urlImage",hinhMonAn.getDrawingCache());
                 intent.putExtras(bundle);
 
-                for(DanhGiaBaiViet danhGia : listDanhGiaBaiViet)
-                {
-                    if (baiViet.getIDDanhGia().equals(danhGia.getIDDanhGia())) {
+                for (DanhGiaBaiViet danhGia : listDanhGiaBaiViet) {
+                    if (baiViet.getiDDanhGia().equals(danhGia.getiDDanhGia())) {
                         intent.putExtra("DanhGia", danhGia);
                     }
                 }
@@ -291,16 +283,13 @@ public class NoiBatAdapter extends BaseAdapter {
             btnLike.setSelected(false);
             btnLike.setBackgroundResource(R.mipmap.icons8_like_none_48);
         }*/
-
-        /*if(monAn.isLove()==1)
-        {
-            btnLove.setSelected(true);
-            btnLove.setBackgroundResource(R.mipmap.icons8_love_selected_48);
+        for (YeuThich yeuThich : listYeuThich) {
+            if (baiViet.getiD().equals(yeuThich.getiDBaiVietYeuThich()))
+                    btnLove.setSelected(true);
+                    btnLove.setBackgroundResource(R.mipmap.icons8_love_selected_48);
         }
-        else{
-            btnLove.setSelected(false);
-            btnLove.setBackgroundResource(R.mipmap.icons8_love_none_48);
-        }*/
+
+
         //Click vào ratingbar
         /*soluotdanhgia.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override

@@ -2,6 +2,7 @@ package com.example.nghethuatamthuc;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -18,19 +19,29 @@ import com.example.nghethuatamthuc.models.DanhGiaBaiViet;
 import com.example.nghethuatamthuc.models.HinhAnh;
 import com.example.nghethuatamthuc.models.MonAn_NoiBat;
 import com.example.nghethuatamthuc.models.NguoiDung;
+import com.example.nghethuatamthuc.models.YeuThich;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
 public class YeuThichActivity extends AppCompatActivity {
     Toolbar toolbarYeuThich;
 
-    private ArrayList<BaiViet> listMembers = new ArrayList<BaiViet>();
-    private ArrayList<HinhAnh> listImages = new ArrayList<HinhAnh>();
+    private ArrayList<BaiViet> listBaiViet = new ArrayList<BaiViet>();
+    private ArrayList<HinhAnh> listHinhAnh = new ArrayList<HinhAnh>();
     private ArrayList<DanhGiaBaiViet> listDanhGiaVaiBiet = new ArrayList<DanhGiaBaiViet>();
     private ArrayList<NguoiDung> listNguoiDung = new ArrayList<NguoiDung>();
+    private ArrayList<YeuThich> listYeuThich = new ArrayList<YeuThich>();
     NguoiDung nguoiDung;
     private NoiBatAdapter adapter;
     private boolean DangNhap = false;
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,7 +58,218 @@ public class YeuThichActivity extends AppCompatActivity {
 
         //listMembers.add(new MonAn_NoiBat("Ngô Hiếu","Hamburger","696","Mới đây",5f,0,0));
 
-        adapter = new NoiBatAdapter(this, R.layout.item_info_monan,listMembers,listImages, listDanhGiaVaiBiet,listNguoiDung,nguoiDung);
+        nguoiDung = new NguoiDung("LctqUfnB9x3d9OVGQow","HuuPhu","Huuphudn2015","123","0123456789","Huuphudn2015@gmail.com","16/04/1998",1,1,"","","20/04/2019",1);
+
+        myRef.child("YeuThich").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                if(dataSnapshot.exists()) {
+                    final YeuThich yeuThich = dataSnapshot.getValue(YeuThich.class);
+                    if(yeuThich.getiDNGuoiDungYeuThich().equals(nguoiDung.getIDNguoiDung())) {
+
+                        myRef.child("BaiViet").addChildEventListener(new ChildEventListener() {
+                            @Override
+                            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                                if(dataSnapshot.exists()) {
+                                    BaiViet baiViet = dataSnapshot.getValue(BaiViet.class);
+                                    if(yeuThich.getiDBaiVietYeuThich().equals(baiViet.getiD())) {
+                                        listBaiViet.add(baiViet);
+                                        listYeuThich.add(yeuThich);
+                                        adapter.notifyDataSetChanged();
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                            }
+
+                            @Override
+                            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                            }
+
+                            @Override
+                            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        //ĐỌC TẤT CẢ HÌNH ẢNH ĐỔ VÀO LISTHINHANH
+        myRef.child("HinhAnh").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                HinhAnh value = dataSnapshot.getValue(HinhAnh.class);
+                listHinhAnh.add(value);
+                /*if(dataSnapshot==null) Toast.makeText(context, "Null", Toast.LENGTH_LONG);
+                else {
+                    final HinhAnh value = dataSnapshot.getValue(HinhAnh.class);
+                    //listHinhAnh.add(value);
+                    if (baiViet.getID() == value.getIDLoai()) {
+
+                        Toast.makeText(context, baiViet.getID() + "  " + value.getIDLoai() + "", Toast.LENGTH_LONG);
+
+                        StorageReference islandRef = storageRef.child(value.getDuongDan());
+
+                        Log.d("TestDuongDan", islandRef + "");
+
+                        //MyAppGlideModule Glide = new MyAppGlideModule();
+                        Glide.with(context)
+                                .load(islandRef)
+                                .into(hinhMonAn);
+                    }
+                }*/
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        //ĐỌC TẤT CẢ NGƯỜI DÙNG VÀ ĐỔ VÀO LISTNGUOIDUNG
+        myRef.child("NguoiDung").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                NguoiDung nguoiDung = dataSnapshot.getValue(NguoiDung.class);
+                listNguoiDung.add(nguoiDung);
+                /*if(dataSnapshot==null) Toast.makeText(context, "Null", Toast.LENGTH_LONG);
+                else {
+                    final HinhAnh value = dataSnapshot.getValue(HinhAnh.class);
+                    //listHinhAnh.add(value);
+                    if (baiViet.getID() == value.getIDLoai()) {
+
+                        Toast.makeText(context, baiViet.getID() + "  " + value.getIDLoai() + "", Toast.LENGTH_LONG);
+
+                        StorageReference islandRef = storageRef.child(value.getDuongDan());
+
+                        Log.d("TestDuongDan", islandRef + "");
+
+                        //MyAppGlideModule Glide = new MyAppGlideModule();
+                        Glide.with(context)
+                                .load(islandRef)
+                                .into(hinhMonAn);
+                    }
+                }*/
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+        //ĐỌC TẤT CẢ DANHGIABAIVIET ĐỔ VÀO LISTDANHGIA
+        myRef.child("DanhGiaBaiViet").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                DanhGiaBaiViet value = dataSnapshot.getValue(DanhGiaBaiViet.class);
+                listDanhGiaVaiBiet.add(value);
+                /*if(dataSnapshot==null) Toast.makeText(context, "Null", Toast.LENGTH_LONG);
+                else {
+                    final HinhAnh value = dataSnapshot.getValue(HinhAnh.class);
+                    //listHinhAnh.add(value);
+                    if (baiViet.getID() == value.getIDLoai()) {
+
+                        Toast.makeText(context, baiViet.getID() + "  " + value.getIDLoai() + "", Toast.LENGTH_LONG);
+
+                        StorageReference islandRef = storageRef.child(value.getDuongDan());
+
+                        Log.d("TestDuongDan", islandRef + "");
+
+                        //MyAppGlideModule Glide = new MyAppGlideModule();
+                        Glide.with(context)
+                                .load(islandRef)
+                                .into(hinhMonAn);
+                    }
+                }*/
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+        adapter = new NoiBatAdapter(this, R.layout.item_info_monan, listBaiViet, listHinhAnh, listDanhGiaVaiBiet,listNguoiDung,nguoiDung,listYeuThich);
         listView.setAdapter(adapter);
     }
 

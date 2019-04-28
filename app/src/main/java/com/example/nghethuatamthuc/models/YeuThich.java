@@ -1,40 +1,40 @@
 package com.example.nghethuatamthuc.models;
 
 public class YeuThich {
-    String IDYeuThich;
-    String IDBaiViet;
-    String IDNGuoiDung;
-
-    public YeuThich(String IDYeuThich, String IDBaiViet, String IDNGuoiDung) {
-        this.IDYeuThich = IDYeuThich;
-        this.IDBaiViet = IDBaiViet;
-        this.IDNGuoiDung = IDNGuoiDung;
-    }
+    String iDYeuThich;
+    String iDBaiVietYeuThich;
+    String iDNGuoiDungYeuThich;
 
     public YeuThich() {
     }
 
-    public String getIDYeuThich() {
-        return IDYeuThich;
+    public YeuThich(String iDYeuThich, String iDBaiVietYeuThich, String iDNGuoiDungYeuThich) {
+        this.iDYeuThich = iDYeuThich;
+        this.iDBaiVietYeuThich = iDBaiVietYeuThich;
+        this.iDNGuoiDungYeuThich = iDNGuoiDungYeuThich;
     }
 
-    public void setIDYeuThich(String IDYeuThich) {
-        this.IDYeuThich = IDYeuThich;
+    public String getiDYeuThich() {
+        return iDYeuThich;
     }
 
-    public String getIDBaiViet() {
-        return IDBaiViet;
+    public void setiDYeuThich(String iDYeuThich) {
+        this.iDYeuThich = iDYeuThich;
     }
 
-    public void setIDBaiViet(String IDBaiViet) {
-        this.IDBaiViet = IDBaiViet;
+    public String getiDBaiVietYeuThich() {
+        return iDBaiVietYeuThich;
     }
 
-    public String getIDNGuoiDung() {
-        return IDNGuoiDung;
+    public void setiDBaiVietYeuThich(String iDBaiVietYeuThich) {
+        this.iDBaiVietYeuThich = iDBaiVietYeuThich;
     }
 
-    public void setIDNGuoiDung(String IDNGuoiDung) {
-        this.IDNGuoiDung = IDNGuoiDung;
+    public String getiDNGuoiDungYeuThich() {
+        return iDNGuoiDungYeuThich;
+    }
+
+    public void setiDNGuoiDungYeuThich(String iDNGuoiDungYeuThich) {
+        this.iDNGuoiDungYeuThich = iDNGuoiDungYeuThich;
     }
 }

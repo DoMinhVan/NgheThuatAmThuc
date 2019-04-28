@@ -6,204 +6,205 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class BaiViet implements Serializable {
-    private String ID;
-    private String TenBaiViet;
-    private String DuongDan;
-    private String NguyenLieu;
-    private String BuocLam;
-    private String DinhDuong;
-    private String DiaChi;
-    private String ThongTinChiTiet;
-    private int DoiTuong;
-    private int LoaiMon;
-    private String NgayViet;
-    private String NgaySua;
-    private int LuotThich;
-    private int LuotBinhLuan;
-    private int TrangThai;
-    private String IDNguoiDung;
-    private String IDDanhGia;
+    private String iD;
+    private String tenBaiViet;
+    private String duongDan;
+    private String nguyenLieu;
+    private String buocLam;
+    private String dinhDuong;
+    private String diaChi;
+    private String thongTinChiTiet;
+    private int doiTuong;
+    private int loaiMon;
+    private String ngayViet;
+    private String ngaySua;
+    private int luotThich;
+    private int luotBinhLuan;
+    private int trangThai;
+    private String iDNguoiDung;
+    private String iDDanhGia;
 
-    private float DanhGiaTrungBinh;
+    private float danhGiaTrungBinh;
+
     public BaiViet() {
     }
 
-    public BaiViet(String ID, String tenBaiViet, String duongDan, String nguyenLieu, String buocLam, String dinhDuong, String diaChi, String thongTinChiTiet, int doiTuong, int loaiMon, String ngayViet, String ngaySua, int luotThich, int luotBinhLuan, int trangThai, String IDNguoiDung, String IDDanhGia) {
-        this.ID = ID;
-        TenBaiViet = tenBaiViet;
-        DuongDan = duongDan;
-        NguyenLieu = nguyenLieu;
-        BuocLam = buocLam;
-        DinhDuong = dinhDuong;
-        DiaChi = diaChi;
-        ThongTinChiTiet = thongTinChiTiet;
-        DoiTuong = doiTuong;
-        LoaiMon = loaiMon;
-        NgayViet = ngayViet;
-        NgaySua = ngaySua;
-        LuotThich = luotThich;
-        LuotBinhLuan = luotBinhLuan;
-        TrangThai = trangThai;
-        this.IDNguoiDung = IDNguoiDung;
-        this.IDDanhGia = IDDanhGia;
+    public BaiViet(String iD, String tenBaiViet, String duongDan, String nguyenLieu, String buocLam, String dinhDuong, String diaChi, String thongTinChiTiet, int doiTuong, int loaiMon, String ngayViet, String ngaySua, int luotThich, int luotBinhLuan, int trangThai, String iDNguoiDung, String iDDanhGia) {
+        this.iD = iD;
+        this.tenBaiViet = tenBaiViet;
+        this.duongDan = duongDan;
+        this.nguyenLieu = nguyenLieu;
+        this.buocLam = buocLam;
+        this.dinhDuong = dinhDuong;
+        this.diaChi = diaChi;
+        this.thongTinChiTiet = thongTinChiTiet;
+        this.doiTuong = doiTuong;
+        this.loaiMon = loaiMon;
+        this.ngayViet = ngayViet;
+        this.ngaySua = ngaySua;
+        this.luotThich = luotThich;
+        this.luotBinhLuan = luotBinhLuan;
+        this.trangThai = trangThai;
+        this.iDNguoiDung = iDNguoiDung;
+        this.iDDanhGia = iDDanhGia;
     }
 
-    public String getID() {
-        return ID;
+    public String getiD() {
+        return iD;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setiD(String iD) {
+        this.iD = iD;
     }
 
     public String getTenBaiViet() {
-        return TenBaiViet;
+        return tenBaiViet;
     }
 
     public void setTenBaiViet(String tenBaiViet) {
-        TenBaiViet = tenBaiViet;
+        this.tenBaiViet = tenBaiViet;
     }
 
     public String getDuongDan() {
-        return DuongDan;
+        return duongDan;
     }
 
     public void setDuongDan(String duongDan) {
-        DuongDan = duongDan;
+        this.duongDan = duongDan;
     }
 
     public String getNguyenLieu() {
-        return NguyenLieu;
+        return nguyenLieu;
     }
 
     public void setNguyenLieu(String nguyenLieu) {
-        NguyenLieu = nguyenLieu;
+        this.nguyenLieu = nguyenLieu;
     }
 
     public String getBuocLam() {
-        return BuocLam;
+        return buocLam;
     }
 
     public void setBuocLam(String buocLam) {
-        BuocLam = buocLam;
+        this.buocLam = buocLam;
     }
 
     public String getDinhDuong() {
-        return DinhDuong;
+        return dinhDuong;
     }
 
     public void setDinhDuong(String dinhDuong) {
-        DinhDuong = dinhDuong;
+        this.dinhDuong = dinhDuong;
     }
 
     public String getDiaChi() {
-        return DiaChi;
+        return diaChi;
     }
 
     public void setDiaChi(String diaChi) {
-        DiaChi = diaChi;
+        this.diaChi = diaChi;
     }
 
     public String getThongTinChiTiet() {
-        return ThongTinChiTiet;
+        return thongTinChiTiet;
     }
 
     public void setThongTinChiTiet(String thongTinChiTiet) {
-        ThongTinChiTiet = thongTinChiTiet;
+        this.thongTinChiTiet = thongTinChiTiet;
     }
 
     public int getDoiTuong() {
-        return DoiTuong;
+        return doiTuong;
     }
 
     public void setDoiTuong(int doiTuong) {
-        DoiTuong = doiTuong;
+        this.doiTuong = doiTuong;
     }
 
     public int getLoaiMon() {
-        return LoaiMon;
+        return loaiMon;
     }
 
     public void setLoaiMon(int loaiMon) {
-        LoaiMon = loaiMon;
+        this.loaiMon = loaiMon;
     }
 
     public String getNgayViet() {
-        return NgayViet;
+        return ngayViet;
     }
 
     public void setNgayViet(String ngayViet) {
-        NgayViet = ngayViet;
+        this.ngayViet = ngayViet;
     }
 
     public String getNgaySua() {
-        return NgaySua;
+        return ngaySua;
     }
 
     public void setNgaySua(String ngaySua) {
-        NgaySua = ngaySua;
+        this.ngaySua = ngaySua;
     }
 
     public int getLuotThich() {
-        return LuotThich;
+        return luotThich;
     }
 
     public void setLuotThich(int luotThich) {
-        LuotThich = luotThich;
+        this.luotThich = luotThich;
     }
 
     public int getLuotBinhLuan() {
-        return LuotBinhLuan;
+        return luotBinhLuan;
     }
 
     public void setLuotBinhLuan(int luotBinhLuan) {
-        LuotBinhLuan = luotBinhLuan;
+        this.luotBinhLuan = luotBinhLuan;
     }
 
     public int getTrangThai() {
-        return TrangThai;
+        return trangThai;
     }
 
     public void setTrangThai(int trangThai) {
-        TrangThai = trangThai;
+        this.trangThai = trangThai;
     }
 
-    public String getIDNguoiDung() {
-        return IDNguoiDung;
+    public String getiDNguoiDung() {
+        return iDNguoiDung;
     }
 
-    public void setIDNguoiDung(String IDNguoiDung) {
-        this.IDNguoiDung = IDNguoiDung;
+    public void setiDNguoiDung(String iDNguoiDung) {
+        this.iDNguoiDung = iDNguoiDung;
     }
 
-    public String getIDDanhGia() {
-        return IDDanhGia;
+    public String getiDDanhGia() {
+        return iDDanhGia;
     }
 
-    public void setIDDanhGia(String IDDanhGia) {
-        this.IDDanhGia = IDDanhGia;
+    public void setiDDanhGia(String iDDanhGia) {
+        this.iDDanhGia = iDDanhGia;
     }
 
     public Date LayNgayVietTheoNgayThang() throws ParseException {
         SimpleDateFormat curFormater = new SimpleDateFormat("dd/MM/yyyy");
-        Date dateObj = curFormater.parse(NgayViet);
+        Date dateObj = curFormater.parse(ngayViet);
         return dateObj;
     }
 
 
     public Date LayNgaySuaTheoNgayThang() throws ParseException {
         SimpleDateFormat curFormater = new SimpleDateFormat("dd/MM/yyyy");
-        Date dateObj = curFormater.parse(NgaySua);
+        Date dateObj = curFormater.parse(ngaySua);
         return dateObj;
     }
 
     public void DanhGiaTrungBinh(float danhGiaTrungBinh)
     {
-        DanhGiaTrungBinh = danhGiaTrungBinh;
+        danhGiaTrungBinh = danhGiaTrungBinh;
     }
 
     public float LayDanhGiaTrungBinh()
     {
-        return DanhGiaTrungBinh;
+        return danhGiaTrungBinh;
     }
 }

@@ -1,60 +1,60 @@
 package com.example.nghethuatamthuc.models;
 
 public class HinhAnh {
-    private String DuongDan;
-    private float ChieuDai;
-    private float ChieuRong;
-    private int Loai;
-    private String IDLoai;
+    private String duongDan;
+    private float chieuDai;
+    private float chieuRong;
+    private int loai;
+    private String iDLoai;
 
     public HinhAnh() {
     }
 
-    public HinhAnh(String duongDan, float chieuDai, float chieuRong, int loai, String IDLoai) {
-        DuongDan = duongDan;
-        ChieuDai = chieuDai;
-        ChieuRong = chieuRong;
-        Loai = loai;
-        this.IDLoai = IDLoai;
+    public HinhAnh(String duongDan, float chieuDai, float chieuRong, int loai, String iDLoai) {
+        this.duongDan = duongDan;
+        this.chieuDai = chieuDai;
+        this.chieuRong = chieuRong;
+        this.loai = loai;
+        this.iDLoai = iDLoai;
     }
 
     public String getDuongDan() {
-        return DuongDan;
+        return duongDan;
     }
 
     public void setDuongDan(String duongDan) {
-        DuongDan = duongDan;
+        this.duongDan = duongDan;
     }
 
     public float getChieuDai() {
-        return ChieuDai;
+        return chieuDai;
     }
 
     public void setChieuDai(float chieuDai) {
-        ChieuDai = chieuDai;
+        this.chieuDai = chieuDai;
     }
 
     public float getChieuRong() {
-        return ChieuRong;
+        return chieuRong;
     }
 
     public void setChieuRong(float chieuRong) {
-        ChieuRong = chieuRong;
+        this.chieuRong = chieuRong;
     }
 
     public int getLoai() {
-        return Loai;
+        return loai;
     }
 
     public void setLoai(int loai) {
-        Loai = loai;
+        this.loai = loai;
     }
 
-    public String getIDLoai() {
-        return IDLoai;
+    public String getiDLoai() {
+        return iDLoai;
     }
 
-    public void setIDLoai(String IDLoai) {
-        this.IDLoai = IDLoai;
+    public void setiDLoai(String iDLoai) {
+        this.iDLoai = iDLoai;
     }
 }

@@ -1,90 +1,90 @@
 package com.example.nghethuatamthuc.models;
 
 public class BinhLuan {
-    private String IDBinhLuan;
-    private String BinhLuan;
-    private int LoaiNguoiDung;
-    private String ThoiGianBL;
-    private String ThoiGianSua;
-    private int TrangThai;
-    private String IDNguoiDung;
-    private String IDBaiViet;
+    private String iDBinhLuan;
+    private String binhLuan;
+    private int loaiNguoiDung;
+    private String thoiGianBL;
+    private String thoiGianSua;
+    private int trangThai;
+    private String iDNguoiDung;
+    private String iDBaiViet;
 
     public BinhLuan() {
     }
 
-    public BinhLuan(String IDBinhLuan, String binhLuan, int loaiNguoiDung, String thoiGianBL, String thoiGianSua, int trangThai, String IDNguoiDung, String IDBaiViet) {
-        this.IDBinhLuan = IDBinhLuan;
-        BinhLuan = binhLuan;
-        LoaiNguoiDung = loaiNguoiDung;
-        ThoiGianBL = thoiGianBL;
-        ThoiGianSua = thoiGianSua;
-        TrangThai = trangThai;
-        this.IDNguoiDung = IDNguoiDung;
-        this.IDBaiViet = IDBaiViet;
+    public BinhLuan(String iDBinhLuan, String binhLuan, int loaiNguoiDung, String thoiGianBL, String thoiGianSua, int trangThai, String iDNguoiDung, String iDBaiViet) {
+        this.iDBinhLuan = iDBinhLuan;
+        this.binhLuan = binhLuan;
+        this.loaiNguoiDung = loaiNguoiDung;
+        this.thoiGianBL = thoiGianBL;
+        this.thoiGianSua = thoiGianSua;
+        this.trangThai = trangThai;
+        this.iDNguoiDung = iDNguoiDung;
+        this.iDBaiViet = iDBaiViet;
     }
 
-    public String getIDBinhLuan() {
-        return IDBinhLuan;
+    public String getiDBinhLuan() {
+        return iDBinhLuan;
     }
 
-    public void setIDBinhLuan(String IDBinhLuan) {
-        this.IDBinhLuan = IDBinhLuan;
+    public void setiDBinhLuan(String iDBinhLuan) {
+        this.iDBinhLuan = iDBinhLuan;
     }
 
     public String getBinhLuan() {
-        return BinhLuan;
+        return binhLuan;
     }
 
     public void setBinhLuan(String binhLuan) {
-        BinhLuan = binhLuan;
+        this.binhLuan = binhLuan;
     }
 
     public int getLoaiNguoiDung() {
-        return LoaiNguoiDung;
+        return loaiNguoiDung;
     }
 
     public void setLoaiNguoiDung(int loaiNguoiDung) {
-        LoaiNguoiDung = loaiNguoiDung;
+        this.loaiNguoiDung = loaiNguoiDung;
     }
 
     public String getThoiGianBL() {
-        return ThoiGianBL;
+        return thoiGianBL;
     }
 
     public void setThoiGianBL(String thoiGianBL) {
-        ThoiGianBL = thoiGianBL;
+        this.thoiGianBL = thoiGianBL;
     }
 
     public String getThoiGianSua() {
-        return ThoiGianSua;
+        return thoiGianSua;
     }
 
     public void setThoiGianSua(String thoiGianSua) {
-        ThoiGianSua = thoiGianSua;
+        this.thoiGianSua = thoiGianSua;
     }
 
     public int getTrangThai() {
-        return TrangThai;
+        return trangThai;
     }
 
     public void setTrangThai(int trangThai) {
-        TrangThai = trangThai;
+        this.trangThai = trangThai;
     }
 
-    public String getIDNguoiDung() {
-        return IDNguoiDung;
+    public String getiDNguoiDung() {
+        return iDNguoiDung;
     }
 
-    public void setIDNguoiDung(String IDNguoiDung) {
-        this.IDNguoiDung = IDNguoiDung;
+    public void setiDNguoiDung(String iDNguoiDung) {
+        this.iDNguoiDung = iDNguoiDung;
     }
 
-    public String getIDBaiViet() {
-        return IDBaiViet;
+    public String getiDBaiViet() {
+        return iDBaiViet;
     }
 
-    public void setIDBaiViet(String IDBaiViet) {
-        this.IDBaiViet = IDBaiViet;
+    public void setiDBaiViet(String iDBaiViet) {
+        this.iDBaiViet = iDBaiViet;
     }
 }

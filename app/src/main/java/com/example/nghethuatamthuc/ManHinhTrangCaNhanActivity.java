@@ -32,6 +32,9 @@ public class ManHinhTrangCaNhanActivity extends AppCompatActivity implements Vie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.man_hinh_trang_ca_nhan_layout);
 
+        //Giả lập người dùng
+        nguoiDung = new NguoiDung("LctqUfnB9x3d9OVGQow","HuuPhu","Huuphudn2015","123","0123456789","Huuphudn2015@gmail.com","16/04/1998",1,1,"","","20/04/2019",1);
+
         Bundle bundle = getIntent().getExtras();
         //Log.d("TestBundle", bundle+"");
         if (bundle != null) {
@@ -52,8 +55,8 @@ public class ManHinhTrangCaNhanActivity extends AppCompatActivity implements Vie
         btnQuanLyTaiKhoan.setOnClickListener(this);
         btnQuanLyBaiViet.setOnClickListener(this);
 
-        Intent getIntentDangNhap = getIntent();
-        nguoiDung = (NguoiDung) getIntentDangNhap.getSerializableExtra("NguoiDung");
+        //Intent getIntentDangNhap = getIntent();
+        //nguoiDung = (NguoiDung) getIntentDangNhap.getSerializableExtra("NguoiDung");
 
         txtUser.setText(nguoiDung.getHoTen());
         txtNgayThamGia.setText(nguoiDung.getThoiGian());

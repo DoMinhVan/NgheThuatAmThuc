@@ -1,50 +1,50 @@
 package com.example.nghethuatamthuc.models;
 
 public class DanhGia {
-    private String IDDanhGia;
-    private int DanhGia;
-    private String IDNguoiDung;
-    private String IDBaiViet;
+    private String iDDanhGia;
+    private int danhGia;
+    private String iDNguoiDung;
+    private String iDBaiViet;
 
     public DanhGia() {
     }
 
-    public DanhGia(String IDDanhGia, int danhGia, String IDNguoiDung, String IDBaiViet) {
-        this.IDDanhGia = IDDanhGia;
-        DanhGia = danhGia;
-        this.IDNguoiDung = IDNguoiDung;
-        this.IDBaiViet = IDBaiViet;
+    public DanhGia(String iDDanhGia, int danhGia, String iDNguoiDung, String iDBaiViet) {
+        this.iDDanhGia = iDDanhGia;
+        this.danhGia = danhGia;
+        this.iDNguoiDung = iDNguoiDung;
+        this.iDBaiViet = iDBaiViet;
     }
 
-    public String getIDDanhGia() {
-        return IDDanhGia;
+    public String getiDDanhGia() {
+        return iDDanhGia;
     }
 
-    public void setIDDanhGia(String IDDanhGia) {
-        this.IDDanhGia = IDDanhGia;
+    public void setiDDanhGia(String iDDanhGia) {
+        this.iDDanhGia = iDDanhGia;
     }
 
     public int getDanhGia() {
-        return DanhGia;
+        return danhGia;
     }
 
     public void setDanhGia(int danhGia) {
-        DanhGia = danhGia;
+        this.danhGia = danhGia;
     }
 
-    public String getIDNguoiDung() {
-        return IDNguoiDung;
+    public String getiDNguoiDung() {
+        return iDNguoiDung;
     }
 
-    public void setIDNguoiDung(String IDNguoiDung) {
-        this.IDNguoiDung = IDNguoiDung;
+    public void setiDNguoiDung(String iDNguoiDung) {
+        this.iDNguoiDung = iDNguoiDung;
     }
 
-    public String getIDBaiViet() {
-        return IDBaiViet;
+    public String getiDBaiViet() {
+        return iDBaiViet;
     }
 
-    public void setIDBaiViet(String IDBaiViet) {
-        this.IDBaiViet = IDBaiViet;
+    public void setiDBaiViet(String iDBaiViet) {
+        this.iDBaiViet = iDBaiViet;
     }
 }

@@ -59,7 +59,7 @@ public class BinhLuanNguoiDungAdapter extends BaseAdapter {
         BinhLuan binhLuan = BinhLuan.get(position);
 
         for(NguoiDung nguoiDung : listNguoiDung){
-            if(nguoiDung.getIDNguoiDung().equals(binhLuan.getIDNguoiDung())){
+            if(nguoiDung.getIDNguoiDung().equals(binhLuan.getiDNguoiDung())){
                 txtTenNguoiDung.setText(nguoiDung.getHoTen());
                 //imgHinhDaiDien.setImageResource(nguoiDung.getHinhDaiDien());
             }

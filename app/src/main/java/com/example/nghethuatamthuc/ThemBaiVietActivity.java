@@ -250,7 +250,7 @@ public class ThemBaiVietActivity extends AppCompatActivity{
         //HinhAnh hinhAnh = new HinhAnh("00001",200,200,0,"-LblVJvszkyHbyKR4HzG");
 
 
-        //TestBai test = new TestBai(1,"ABC");
+
         //Lưu bài viết
         //myRef.child("HinhAnh").push().setValue(hinhAnh);
 

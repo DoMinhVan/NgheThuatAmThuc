@@ -21,6 +21,7 @@ import com.example.nghethuatamthuc.models.BaiViet;
 import com.example.nghethuatamthuc.models.DanhGiaBaiViet;
 import com.example.nghethuatamthuc.models.HinhAnh;
 import com.example.nghethuatamthuc.models.NguoiDung;
+import com.example.nghethuatamthuc.models.YeuThich;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
@@ -46,6 +47,7 @@ public class TrangChuActivity extends AppCompatActivity {
     private static ArrayList<NguoiDung> listNguoiDung = new ArrayList<NguoiDung>();
     private static ArrayList<HinhAnh> listHinhAnh = new ArrayList<>();
     private static ArrayList<DanhGiaBaiViet> listDanhGiaBaiViet = new ArrayList<>();
+    private ArrayList<YeuThich> listYeuThich = new ArrayList<YeuThich>();
     private NguoiDung nguoiDung = new NguoiDung();
     private NoiBatAdapter adapter;
     private ListView listView;
@@ -58,6 +60,10 @@ public class TrangChuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.trang_chu_layout);
+
+        //listBaiViet.clear();
+        //listView.removeAllViews();
+
         //FireBase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
@@ -250,7 +256,7 @@ public class TrangChuActivity extends AppCompatActivity {
         });
 
 
-        //ĐỌC TẤT CẢ HÌNH ẢNH ĐỔ VÀO LISTDANHGIA
+        //ĐỌC TẤT CẢ DANHGIABAIVIET ĐỔ VÀO LISTDANHGIA
         myRef.child("DanhGiaBaiViet").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
@@ -312,7 +318,40 @@ public class TrangChuActivity extends AppCompatActivity {
             }
         });*/
 
-        adapter = new NoiBatAdapter(this, R.layout.item_info_monan, listBaiViet, listHinhAnh, listDanhGiaBaiViet, listNguoiDung, nguoiDung);
+        myRef.child("YeuThich").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                if(dataSnapshot.exists()) {
+                    final YeuThich yeuThich = dataSnapshot.getValue(YeuThich.class);
+                    if(yeuThich.getiDNGuoiDungYeuThich().equals(nguoiDung.getIDNguoiDung())) {
+                        listYeuThich.add(yeuThich);
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        adapter = new NoiBatAdapter(this, R.layout.item_info_monan, listBaiViet, listHinhAnh, listDanhGiaBaiViet, listNguoiDung, nguoiDung, listYeuThich);
 
         btnMonNgonMoiNgay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -351,7 +390,7 @@ public class TrangChuActivity extends AppCompatActivity {
                         if (baiViet1.LayDanhGiaTrungBinh() > (baiViet2.LayDanhGiaTrungBinh())) {
                             return -1;
                         } else {
-                            if (baiViet1.getIDDanhGia() == baiViet2.getIDDanhGia()) {
+                            if (baiViet1.getiDDanhGia() == baiViet2.getiDDanhGia()) {
                                 return 0;
                             } else {
                                 return 1;
@@ -442,9 +481,10 @@ public class TrangChuActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        /*listNguoiDung.clear();
-        listBaiViet.clear();
-        listHinhAnh.clear();
-        listDanhGiaBaiViet.clear();*/
+        //listNguoiDung.clear();
+        //listBaiViet.clear();
+        //listView.removeAllViews();
+        //listHinhAnh.clear();
+        //listDanhGiaBaiViet.clear();
     }
 }
