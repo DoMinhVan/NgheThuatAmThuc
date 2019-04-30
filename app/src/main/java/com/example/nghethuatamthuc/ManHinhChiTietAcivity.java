@@ -197,6 +197,7 @@ public class ManHinhChiTietAcivity extends AppCompatActivity {
                 danhGia4.setText(danhGia.getDanhGia4()+"");
                 danhGia5.setText(danhGia.getDanhGia5()+"");
                 DecimalFormat decimalFormat = new DecimalFormat("#.#");
+                Log.d("soDanhGiaTrungBinh", baiViet.LayDanhGiaTrungBinh() + "");
                 float danhGiaTrungBinhNew = Float.valueOf(decimalFormat.format(baiViet.LayDanhGiaTrungBinh()));
                 danhGiaTrungBinh.setText(danhGiaTrungBinhNew+"");
                 tenMonAn.setText(baiViet.getTenBaiViet());

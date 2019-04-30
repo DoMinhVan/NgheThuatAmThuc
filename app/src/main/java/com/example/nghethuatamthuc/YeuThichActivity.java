@@ -8,17 +8,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.RatingBar;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.nghethuatamthuc.models.BaiViet;
 import com.example.nghethuatamthuc.models.DanhGiaBaiViet;
 import com.example.nghethuatamthuc.models.HinhAnh;
-import com.example.nghethuatamthuc.models.MonAn_NoiBat;
 import com.example.nghethuatamthuc.models.NguoiDung;
+import com.example.nghethuatamthuc.models.Thich;
 import com.example.nghethuatamthuc.models.YeuThich;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -33,9 +30,10 @@ public class YeuThichActivity extends AppCompatActivity {
 
     private ArrayList<BaiViet> listBaiViet = new ArrayList<BaiViet>();
     private ArrayList<HinhAnh> listHinhAnh = new ArrayList<HinhAnh>();
-    private ArrayList<DanhGiaBaiViet> listDanhGiaVaiBiet = new ArrayList<DanhGiaBaiViet>();
+    private ArrayList<DanhGiaBaiViet> listDanhGiaBaiViet = new ArrayList<DanhGiaBaiViet>();
     private ArrayList<NguoiDung> listNguoiDung = new ArrayList<NguoiDung>();
     private ArrayList<YeuThich> listYeuThich = new ArrayList<YeuThich>();
+    private ArrayList<Thich> listThich = new ArrayList<Thich>();
     NguoiDung nguoiDung;
     private NoiBatAdapter adapter;
     private boolean DangNhap = false;
@@ -47,6 +45,13 @@ public class YeuThichActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.yeuthich_layout);
+
+        listNguoiDung.clear();
+        listBaiViet.clear();
+        listHinhAnh.clear();
+        listDanhGiaBaiViet.clear();
+        listYeuThich.clear();
+        listThich.clear();
 
         //Toolbar
         toolbarYeuThich = (Toolbar) findViewById(R.id.toolbarYeuThich);
@@ -225,7 +230,7 @@ public class YeuThichActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 DanhGiaBaiViet value = dataSnapshot.getValue(DanhGiaBaiViet.class);
-                listDanhGiaVaiBiet.add(value);
+                listDanhGiaBaiViet.add(value);
                 /*if(dataSnapshot==null) Toast.makeText(context, "Null", Toast.LENGTH_LONG);
                 else {
                     final HinhAnh value = dataSnapshot.getValue(HinhAnh.class);
@@ -267,9 +272,43 @@ public class YeuThichActivity extends AppCompatActivity {
             }
         });
 
+        //Đọc THICH
+        myRef.child("Thich").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                if(dataSnapshot.exists()) {
+                    final Thich thich = dataSnapshot.getValue(Thich.class);
+                    if(thich.getiDNguoiDung().equals(nguoiDung.getIDNguoiDung())) {
+                        listThich.add(thich);
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
-        adapter = new NoiBatAdapter(this, R.layout.item_info_monan, listBaiViet, listHinhAnh, listDanhGiaVaiBiet,listNguoiDung,nguoiDung,listYeuThich);
+
+        adapter = new NoiBatAdapter(this, R.layout.item_info_monan, listBaiViet, listHinhAnh, listDanhGiaBaiViet,listNguoiDung,nguoiDung,listYeuThich,listThich);
         listView.setAdapter(adapter);
     }
 

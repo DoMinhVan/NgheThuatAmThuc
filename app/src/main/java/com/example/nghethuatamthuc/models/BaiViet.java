@@ -200,7 +200,7 @@ public class BaiViet implements Serializable {
 
     public void DanhGiaTrungBinh(float danhGiaTrungBinh)
     {
-        danhGiaTrungBinh = danhGiaTrungBinh;
+        this.danhGiaTrungBinh = danhGiaTrungBinh;
     }
 
     public float LayDanhGiaTrungBinh()

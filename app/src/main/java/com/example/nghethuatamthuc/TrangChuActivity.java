@@ -21,6 +21,7 @@ import com.example.nghethuatamthuc.models.BaiViet;
 import com.example.nghethuatamthuc.models.DanhGiaBaiViet;
 import com.example.nghethuatamthuc.models.HinhAnh;
 import com.example.nghethuatamthuc.models.NguoiDung;
+import com.example.nghethuatamthuc.models.Thich;
 import com.example.nghethuatamthuc.models.YeuThich;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -48,6 +49,7 @@ public class TrangChuActivity extends AppCompatActivity {
     private static ArrayList<HinhAnh> listHinhAnh = new ArrayList<>();
     private static ArrayList<DanhGiaBaiViet> listDanhGiaBaiViet = new ArrayList<>();
     private ArrayList<YeuThich> listYeuThich = new ArrayList<YeuThich>();
+    private ArrayList<Thich> listThich = new ArrayList<Thich>();
     private NguoiDung nguoiDung = new NguoiDung();
     private NoiBatAdapter adapter;
     private ListView listView;
@@ -61,8 +63,13 @@ public class TrangChuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.trang_chu_layout);
 
-        //listBaiViet.clear();
-        //listView.removeAllViews();
+        listNguoiDung.clear();
+        listBaiViet.clear();
+        listHinhAnh.clear();
+        listDanhGiaBaiViet.clear();
+        listYeuThich.clear();
+        listThich.clear();
+        //adapter.notifyDataSetChanged();
 
         //FireBase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -317,8 +324,11 @@ public class TrangChuActivity extends AppCompatActivity {
                 Log.w("KQ", "Failed to read value.", databaseError.toException());
             }
         });*/
-
+        //Đọc YEUTHICH
         myRef.child("YeuThich").addChildEventListener(new ChildEventListener() {
+            public void reset(){
+                listYeuThich.clear();
+            }
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 if(dataSnapshot.exists()) {
@@ -350,8 +360,41 @@ public class TrangChuActivity extends AppCompatActivity {
 
             }
         });
+        //Đọc THICH
+        myRef.child("Thich").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                if(dataSnapshot.exists()) {
+                    final Thich thich = dataSnapshot.getValue(Thich.class);
+                    if(thich.getiDNguoiDung().equals(nguoiDung.getIDNguoiDung())) {
+                        listThich.add(thich);
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+            }
 
-        adapter = new NoiBatAdapter(this, R.layout.item_info_monan, listBaiViet, listHinhAnh, listDanhGiaBaiViet, listNguoiDung, nguoiDung, listYeuThich);
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        adapter = new NoiBatAdapter(this, R.layout.item_info_monan, listBaiViet, listHinhAnh, listDanhGiaBaiViet, listNguoiDung, nguoiDung, listYeuThich,listThich);
 
         btnMonNgonMoiNgay.setOnClickListener(new View.OnClickListener() {
             @Override

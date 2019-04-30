@@ -29,6 +29,7 @@ import com.example.nghethuatamthuc.models.DanhGiaBaiViet;
 import com.example.nghethuatamthuc.models.HinhAnh;
 import com.example.nghethuatamthuc.models.MonAn_NoiBat;
 import com.example.nghethuatamthuc.models.NguoiDung;
+import com.example.nghethuatamthuc.models.Thich;
 import com.example.nghethuatamthuc.models.YeuThich;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -58,6 +59,7 @@ public class NoiBatAdapter extends BaseAdapter {
     private ArrayList<NguoiDung> listNguoiDung;
     private ArrayList<DanhGiaBaiViet> listDanhGiaBaiViet;
     private ArrayList<YeuThich> listYeuThich;
+    private ArrayList<Thich> listThich;
 
     //SAVE DATE SEND DETAIL
     private String uriSend = null;
@@ -69,7 +71,7 @@ public class NoiBatAdapter extends BaseAdapter {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference();
 
-    public NoiBatAdapter(Activity context, int layoutID, ArrayList<BaiViet> listBaiViet, ArrayList<HinhAnh> listHinhAnh, ArrayList<DanhGiaBaiViet> listDanhGiaBaiViet, ArrayList<NguoiDung> listNguoiDung, NguoiDung nguoiDung, ArrayList<YeuThich> listYeuThich) {
+    public NoiBatAdapter(Activity context, int layoutID, ArrayList<BaiViet> listBaiViet, ArrayList<HinhAnh> listHinhAnh, ArrayList<DanhGiaBaiViet> listDanhGiaBaiViet, ArrayList<NguoiDung> listNguoiDung, NguoiDung nguoiDung, ArrayList<YeuThich> listYeuThich, ArrayList<Thich> listThich) {
         this.context = context;
         this.layoutID = layoutID;
         this.listMonAn = listBaiViet;
@@ -78,6 +80,7 @@ public class NoiBatAdapter extends BaseAdapter {
         this.listNguoiDung = listNguoiDung;
         this.nguoiDung = nguoiDung;
         this.listYeuThich = listYeuThich;
+        this.listThich = listThich;
     }
 
     @Override
@@ -108,7 +111,7 @@ public class NoiBatAdapter extends BaseAdapter {
         TextView luotThich = (TextView) view.findViewById(R.id.txtLuotThich);
         TextView thoiGian = (TextView) view.findViewById(R.id.txtTime);
         final RatingBar soluotdanhgia = (RatingBar) view.findViewById(R.id.simpleRatingBar);
-        //final Button btnLike = (Button) view.findViewById(R.id.btnlike);
+        final Button btnLike = (Button) view.findViewById(R.id.btnlike);
         final Button btnLove = (Button) view.findViewById(R.id.btnlove);
         //soluotdanhgia.setEnabled(false);
         soluotdanhgia.setIsIndicator(true);
@@ -198,31 +201,105 @@ public class NoiBatAdapter extends BaseAdapter {
             e.printStackTrace();
         }
 
-        /*btnLike.setOnClickListener(new View.OnClickListener() {
+        btnLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(btnLike.isSelected()){
-                    //listMonAn.get(position).setLike(1);
-                    //Log.d("Now",listMonAn.get(position).isLike()+"");
-                    btnLike.setBackgroundResource(R.mipmap.icons8_like_none_48);
-                    btnLike.setSelected(false);
+                    for (final Thich thich : listThich) {
+                        if (baiViet.getiD().equals(thich.getiDLoai()))
+                        {
+                            myRef.child("Thich").addChildEventListener(new ChildEventListener() {
+                                @Override
+                                public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                                    if(dataSnapshot.exists() && dataSnapshot.getKey().equals(thich.getiDThich())) {
+                                        dataSnapshot.getRef().removeValue();
+                                        btnLike.setBackgroundResource(R.mipmap.icons8_like_none_48);
+                                        btnLike.setSelected(false);
+                                    }
+                                }
+
+                                @Override
+                                public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                                }
+
+                                @Override
+                                public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                                }
+
+                                @Override
+                                public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+                        }
+                    }
+
                 }
                 else {
-                    //listMonAn.get(position).setLike(0);
-                    btnLike.setBackgroundResource(R.mipmap.icons8_like_selected_48);
-                    btnLike.setSelected(true);
+                    String key = myRef.child("Thich").push().getKey();
+                    Thich thich = new Thich(key + "", 0, baiViet.getiD(),"", nguoiDung.getIDNguoiDung());
+                    myRef.child("Thich").child(key).setValue(thich, new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
+                            if (databaseError == null) {
+                                btnLike.setBackgroundResource(R.mipmap.icons8_like_selected_48);
+                                btnLike.setSelected(true);
+                            } else {
+                                Toast.makeText(context, "Có lỗi", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
                 }
             }
-        })*/
+        });
 
         btnLove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (btnLove.isSelected()) {
+                    for (final YeuThich yeuThich : listYeuThich) {
+                        if (baiViet.getiD().equals(yeuThich.getiDBaiVietYeuThich()))
+                        {
+                            myRef.child("YeuThich").addChildEventListener(new ChildEventListener() {
+                                @Override
+                                public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                                    if(dataSnapshot.exists() && dataSnapshot.getKey().equals(yeuThich.getiDYeuThich())) {
+                                        dataSnapshot.getRef().removeValue();
+                                        btnLove.setBackgroundResource(R.mipmap.icons8_love_none_48);
+                                        btnLove.setSelected(false);
+                                    }
+                                }
 
-                    //listMonAn.get(position).setLove(1);
-                    btnLove.setBackgroundResource(R.mipmap.icons8_love_none_48);
-                    btnLove.setSelected(false);
+                                @Override
+                                public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                                }
+
+                                @Override
+                                public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                                }
+
+                                @Override
+                                public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+                        }
+                    }
+
                 } else {
                     String key = myRef.child("YeuThich").push().getKey();
                     YeuThich yeuThich = new YeuThich(key + "", baiViet.getiD(), nguoiDung.getIDNguoiDung());
@@ -284,9 +361,29 @@ public class NoiBatAdapter extends BaseAdapter {
             btnLike.setBackgroundResource(R.mipmap.icons8_like_none_48);
         }*/
         for (YeuThich yeuThich : listYeuThich) {
-            if (baiViet.getiD().equals(yeuThich.getiDBaiVietYeuThich()))
-                    btnLove.setSelected(true);
-                    btnLove.setBackgroundResource(R.mipmap.icons8_love_selected_48);
+            if (baiViet.getiD().equals(yeuThich.getiDBaiVietYeuThich())) {
+                btnLove.setBackgroundResource(R.mipmap.icons8_love_selected_48);
+                btnLove.setSelected(true);
+                break;
+            }
+            else{
+                btnLove.setBackgroundResource(R.mipmap.icons8_love_none_48);
+                btnLove.setSelected(false);
+            }
+
+        }
+
+        for (Thich thich : listThich) {
+            if (baiViet.getiD().equals(thich.getiDLoai())) {
+                btnLike.setSelected(true);
+                btnLike.setBackgroundResource(R.mipmap.icons8_like_selected_48);
+                break;
+            }
+            else{
+                btnLike.setSelected(false);
+                btnLike.setBackgroundResource(R.mipmap.icons8_like_none_48);
+            }
+
         }
 
 
