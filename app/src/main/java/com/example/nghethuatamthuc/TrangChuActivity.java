@@ -88,7 +88,7 @@ public class TrangChuActivity extends AppCompatActivity {
         listSpinnerLoaiMon.add("MÓN KHÁC");
 
         //Giả lập người dùng
-        nguoiDung = new NguoiDung("LctqUfnB9x3d9OVGQow","HuuPhu","Huuphudn2015","123","0123456789","Huuphudn2015@gmail.com","16/04/1998",1,1,"","","20/04/2019",1);
+        nguoiDung = new NguoiDung("-LctqUfnB9x3d9OVGQow","HuuPhu","Huuphudn2015","123","0123456789","Huuphudn2015@gmail.com","16/04/1998",1,1,"","","20/04/2019",1);
 
         //ĐỔ DỮ LIỆU TỪ FIREBASE VỀ CHO SPIINER
         myRef.child("LoaiMon").addChildEventListener(new ChildEventListener() {

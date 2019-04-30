@@ -6,60 +6,93 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/txtTenNguoiDang"
-        android:textSize="@dimen/sizeTenNguoiDang"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ngô Hiếu"/>
+        android:orientation="horizontal">
 
+        <TextView
+            android:textColor="@color/colorPrimaryDark"
+            android:id="@+id/txtTenNguoiDangn_QuanLyBaiViet"
+            android:textSize="@dimen/sizeTenNguoiDang"
+            android:layout_width="0sp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Ngô Hiếu"/>
+
+        <LinearLayout
+            android:layout_width="0sp"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:layout_height="wrap_content">
+            <CheckBox
+                android:id="@+id/chkChon_QuanLyBaiViet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+    </LinearLayout>
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="280dp">
 
         <ImageView
-            android:id="@+id/imgMonAn"
+            android:id="@+id/imgMonAn_QuanLyBaiViet"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="274dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/login"
+            android:src="@drawable/monan"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <Button
+            android:id="@+id/btnlike_QuanLyBaiViet"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@mipmap/icons8_like_none_48"
+            app:layout_constraintBottom_toBottomOf="@+id/imgMonAn_QuanLyBaiViet"
+            app:layout_constraintStart_toStartOf="@+id/imgMonAn_QuanLyBaiViet" />
+
+        <Button
+            android:id="@+id/btnlove_QuanLyBaiViet"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:background="@mipmap/icons8_love_none_48"
+            app:layout_constraintBottom_toBottomOf="@+id/imgMonAn_QuanLyBaiViet"
+            app:layout_constraintEnd_toEndOf="@+id/imgMonAn_QuanLyBaiViet" />
     </android.support.constraint.ConstraintLayout>
 
     <TextView
-        android:id="@+id/txtTenMonAn"
+        android:id="@+id/txtTenMonAnn_QuanLyBaiViet"
         android:textSize="@dimen/sizeTextNormal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/txtLink"
         android:text="Bánh Huế"/>
     <TextView
-        android:id="@+id/txtLuotThich"
+        android:id="@+id/txtLuotThichn_QuanLyBaiViet"
         android:textSize="@dimen/sizeTextThich"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="69 lượt thích"/>
     <TextView
-        android:id="@+id/txtTime"
+        android:id="@+id/txtThoiGian_QuanLyBaiViet"
         android:textSize="@dimen/sizeTextThich"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Mới đây"/>
+
     <RatingBar
-        android:theme="@style/RatingBar"
-        android:id="@+id/simpleRatingBar"
+        android:id="@+id/simpleRatingBar_QuanLyBaiViet"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:theme="@style/RatingBar" />
 </LinearLayout>

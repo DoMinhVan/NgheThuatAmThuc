@@ -25,6 +25,7 @@ public class BaiViet implements Serializable {
     private String iDDanhGia;
 
     private float danhGiaTrungBinh;
+    private boolean danhDau;
 
     public BaiViet() {
     }
@@ -206,5 +207,15 @@ public class BaiViet implements Serializable {
     public float LayDanhGiaTrungBinh()
     {
         return danhGiaTrungBinh;
+    }
+
+    public void suaDanhDau(boolean danhDau)
+    {
+        this.danhDau = danhDau;
+    }
+
+    public boolean layDanhDau()
+    {
+        return danhDau;
     }
 }

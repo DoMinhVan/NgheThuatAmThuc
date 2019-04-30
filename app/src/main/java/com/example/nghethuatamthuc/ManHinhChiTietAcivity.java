@@ -317,7 +317,7 @@ public class ManHinhChiTietAcivity extends AppCompatActivity {
                 });
 
                 //BinhLuan
-                if(edtbinhLuan!=null) {
+                if(!edtbinhLuan.getText().equals("")) {
                     String keyBinhLuan = myRef.child("BinhLuan").push().getKey();
                     final BinhLuan binhLuan = new BinhLuan(keyBinhLuan + "", edtbinhLuan.getText() + "", nguoiDung.getLoaiNguoiDung(), "", "", 1, nguoiDung.getIDNguoiDung() + "", baiViet.getiD());
 

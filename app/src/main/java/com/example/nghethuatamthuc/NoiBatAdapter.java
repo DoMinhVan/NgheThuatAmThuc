@@ -54,7 +54,8 @@ public class NoiBatAdapter extends BaseAdapter {
     private Activity context;
     private int layoutID;
     private NguoiDung nguoiDung;
-    private ArrayList<BaiViet> listMonAn;
+
+    private ArrayList<BaiViet> listBaiViet;
     private ArrayList<HinhAnh> listHinhAnh;
     private ArrayList<NguoiDung> listNguoiDung;
     private ArrayList<DanhGiaBaiViet> listDanhGiaBaiViet;
@@ -74,7 +75,7 @@ public class NoiBatAdapter extends BaseAdapter {
     public NoiBatAdapter(Activity context, int layoutID, ArrayList<BaiViet> listBaiViet, ArrayList<HinhAnh> listHinhAnh, ArrayList<DanhGiaBaiViet> listDanhGiaBaiViet, ArrayList<NguoiDung> listNguoiDung, NguoiDung nguoiDung, ArrayList<YeuThich> listYeuThich, ArrayList<Thich> listThich) {
         this.context = context;
         this.layoutID = layoutID;
-        this.listMonAn = listBaiViet;
+        this.listBaiViet = listBaiViet;
         this.listHinhAnh = listHinhAnh;
         this.listDanhGiaBaiViet = listDanhGiaBaiViet;
         this.listNguoiDung = listNguoiDung;
@@ -85,7 +86,7 @@ public class NoiBatAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return listMonAn.size();
+        return listBaiViet.size();
     }
 
     @Override
@@ -117,7 +118,7 @@ public class NoiBatAdapter extends BaseAdapter {
         soluotdanhgia.setIsIndicator(true);
 
 
-        final BaiViet baiViet = listMonAn.get(position);
+        final BaiViet baiViet = listBaiViet.get(position);
         //final HinhAnh hinhAnh = listHinhAnh.get(position);
 
         for (DanhGiaBaiViet danhGiaBaiViet : listDanhGiaBaiViet) {
@@ -156,13 +157,10 @@ public class NoiBatAdapter extends BaseAdapter {
 
 
         for (NguoiDung nguoiDung : listNguoiDung) {
-            Log.d("anguoidung", baiViet.getiDNguoiDung());
-            Log.d("bnguoidung", nguoiDung.getIDNguoiDung());
             if (baiViet.getiDNguoiDung().equals(nguoiDung.getIDNguoiDung())) {
                 tenNguoiDang.setText(nguoiDung.getHoTen());
+                break;
             }
-
-            //tenNguoiDang.setText("kkkk");
         }
 
 
