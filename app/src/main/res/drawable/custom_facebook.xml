@@ -12,6 +12,7 @@
         android:height="32dp"
         android:width="32dp"
         android:gravity="center"
+        android:drawable="@drawable/fb"
         >
     </item>
 </layer-list>

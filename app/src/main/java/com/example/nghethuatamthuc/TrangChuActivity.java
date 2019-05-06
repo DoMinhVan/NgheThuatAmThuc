@@ -132,7 +132,6 @@ public class TrangChuActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.listMain);
 
-
         //ĐỌC TẤT CẢ CÁC BÀI VIẾT VÀ ĐỔ VÀO ARRAYLIST
         myRef.child("BaiViet").addChildEventListener(new ChildEventListener() {
             @Override
