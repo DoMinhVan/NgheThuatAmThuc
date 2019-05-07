@@ -17,6 +17,7 @@ public class BaiViet implements Serializable {
     private int doiTuong;
     private int loaiMon;
     private String ngayViet;
+    private Date gioViet;
     private String ngaySua;
     private int luotThich;
     private int luotBinhLuan;
@@ -30,7 +31,7 @@ public class BaiViet implements Serializable {
     public BaiViet() {
     }
 
-    public BaiViet(String iD, String tenBaiViet, String duongDan, String nguyenLieu, String buocLam, String dinhDuong, String diaChi, String thongTinChiTiet, int doiTuong, int loaiMon, String ngayViet, String ngaySua, int luotThich, int luotBinhLuan, int trangThai, String iDNguoiDung, String iDDanhGia) {
+    public BaiViet(String iD, String tenBaiViet, String duongDan, String nguyenLieu, String buocLam, String dinhDuong, String diaChi, String thongTinChiTiet, int doiTuong, int loaiMon, String ngayViet,  Date gioViet, String ngaySua, int luotThich, int luotBinhLuan, int trangThai, String iDNguoiDung, String iDDanhGia) {
         this.iD = iD;
         this.tenBaiViet = tenBaiViet;
         this.duongDan = duongDan;
@@ -42,12 +43,14 @@ public class BaiViet implements Serializable {
         this.doiTuong = doiTuong;
         this.loaiMon = loaiMon;
         this.ngayViet = ngayViet;
+        this.gioViet = gioViet;
         this.ngaySua = ngaySua;
         this.luotThich = luotThich;
         this.luotBinhLuan = luotBinhLuan;
         this.trangThai = trangThai;
         this.iDNguoiDung = iDNguoiDung;
         this.iDDanhGia = iDDanhGia;
+
     }
 
     public String getiD() {
@@ -138,6 +141,14 @@ public class BaiViet implements Serializable {
         this.ngayViet = ngayViet;
     }
 
+    public Date getGioViet() {
+        return gioViet;
+    }
+
+    public void setGioViet(Date gioViet) {
+        this.gioViet = gioViet;
+    }
+
     public String getNgaySua() {
         return ngaySua;
     }
@@ -198,6 +209,12 @@ public class BaiViet implements Serializable {
         Date dateObj = curFormater.parse(ngaySua);
         return dateObj;
     }
+
+    /*public Date LayGioVietTheoGio() throws ParseException{
+        SimpleDateFormat curFormater = new SimpleDateFormat("HH:mm:ss");
+        Date dateObj = curFormater.parse(gioViet);
+        return dateObj;
+    }*/
 
     public void DanhGiaTrungBinh(float danhGiaTrungBinh)
     {

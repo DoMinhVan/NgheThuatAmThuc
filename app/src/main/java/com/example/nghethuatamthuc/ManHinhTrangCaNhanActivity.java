@@ -74,6 +74,7 @@ public class ManHinhTrangCaNhanActivity extends AppCompatActivity implements Vie
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_tin_nhan,menu);
+        menu.getItem(0).setIcon(R.mipmap.icons8_user_selected_48);
         return super.onCreateOptionsMenu(menu);
     }
 

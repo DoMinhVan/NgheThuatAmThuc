@@ -47,6 +47,7 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class NoiBatAdapter extends BaseAdapter {
@@ -187,17 +188,64 @@ public class NoiBatAdapter extends BaseAdapter {
         });
 
 
+
+
         luotThich.setText(baiViet.getLuotThich() + " Lượt thích");
+
+        //SET THỜI GIAN
+        Calendar calendar = Calendar.getInstance();
+        Calendar calendar1 = Calendar.getInstance();
+        calendar1.setTime(baiViet.getGioViet());
+
+        Log.d("KiemTraThoiGian", calendar.get(Calendar.DAY_OF_MONTH) - calendar1.get(Calendar.DAY_OF_MONTH)+"");
+
+        if(calendar.get(Calendar.YEAR) - 1900 - calendar1.get(Calendar.YEAR) > 0)
+        {
+            thoiGian.setText(baiViet.getNgayViet());
+        }
+        else if(calendar.get(Calendar.MONTH) - calendar1.get(Calendar.MONTH) > 0){
+            thoiGian.setText(baiViet.getNgayViet());
+        }
+        else if(calendar.get(Calendar.DAY_OF_MONTH) - calendar1.get(Calendar.DAY_OF_MONTH) >= 1){
+            if(calendar.get(Calendar.DAY_OF_MONTH) - calendar1.get(Calendar.DAY_OF_MONTH) <= 2){
+                thoiGian.setText("Hôm qua");
+            }
+            else if(calendar.get(Calendar.DAY_OF_MONTH) - calendar1.get(Calendar.DAY_OF_MONTH) <= 3){
+                thoiGian.setText("Hôm kia");
+            }
+            else{
+                thoiGian.setText(baiViet.getNgayViet());
+            }
+        }
+        else if(calendar.get(Calendar.DAY_OF_MONTH) - calendar1.get(Calendar.DAY_OF_MONTH)  < 1)
+        {
+            if(calendar.get(Calendar.HOUR) - calendar1.get(Calendar.HOUR) >= 1)
+            {
+                thoiGian.setText(calendar.get(Calendar.HOUR) - calendar1.get(Calendar.HOUR) + " Giờ trước");
+            }
+            else if (calendar.get(Calendar.MINUTE) - calendar1.get(Calendar.MINUTE) >= 1 && calendar.get(Calendar.MINUTE) - calendar1.get(Calendar.MINUTE) < 60) {
+                thoiGian.setText(calendar.get(Calendar.MINUTE) - calendar1.get(Calendar.MINUTE) + " Phút trước");
+            }
+            else if(calendar.get(Calendar.MINUTE) - calendar1.get(Calendar.MINUTE)  < 1) {
+                if (calendar.get(Calendar.SECOND) - calendar1.get(Calendar.SECOND) > 30 && calendar.get(Calendar.SECOND) - calendar1.get(Calendar.SECOND) < 60) {
+                    thoiGian.setText(calendar.get(Calendar.SECOND) - calendar1.get(Calendar.SECOND) + " Giây trước");
+                    if (calendar.get(Calendar.SECOND) - calendar1.get(Calendar.SECOND) <= 30) {
+                        thoiGian.setText("Mới đây");
+                    }
+                }
+
+            }
+        }
         //thoiGian.setText(baiViet.LayNgayVietTheoNgayThang()+"");
 
-        SimpleDateFormat postFormater = new SimpleDateFormat("dd/MM/yyyy");
+        /*SimpleDateFormat postFormater = new SimpleDateFormat("dd/MM/yyyy");
         String newNgayViet = null;
         try {
             newNgayViet = postFormater.format(baiViet.LayNgayVietTheoNgayThang());
             thoiGian.setText(newNgayViet);
         } catch (ParseException e) {
             e.printStackTrace();
-        }
+        }*/
 
         btnLike.setOnClickListener(new View.OnClickListener() {
             @Override

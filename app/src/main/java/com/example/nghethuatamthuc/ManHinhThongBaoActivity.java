@@ -45,6 +45,7 @@ public class ManHinhThongBaoActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_tin_nhan,menu);
+        menu.getItem(2).setIcon(R.mipmap.icons8_notification_selected_48);
         return super.onCreateOptionsMenu(menu);
     }
 

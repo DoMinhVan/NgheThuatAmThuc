@@ -53,6 +53,7 @@ public class ManHinhTinNhanActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_tin_nhan,menu);
+        menu.getItem(1).setIcon(R.mipmap.icons8_mess_selected_48);
         return super.onCreateOptionsMenu(menu);
     }
 

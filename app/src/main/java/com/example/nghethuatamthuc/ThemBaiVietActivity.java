@@ -1,6 +1,7 @@
 package com.example.nghethuatamthuc;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -13,6 +14,7 @@ import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -47,6 +49,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -281,11 +284,14 @@ public class ThemBaiVietActivity extends AppCompatActivity{
 
         int doiTuong = spnDoiTuong.getSelectedItemPosition();
         int loaiMon = spnLoaiMon.getSelectedItemPosition();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		String currentDay = sdf.format(calendar.getTime());
+        Calendar calendar1 = Calendar.getInstance();
 
-        Date currentTime = Calendar.getInstance().getTime();
+        calendar1.set(Calendar.MONTH, calendar1.get(Calendar.MONTH) + 1);
 
-
-        baiViet = new BaiViet(key,txtTenMonAn.getText()+"","",txtNguyenLieu.getText()+"",txtBuocLam.getText()+"",txtTenDD.getText() + "" + txtKhoiLuong.getText() + "" + txtPhanTram.getText() + "",txtDiaChi.getText()+"",txtThongTinThem.getText()+"", doiTuong, loaiMon,currentTime+"","17/4/2019",0,0,1,nguoiDung.getIDNguoiDung()+"",keyDanhGia);
+        baiViet = new BaiViet(key,txtTenMonAn.getText()+"","",txtNguyenLieu.getText()+"",txtBuocLam.getText()+"",txtTenDD.getText() + "" + txtKhoiLuong.getText() + "" + txtPhanTram.getText() + "",txtDiaChi.getText()+"",txtThongTinThem.getText()+"", doiTuong, loaiMon,currentDay+"", calendar1.getTime(),"",0,0,1,nguoiDung.getIDNguoiDung()+"",keyDanhGia);
 
 
         myRef.child("BaiViet").child(key).setValue(baiViet, new DatabaseReference.CompletionListener() {
@@ -429,8 +435,26 @@ public class ThemBaiVietActivity extends AppCompatActivity{
             finish();
             return true;
         }
+        if(id == R.id.menuThongTin) {
+            new AlertDialog.Builder(this)
+                    .setIcon(R.mipmap.icons8_info_none_48)
+                    .setTitle("Hướng dẫn")
+                    .setMessage("Cần nhập đầy đủ thông tin cho bài viết\nTên món ăn thực tế\nPhần nguyên liệu cần nhập mỗi nguyên liệu cho mỗi một ô, ấn dấu cộng nếu cần thêm nguyên liệu\nBước làm tương tự\nĐối tượng người dùng là nơi để chọn loại người dùng mà bạn muốn bài viết hướng đến\nNên chọn loại phù hợp nhất cho món ăn của bạn\nPhần dinh dưỡng bạn có thể nhập nếu hiểu biết về dinh dưỡng, dinh dưỡng không cần chính xác tuyệt đối!\nĐịa chỉ bạn có thể nhập hoặc không, bạn có thể là nội trợ, đầu bếp, chủ cửa hàng, hoặc các chi nhánh đồ ăn thì nên điền để mọi người biết đến bạn nhiều hơn\nThông tin thêm về món ăn của mình để tạo điểm nhấn cũng không phải là ý tồi :D")
 
-        //noinspection SimplifiableIfStatement
+                    // Specifying a listener allows you to take an action before dismissing the dialog.
+                    // The dialog is automatically dismissed when a dialog button is clicked.
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Continue with delete operation
+                        }
+                    })
+
+                    // A null listener allows the button to dismiss the dialog and take no further action.
+                    .setNegativeButton(android.R.string.no, null)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }

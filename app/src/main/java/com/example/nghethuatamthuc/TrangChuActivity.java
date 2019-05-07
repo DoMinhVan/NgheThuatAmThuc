@@ -483,6 +483,7 @@ public class TrangChuActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_trang_chu,menu);
+        menu.getItem(2).setIcon(R.mipmap.icons8_star_selected_48);
         return super.onCreateOptionsMenu(menu);
     }
 

@@ -315,6 +315,7 @@ public class YeuThichActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_trang_chu,menu);
+        menu.getItem(0).setIcon(R.mipmap.icons8_love_selected_48);
         return super.onCreateOptionsMenu(menu);
     }
 
