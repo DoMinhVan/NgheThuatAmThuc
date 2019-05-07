@@ -181,12 +181,14 @@ public class ManHinhTrangCaNhanActivity extends AppCompatActivity implements Vie
     public void onClick(View v) {
         if (v == btnQuanLyTaiKhoan){
             Intent intent1 = new Intent(ManHinhTrangCaNhanActivity.this, QuanLyTaiKhoanActivity.class);
+            intent1.putExtra("NguoiDung",nguoiDung);
             intent1.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent1);
         }
         if (v == btnQuanLyBaiViet){
             Intent intent1 = new Intent(ManHinhTrangCaNhanActivity.this, QuanLyBaiVietActivity.class);
             intent1.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            intent1.putExtra("NguoiDung",nguoiDung);
             startActivity(intent1);
         }
     }
