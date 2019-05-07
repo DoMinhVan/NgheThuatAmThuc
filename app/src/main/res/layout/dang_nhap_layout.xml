@@ -88,6 +88,7 @@
         <LinearLayout
             android:id="@+id/line3"
             android:gravity="center"
+            android:orientation="vertical"
             android:layout_below="@id/edtMatKhau"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -118,6 +119,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <Button
+                    android:name="com.facebook.login.widget.LoginButton"
                     android:id="@+id/btnFacebook"
                     android:layout_marginRight="30dp"
                     android:background="@drawable/custom_facebook"

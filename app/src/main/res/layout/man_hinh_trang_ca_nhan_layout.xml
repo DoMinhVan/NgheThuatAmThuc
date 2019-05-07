@@ -17,7 +17,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
     </android.support.v7.widget.Toolbar>
-
     <ImageView
         android:id="@+id/imgAnhBia"
         android:layout_width="match_parent"
@@ -28,23 +27,35 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbarTrangCaNhan"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/anhbia" />
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/imgHinhDaiDien"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="8dp"
-        android:src="@drawable/anhdaidien"
-        app:civ_border_color="@color/toolBar"
-        app:civ_border_width="3dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/anhbia"/>
+    <LinearLayout
+        android:id="@+id/linearLayout"
         app:layout_constraintBottom_toBottomOf="@+id/imgAnhBia"
         app:layout_constraintEnd_toEndOf="@+id/imgAnhBia"
         app:layout_constraintStart_toStartOf="@+id/imgAnhBia"
         app:layout_constraintTop_toBottomOf="@+id/imgAnhBia"
-        app:layout_constraintVertical_bias="0.49" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/imgHinhDaiDien"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/anhdaidien"/>
+        <com.facebook.login.widget.ProfilePictureView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/imgFacebook"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/anhdaidien"
+            android:visibility="gone"/>
+    </LinearLayout>
+
     <Button
         android:id="@+id/btnQuanLyTaiKhoan"
         android:layout_width="50dp"
@@ -56,10 +67,10 @@
         android:background="@mipmap/icons8_info_none_48"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnQuanLyBaiViet"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtNgayThamGia"
-        app:layout_constraintVertical_bias="0.4" />
+        app:layout_constraintVertical_bias="0.118" />
 
     <Button
         android:id="@+id/btnQuanLyBaiViet"
@@ -72,10 +83,10 @@
         android:background="@drawable/thembv"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.7"
+        app:layout_constraintHorizontal_bias="0.73"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtNgayThamGia"
-        app:layout_constraintVertical_bias="0.4" />
+        app:layout_constraintVertical_bias="0.118" />
 
     <TextView
         android:id="@+id/textView2"
@@ -104,13 +115,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="8dp"
         android:text="@string/txtUser2"
         android:textSize="@dimen/sizeTenNguoiDung"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgHinhDaiDien"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         tools:text="@string/txtUser2" />
 
     <TextView
@@ -118,10 +129,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:text="@string/txtNgayTG"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.557"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtUser"
         tools:text="@string/txtNgayTG" />

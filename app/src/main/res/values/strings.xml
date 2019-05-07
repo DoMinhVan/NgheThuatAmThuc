@@ -66,7 +66,8 @@
     //ChiTiet
     <string name="btn_gui">Gửi</string>
     //Facebook
-    <string name="facebook_app_id">271088083797292</string> <string name="fb_login_protocol_scheme">fb271088083797292</string>
+    <string name="facebook_app_id">271088083797292</string>
+    <string name="fb_login_protocol_scheme">fb271088083797292</string>
     <string name="txtNoiTro">Nội Trợ</string>
     <string name="txtDinhDuong">Chuyên Gia Dinh Dưỡng</string>
     <string name="txtAmThuc">Chuyên Gia Ẩm Thực</string>
@@ -76,4 +77,5 @@
     <string name="txtDNVVoi">Đăng nhập với</string>
     <string name="txtDangKy">Bạn Chưa Có Tài Khoản</string>
     <string name="btnDN">Đăng Nhập</string>
+    <string name="txtDangXuat">Đăng Xuất</string>
 </resources>

@@ -66,10 +66,14 @@ public class DangKyActivity extends AppCompatActivity implements View.OnClickLis
         edtHoTen.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(kiemTraHoten(edtHoTen.getText().toString())){
-                    Toast.makeText(DangKyActivity.this, "Họp lệ" ,Toast.LENGTH_SHORT).show();
+                if(edtHoTen.getText().toString().isEmpty()){
+
                 }else {
-                    Toast.makeText(DangKyActivity.this, "Họ ten không đúng định dạng" ,Toast.LENGTH_SHORT).show();
+                    if(kiemTraHoten(edtHoTen.getText().toString())){
+                        Toast.makeText(DangKyActivity.this, "Họp lệ" ,Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(DangKyActivity.this, "Họ ten không đúng định dạng" ,Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -150,8 +154,7 @@ public class DangKyActivity extends AppCompatActivity implements View.OnClickLis
                 myRef.child("NguoiDung").child(key).setValue(nguoiDung);
         }
         if(v == btnHuy){
-            Intent i = new Intent(DangKyActivity.this,DangNhapActivity.class);
-            startActivity(i);
+            finish();
         }
     }
     private boolean KiemTra(){
