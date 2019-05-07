@@ -88,8 +88,12 @@ public class TrangChuActivity extends AppCompatActivity {
         listSpinnerLoaiMon.add("MÓN KHÁC");
 
         //Giả lập người dùng
-        nguoiDung = new NguoiDung("-LctqUfnB9x3d9OVGQow","HuuPhu","Huuphudn2015","123","0123456789","Huuphudn2015@gmail.com","16/04/1998",1,1,"","","20/04/2019",1);
-
+        //nguoiDung = new NguoiDung("-LctqUfnB9x3d9OVGQow","HuuPhu","Huuphudn2015","123","0123456789","Huuphudn2015@gmail.com","16/04/1998",1,1,"","","20/04/2019",1);
+        //GET NGUOI DUNG
+        Intent intent = getIntent();
+        if (intent != null) {
+            nguoiDung = (NguoiDung) intent.getSerializableExtra("NguoiDung");
+        }
         //ĐỔ DỮ LIỆU TỪ FIREBASE VỀ CHO SPIINER
         myRef.child("LoaiMon").addChildEventListener(new ChildEventListener() {
             @Override
@@ -489,6 +493,7 @@ public class TrangChuActivity extends AppCompatActivity {
             case R.id.menuTimKiem:
                 Intent intent1 = new Intent(TrangChuActivity.this, ManHinhTimKiemActivity.class);
                 intent1.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                intent1.putExtra("NguoiDung",nguoiDung);
                 startActivity(intent1);
                 return true;
             case R.id.menuNgoiSao:
@@ -498,6 +503,7 @@ public class TrangChuActivity extends AppCompatActivity {
                 if (DangNhap == true) {
                     Intent intent2 = new Intent(TrangChuActivity.this, ManHinhTrangCaNhanActivity.class);
                     intent2.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    intent2.putExtra("NguoiDung",nguoiDung);
                     startActivity(intent2);
                 } else {
                     Intent intent3 = new Intent(TrangChuActivity.this, DangNhapActivity.class);
@@ -508,6 +514,7 @@ public class TrangChuActivity extends AppCompatActivity {
             case R.id.menuYeuThich:
                 Intent intent4 = new Intent(TrangChuActivity.this, YeuThichActivity.class);
                 intent4.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                intent4.putExtra("NguoiDung",nguoiDung);
                 startActivity(intent4);
                 return true;
             default:

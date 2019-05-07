@@ -64,6 +64,11 @@ public class YeuThichActivity extends AppCompatActivity {
         //listMembers.add(new MonAn_NoiBat("Ngô Hiếu","Hamburger","696","Mới đây",5f,0,0));
 
         nguoiDung = new NguoiDung("-LctqUfnB9x3d9OVGQow","HuuPhu","Huuphudn2015","123","0123456789","Huuphudn2015@gmail.com","16/04/1998",1,1,"","","20/04/2019",1);
+        //GET NGUOI DUNG
+        Intent intent = getIntent();
+        if (intent != null) {
+            nguoiDung = (NguoiDung) intent.getSerializableExtra("NguoiDung");
+        }
 
         myRef.child("YeuThich").addChildEventListener(new ChildEventListener() {
             @Override
@@ -327,23 +332,27 @@ public class YeuThichActivity extends AppCompatActivity {
             case android.R.id.home:
                 Intent intent = new Intent(YeuThichActivity.this, TrangChuActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("NguoiDung",nguoiDung);
                 startActivity(intent);
                 finish();
                 return true;
             case R.id.menuTimKiem:
                 Intent intent1 = new Intent(YeuThichActivity.this, ManHinhTimKiemActivity.class);
                 intent1.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                intent1.putExtra("NguoiDung",nguoiDung);
                 startActivity(intent1);
                 return true;
             case R.id.menuNgoiSao:
                 Intent intent2 = new Intent(YeuThichActivity.this, TrangChuActivity.class);
                 intent2.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                intent2.putExtra("NguoiDung",nguoiDung);
                 startActivity(intent2);
                 return true;
             case R.id.menuAdmin:
                 if (DangNhap == true) {
                     Intent intent3 = new Intent(YeuThichActivity.this, ManHinhTrangCaNhanActivity.class);
                     intent3.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    intent3.putExtra("NguoiDung",nguoiDung);
                     startActivity(intent3);
                 } else {
                     Intent intent4 = new Intent(YeuThichActivity.this, DangNhapActivity.class);

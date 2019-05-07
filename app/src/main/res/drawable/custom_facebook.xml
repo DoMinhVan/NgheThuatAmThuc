@@ -11,8 +11,8 @@
     <item
         android:height="32dp"
         android:width="32dp"
-        android:gravity="center"
         android:drawable="@drawable/fb"
+        android:gravity="center"
         >
     </item>
 </layer-list>
