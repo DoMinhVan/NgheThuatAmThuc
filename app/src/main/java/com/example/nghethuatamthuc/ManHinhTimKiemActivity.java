@@ -194,7 +194,8 @@ public class ManHinhTimKiemActivity extends AppCompatActivity implements View.On
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
-                    if (doiTuong.equals(dataSnapshot1.child("doiTuong").getValue().toString()) && danhMuc.equals(dataSnapshot1.child("loaiMon").getValue().toString())){
+                    if (doiTuong.equals(dataSnapshot1.child("doiTuong").getValue().toString()) &&
+                            danhMuc.equals(dataSnapshot1.child("loaiMon").getValue().toString())){
                         Toast.makeText(ManHinhTimKiemActivity.this, "Tìm theo tất cả yêu cầu", Toast.LENGTH_SHORT).show();
                         Query query  = FirebaseDatabase.getInstance().getReference("BaiViet").orderByChild("tenBaiViet").startAt("%"+tuKhoa+"%");
                         query.addValueEventListener(new ValueEventListener() {

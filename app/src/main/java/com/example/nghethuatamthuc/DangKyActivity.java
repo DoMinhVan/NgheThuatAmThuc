@@ -117,16 +117,6 @@ public class DangKyActivity extends AppCompatActivity implements View.OnClickLis
                 }
             }
         });
-        edtMatKhau.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(kiemTraMatKhau(edtMatKhau.getText().toString())){
-                    Toast.makeText(DangKyActivity.this, "Họp lệ" ,Toast.LENGTH_SHORT).show();
-                }else {
-                    Toast.makeText(DangKyActivity.this, "Mat Khau không đúng định dạng" ,Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
     }
 
     private void AnhXa() {
@@ -146,11 +136,14 @@ public class DangKyActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         if(v == btnDangKy){
-            if(kiemTraHoten(edtHoTen.getText().toString()) && kiemTraNgay(edtNgaySinh.getText().toString()) && kiemTraSDT(edtSDT.getText().toString()) && kiemTraEmail(edtEmail.getText().toString())){
+            if(kiemTraHoten(edtHoTen.getText().toString()) && kiemTraNgay(edtNgaySinh.getText().toString())
+                    && kiemTraSDT(edtSDT.getText().toString()) && kiemTraEmail(edtEmail.getText().toString())){
                 Calendar calendar = Calendar.getInstance();
                 final String key = myRef.child("NguoiDung").push().getKey();
                 nguoiDung = new NguoiDung(key,edtHoTen.getText().toString(),edtTenDangNhap.getText().toString()
-                        ,edtMatKhau.getText().toString(),edtSDT.getText().toString(),edtEmail.getText().toString(),edtNgaySinh.getText().toString(), spGioiTinh.getSelectedItemPosition(),spNguoiDung.getSelectedItemPosition(),"","", calendar.getTime()
+                        ,edtMatKhau.getText().toString(),edtSDT.getText().toString(),edtEmail.getText().toString(),
+                        edtNgaySinh.getText().toString(), spGioiTinh.getSelectedItemPosition(),spNguoiDung.getSelectedItemPosition(),
+                        "","", calendar.getTime()
                         +"",0);
                 myRef.child("NguoiDung").child(key).setValue(nguoiDung);
             }else {
