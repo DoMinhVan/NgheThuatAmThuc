@@ -1,6 +1,7 @@
 package com.example.nghethuatamthuc;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +20,7 @@ import com.bumptech.glide.Glide;
 import com.example.nghethuatamthuc.models.BaiViet;
 import com.example.nghethuatamthuc.models.NguoiDung;
 import com.facebook.login.widget.ProfilePictureView;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -86,7 +88,14 @@ public class ManHinhTrangCaNhanActivity extends AppCompatActivity implements Vie
 
     private void LayThongTinNguoiDung() {
         Intent intent = getIntent();
-        final String idNguoiDung =  intent.getStringExtra("NguoiDung");
+        if (intent != null) {
+
+            nguoiDung = (NguoiDung) intent.getSerializableExtra("NguoiDung");
+        }
+
+        txtUser.setText(nguoiDung.getHoTen().toString());
+        txtNgayThamGia.setText(nguoiDung.getThoiGian().toString());
+        /*final String idNguoiDung =  intent.getStringExtra("NguoiDung");
          myRef.child("NguoiDung").addValueEventListener(new ValueEventListener() {
            @Override
            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -96,8 +105,6 @@ public class ManHinhTrangCaNhanActivity extends AppCompatActivity implements Vie
                        txtUser.setText(ngDung.getHoTen().toString());
                        txtNgayThamGia.setText(ngDung.getThoiGian().toString());
                    }
-
-
                }
            }
 
@@ -105,7 +112,7 @@ public class ManHinhTrangCaNhanActivity extends AppCompatActivity implements Vie
            public void onCancelled(@NonNull DatabaseError databaseError) {
 
            }
-       });
+       });*/
     }
 
     private void LayThongTinTuGmail() {
@@ -145,17 +152,20 @@ public class ManHinhTrangCaNhanActivity extends AppCompatActivity implements Vie
         switch (id) {
             case android.R.id.home:
                 Intent intent1 = new Intent(ManHinhTrangCaNhanActivity.this, TrangChuActivity.class);
+                intent1.putExtra("NguoiDung",nguoiDung);
                 intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent1);
                 finish();
                 return true;
             case R.id.menuThongBao:
                 Intent intent2 = new Intent(ManHinhTrangCaNhanActivity.this, ManHinhThongBaoActivity.class);
+                intent2.putExtra("NguoiDung",nguoiDung);
                 intent2.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent2);
                 return true;
             case R.id.menuMessenger:
                 Intent intent3 = new Intent(ManHinhTrangCaNhanActivity.this, ManHinhTinNhanActivity.class);
+                intent3.putExtra("NguoiDung",nguoiDung);
                 intent3.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent3);
                 return true;

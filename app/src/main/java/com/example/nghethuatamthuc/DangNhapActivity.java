@@ -167,12 +167,12 @@ public class DangNhapActivity extends AppCompatActivity implements View.OnClickL
                         Toast.makeText(getApplicationContext(), "Luu mat khau", Toast.LENGTH_SHORT).show();
                         Toast.makeText(getApplicationContext(), "chuyển sang trang ca nhan", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(DangNhapActivity.this, ManHinhTrangCaNhanActivity.class);
-                        intent.putExtra("NguoiDung", nguoiDungArrayList.get(i).getIDNguoiDung());
+                        intent.putExtra("NguoiDung", nguoiDungArrayList.get(i));
                         startActivity(intent);
                     } else {
                         Toast.makeText(getApplicationContext(), "chuyển sang trang ca nhan", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(DangNhapActivity.this, ManHinhTrangCaNhanActivity.class);
-                        intent.putExtra("NguoiDung", nguoiDungArrayList.get(i).getIDNguoiDung());
+                        intent.putExtra("NguoiDung", nguoiDungArrayList.get(i));
                         startActivity(intent);
                     }
                     in = true;
@@ -212,7 +212,7 @@ public class DangNhapActivity extends AppCompatActivity implements View.OnClickL
 
     private void LoginFacebook() {
         //xin quyền đăng nhập từ người dùng
-        LoginManager.getInstance().logInWithReadPermissions(DangNhapActivity.this, Arrays.asList("email", "public_profile", "user_birthday"));
+        LoginManager.getInstance().logInWithReadPermissions(DangNhapActivity.this, Arrays.asList("email", "public_profile"));
         LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
@@ -273,7 +273,7 @@ public class DangNhapActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     protected void onStart() {
-        //LoginManager.getInstance().logOut();
+        LoginManager.getInstance().logOut();
         super.onStart();
     }
 }

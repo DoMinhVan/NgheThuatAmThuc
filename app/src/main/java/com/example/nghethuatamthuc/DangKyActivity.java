@@ -146,12 +146,17 @@ public class DangKyActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         if(v == btnDangKy){
+            if(kiemTraHoten(edtHoTen.getText().toString()) && kiemTraNgay(edtNgaySinh.getText().toString()) && kiemTraSDT(edtSDT.getText().toString()) && kiemTraEmail(edtEmail.getText().toString())){
                 Calendar calendar = Calendar.getInstance();
                 final String key = myRef.child("NguoiDung").push().getKey();
                 nguoiDung = new NguoiDung(key,edtHoTen.getText().toString(),edtTenDangNhap.getText().toString()
                         ,edtMatKhau.getText().toString(),edtSDT.getText().toString(),edtEmail.getText().toString(),edtNgaySinh.getText().toString(), spGioiTinh.getSelectedItemPosition(),spNguoiDung.getSelectedItemPosition(),"","", calendar.getTime()
                         +"",0);
                 myRef.child("NguoiDung").child(key).setValue(nguoiDung);
+            }else {
+                Toast.makeText(this, "Dang ky that bai", Toast.LENGTH_SHORT).show();
+            }
+
         }
         if(v == btnHuy){
             finish();
@@ -220,7 +225,7 @@ public class DangKyActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
     private boolean kiemTraMatKhau(String strMatKhau){
-        String chuoi = "^\\[a-zA-Z0-9]$";
+        String chuoi = "^\\w[a-z0-9A-Z]+\\w[0-9]+\\w[A-Z]$";
         Pattern pattern = Pattern.compile(chuoi);
         Matcher matcher = pattern.matcher(strMatKhau);
         if(matcher.find()){
