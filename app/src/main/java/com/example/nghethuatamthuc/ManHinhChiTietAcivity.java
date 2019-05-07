@@ -263,19 +263,17 @@ public class ManHinhChiTietAcivity extends AppCompatActivity {
         btnGui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //DanhGia
+                //DanhGiá
+                if(ratingBarNguoiDung.getRating()!= 0){
                 String key = myRef.child("DanhGia").push().getKey();
                 final DanhGia danhGiaNguoiDung = new DanhGia(key+"",Math.round(ratingBarNguoiDung.getRating()),nguoiDung.getIDNguoiDung()+"",baiViet.getiD()+"");
 
                 myRef.child("DanhGia").child(key).setValue(danhGiaNguoiDung, new DatabaseReference.CompletionListener() {
                     @Override
                     public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
-                        if(databaseError !=null)
-                        {
+                        if (databaseError != null) {
                             Toast.makeText(ManHinhChiTietAcivity.this, "Có lỗi", Toast.LENGTH_SHORT).show();
-                        }
-
-                        else {
+                        } else {
                             Toast.makeText(ManHinhChiTietAcivity.this, "Cảm ơn sự đánh giá của bạn", Toast.LENGTH_SHORT).show();
                             switch (Math.round(ratingBarNguoiDung.getRating())) {
                                 case 1:
@@ -300,24 +298,21 @@ public class ManHinhChiTietAcivity extends AppCompatActivity {
                             myRef.child("DanhGiaBaiViet").child(danhGia.getiDDanhGia()).setValue(danhGia, new DatabaseReference.CompletionListener() {
                                 @Override
                                 public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
-                                    if(databaseError !=null)
-                                    {
+                                    if (databaseError != null) {
                                         //Toast.makeText(ManHinhChiTietAcivity.this, "Có lỗi", Toast.LENGTH_SHORT).show();
-                                    }
-                                    else {
+                                    } else {
+                                        adapterBinhLuanNguoiDung.notifyDataSetChanged();
                                         //Toast.makeText(ManHinhChiTietAcivity.this, "Cảm ơn sự đánh giá của bạn", Toast.LENGTH_SHORT).show();
 
                                     }
-
                                 }
                             });
                         }
-
                     }
                 });
-
+                }
                 //BinhLuan
-                if(!edtbinhLuan.getText().equals("")) {
+                if(!edtbinhLuan.getText().toString().equals("")) {
                     String keyBinhLuan = myRef.child("BinhLuan").push().getKey();
                     final BinhLuan binhLuan = new BinhLuan(keyBinhLuan + "", edtbinhLuan.getText() + "", nguoiDung.getLoaiNguoiDung(), "", "", 1, nguoiDung.getIDNguoiDung() + "", baiViet.getiD());
 
@@ -327,13 +322,12 @@ public class ManHinhChiTietAcivity extends AppCompatActivity {
                             if (databaseError != null) {
                                 Toast.makeText(ManHinhChiTietAcivity.this, "Có lỗi", Toast.LENGTH_SHORT).show();
                             } else {
-                                //Toast.makeText(ManHinhChiTietAcivity.this, "Có lỗi", Toast.LENGTH_SHORT).show();
+                                baiViet.setLuotBinhLuan(baiViet.getLuotBinhLuan() + 1);
                             }
                         }
                     });
                 }
             }
-
         });
 
         txtMoRong.setOnClickListener(new View.OnClickListener() {

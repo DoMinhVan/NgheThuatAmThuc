@@ -604,6 +604,7 @@ public class QuanLyBaiVietActivity extends AppCompatActivity {
         }
         if (id == R.id.menuThem) {
             Intent intent1 = new Intent(QuanLyBaiVietActivity.this, ThemBaiVietActivity.class);
+            intent1.putExtra("BaiViet", nguoiDung);
             intent1.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent1);
             return true;

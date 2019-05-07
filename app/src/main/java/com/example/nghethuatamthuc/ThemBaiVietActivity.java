@@ -112,6 +112,12 @@ public class ThemBaiVietActivity extends AppCompatActivity{
 
         //Giả lập người dùng
         nguoiDung = new NguoiDung("-LctqUfnB9x3d9OVGQow","HuuPhu","Huuphudn2015","123","0123456789","Huuphudn2015@gmail.com","16/04/1998",1,1,"","","20/04/2019",1);
+        //GET NGUOI DUNG
+        Intent intent = getIntent();
+        if (intent != null) {
+            nguoiDung = (NguoiDung) intent.getSerializableExtra("NguoiDung");
+        }
+
 
         //ĐỔ DỮ LIỆU TỪ FIREBASE VỀ CHO SPIINER LOAI MON
         myRef.child("LoaiMon").addChildEventListener(new ChildEventListener() {

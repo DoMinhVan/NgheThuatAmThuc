@@ -402,20 +402,15 @@ public class TrangChuActivity extends AppCompatActivity {
                 Collections.sort(listBaiViet, new Comparator<BaiViet>() {
                     @Override
                     public int compare(BaiViet baiViet1, BaiViet baiViet2) {
-                        try {
-                            if (baiViet1.LayNgayVietTheoNgayThang().compareTo(baiViet2.LayNgayVietTheoNgayThang()) == 1) {
-                                return -1;
+                        if (baiViet1.getGioViet().compareTo(baiViet2.getGioViet()) == 1) {
+                            return -1;
+                        } else {
+                            if (baiViet1.getGioViet().compareTo(baiViet2.getGioViet()) == 0) {
+                                return 0;
                             } else {
-                                if (baiViet1.LayNgayVietTheoNgayThang().compareTo(baiViet2.LayNgayVietTheoNgayThang()) == 0) {
-                                    return 0;
-                                } else {
-                                    return 1;
-                                }
+                                return 1;
                             }
-                        } catch (ParseException e) {
-                            e.printStackTrace();
                         }
-                        return 0;
                     }
                 });
 
