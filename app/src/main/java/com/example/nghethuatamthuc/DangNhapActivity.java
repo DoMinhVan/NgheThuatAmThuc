@@ -273,7 +273,7 @@ public class DangNhapActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     protected void onStart() {
-        LoginManager.getInstance().logOut();
+        //LoginManager.getInstance().logOut();
         super.onStart();
     }
 }

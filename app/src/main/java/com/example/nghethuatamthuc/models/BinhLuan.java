@@ -1,10 +1,13 @@
 package com.example.nghethuatamthuc.models;
 
+import java.util.Date;
+
 public class BinhLuan {
     private String iDBinhLuan;
     private String binhLuan;
     private int loaiNguoiDung;
     private String thoiGianBL;
+    private Date gioBL;
     private String thoiGianSua;
     private int trangThai;
     private String iDNguoiDung;
@@ -13,11 +16,12 @@ public class BinhLuan {
     public BinhLuan() {
     }
 
-    public BinhLuan(String iDBinhLuan, String binhLuan, int loaiNguoiDung, String thoiGianBL, String thoiGianSua, int trangThai, String iDNguoiDung, String iDBaiViet) {
+    public BinhLuan(String iDBinhLuan, String binhLuan, int loaiNguoiDung, String thoiGianBL, Date gioBL, String thoiGianSua, int trangThai, String iDNguoiDung, String iDBaiViet) {
         this.iDBinhLuan = iDBinhLuan;
         this.binhLuan = binhLuan;
         this.loaiNguoiDung = loaiNguoiDung;
         this.thoiGianBL = thoiGianBL;
+        this.gioBL = gioBL;
         this.thoiGianSua = thoiGianSua;
         this.trangThai = trangThai;
         this.iDNguoiDung = iDNguoiDung;
@@ -54,6 +58,14 @@ public class BinhLuan {
 
     public void setThoiGianBL(String thoiGianBL) {
         this.thoiGianBL = thoiGianBL;
+    }
+
+    public Date getGioBL() {
+        return gioBL;
+    }
+
+    public void setGioBL(Date gioBL) {
+        this.gioBL = gioBL;
     }
 
     public String getThoiGianSua() {

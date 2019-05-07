@@ -150,7 +150,7 @@ public class ThemBaiVietActivity extends AppCompatActivity{
             }
         });
         ArrayAdapter<String> adapterSpinnerLoaiMon = new ArrayAdapter<String>(this,R.layout.spinner_item, listSpinnerLoaiMon);
-        adapterSpinnerLoaiMon.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        adapterSpinnerLoaiMon.setDropDownViewResource(R.layout.spinner_item);
         listSpinnerLoaiMon.add("Chọn loại món");
         spnLoaiMon.setAdapter(adapterSpinnerLoaiMon);
 

@@ -30,6 +30,7 @@ import com.example.nghethuatamthuc.models.BinhLuan;
 import com.example.nghethuatamthuc.models.DanhGia;
 import com.example.nghethuatamthuc.models.DanhGiaBaiViet;
 import com.example.nghethuatamthuc.models.NguoiDung;
+import com.example.nghethuatamthuc.models.YeuThich;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -41,7 +42,9 @@ import com.google.firebase.storage.StorageReference;
 
 import java.io.InputStream;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class ManHinhChiTietAcivity extends AppCompatActivity {
@@ -314,7 +317,15 @@ public class ManHinhChiTietAcivity extends AppCompatActivity {
                 //BinhLuan
                 if(!edtbinhLuan.getText().toString().equals("")) {
                     String keyBinhLuan = myRef.child("BinhLuan").push().getKey();
-                    final BinhLuan binhLuan = new BinhLuan(keyBinhLuan + "", edtbinhLuan.getText() + "", nguoiDung.getLoaiNguoiDung(), "", "", 1, nguoiDung.getIDNguoiDung() + "", baiViet.getiD());
+
+                    final Calendar calendar = Calendar.getInstance();
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                    String currentDay = sdf.format(calendar.getTime());
+                    Calendar calendar1 = Calendar.getInstance();
+
+                    calendar1.set(Calendar.MONTH, calendar1.get(Calendar.MONTH) + 1);
+
+                    final BinhLuan binhLuan = new BinhLuan(keyBinhLuan + "", edtbinhLuan.getText() + "", nguoiDung.getLoaiNguoiDung(), currentDay+"", calendar1.getTime(),"", 1, nguoiDung.getIDNguoiDung() + "", baiViet.getiD());
 
                     myRef.child("BinhLuan").child(keyBinhLuan).setValue(binhLuan, new DatabaseReference.CompletionListener() {
                         @Override
@@ -323,6 +334,17 @@ public class ManHinhChiTietAcivity extends AppCompatActivity {
                                 Toast.makeText(ManHinhChiTietAcivity.this, "Có lỗi", Toast.LENGTH_SHORT).show();
                             } else {
                                 baiViet.setLuotBinhLuan(baiViet.getLuotBinhLuan() + 1);
+                                myRef.child("BaiViet").child(baiViet.getiD()).setValue(baiViet, new DatabaseReference.CompletionListener() {
+                                    @Override
+                                    public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
+                                        if (databaseError != null) {
+                                            //Toast.makeText(ManHinhChiTietAcivity.this, "Có lỗi", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            adapterBinhLuanNguoiDung.notifyDataSetChanged();
+                                            //Toast.makeText(ManHinhChiTietAcivity.this, "Cảm ơn sự đánh giá của bạn", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
                             }
                         }
                     });
@@ -367,6 +389,7 @@ public class ManHinhChiTietAcivity extends AppCompatActivity {
         if(id == android.R.id.home) {
             Intent intent1 = new Intent(ManHinhChiTietAcivity.this, TrangChuActivity.class);
             intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent1.putExtra("NguoiDung",nguoiDung);
             startActivity(intent1);
             finish();
             return true;

@@ -65,7 +65,13 @@ public class QuanLyBaiVietActivity extends AppCompatActivity {
         listThich.clear();
 
         //Giả lập người dùng
-        nguoiDung = new NguoiDung("-LctqUfnB9x3d9OVGQow","HuuPhu","Huuphudn2015","123","0123456789","Huuphudn2015@gmail.com","16/04/1998",1,1,"","","20/04/2019",1);
+        //nguoiDung = new NguoiDung("-LctqUfnB9x3d9OVGQow","HuuPhu","Huuphudn2015","123","0123456789","Huuphudn2015@gmail.com","16/04/1998",1,1,"","","20/04/2019",1);
+
+        //GET NGUOI DUNG
+        Intent intent = getIntent();
+        if (intent != null) {
+            nguoiDung = (NguoiDung) intent.getSerializableExtra("NguoiDung");
+        }
 
         //Toolbar
         toolbarQuanLyBaiViet = (Toolbar) findViewById(R.id.toolbarQuanLyBaiViet);
@@ -604,7 +610,7 @@ public class QuanLyBaiVietActivity extends AppCompatActivity {
         }
         if (id == R.id.menuThem) {
             Intent intent1 = new Intent(QuanLyBaiVietActivity.this, ThemBaiVietActivity.class);
-            intent1.putExtra("BaiViet", nguoiDung);
+            intent1.putExtra("NguoiDung", nguoiDung);
             intent1.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent1);
             return true;

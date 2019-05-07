@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ManHinhTrangCaNhanActivity">
+        <activity android:name=".DangNhapActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,7 +36,7 @@
         <activity android:name=".QuanLyTaiKhoanActivity" />
         <activity android:name=".QuanLyBaiVietActivity" />
         <activity android:name=".YeuThichActivity" />
-        <activity android:name=".DangNhapActivity" />
+        <activity android:name=".ManHinhTrangCaNhanActivity" />
         <activity android:name=".ThemBaiVietActivity" />
         <activity android:name=".ManHinhChiTietAcivity" />
     </application>
