@@ -187,53 +187,77 @@ public class NoiBatAdapter extends BaseAdapter {
             }
         });
 
-
-
-
         luotThich.setText(baiViet.getLuotThich() + " Lượt thích");
 
         //SET THỜI GIAN
         Calendar calendar = Calendar.getInstance();
+
         Calendar calendar1 = Calendar.getInstance();
         calendar1.setTime(baiViet.getGioViet());
 
-        Log.d("KiemTraThoiGian", calendar.get(Calendar.DAY_OF_MONTH) - calendar1.get(Calendar.DAY_OF_MONTH)+"");
 
-        if(calendar.get(Calendar.YEAR) - 1900 - calendar1.get(Calendar.YEAR) > 0)
+        Log.d("Kiemtraday", calendar.get(Calendar.HOUR_OF_DAY) - calendar1.get(Calendar.HOUR_OF_DAY)+"");
+
+        if(calendar.get(Calendar.YEAR) - 1900 - calendar1.get(Calendar.YEAR) == 0)
         {
             thoiGian.setText(baiViet.getNgayViet());
         }
-        else if(calendar.get(Calendar.MONTH) - calendar1.get(Calendar.MONTH) > 0){
+        else if(calendar.get(Calendar.MONTH) - calendar1.get(Calendar.MONTH) == 0){
             thoiGian.setText(baiViet.getNgayViet());
         }
         else if(calendar.get(Calendar.DAY_OF_MONTH) - calendar1.get(Calendar.DAY_OF_MONTH) >= 1){
-            if(calendar.get(Calendar.DAY_OF_MONTH) - calendar1.get(Calendar.DAY_OF_MONTH) <= 2){
+            Log.d("Kiemtraday", calendar.get(Calendar.HOUR_OF_DAY) - calendar1.get(Calendar.HOUR_OF_DAY)+"");
+            if((24 - Math.abs(calendar.get(Calendar.HOUR_OF_DAY) - calendar1.get(Calendar.HOUR_OF_DAY))) >= 24){
                 thoiGian.setText("Hôm qua");
             }
-            else if(calendar.get(Calendar.DAY_OF_MONTH) - calendar1.get(Calendar.DAY_OF_MONTH) <= 3){
-                thoiGian.setText("Hôm kia");
+            if(calendar.get(Calendar.DAY_OF_MONTH) - calendar1.get(Calendar.DAY_OF_MONTH) >= 2){
+                if((24 - Math.abs(calendar.get(Calendar.HOUR_OF_DAY) - calendar1.get(Calendar.HOUR_OF_DAY))) >= 24){
+                    thoiGian.setText("Hôm kia");
+                }
+                else{
+                    thoiGian.setText(baiViet.getNgayViet());
+                }
             }
-            else{
-                thoiGian.setText(baiViet.getNgayViet());
+            if(calendar.get(Calendar.HOUR_OF_DAY) < calendar1.get(Calendar.HOUR_OF_DAY)) {
+                if ((24 - Math.abs(calendar.get(Calendar.HOUR_OF_DAY) - calendar1.get(Calendar.HOUR_OF_DAY))) <= 24) {
+                    thoiGian.setText((24 - Math.abs(calendar.get(Calendar.HOUR_OF_DAY) - calendar1.get(Calendar.HOUR_OF_DAY))) + " Giờ trước");
+                }
             }
+
         }
         else if(calendar.get(Calendar.DAY_OF_MONTH) - calendar1.get(Calendar.DAY_OF_MONTH)  < 1)
         {
-            if(calendar.get(Calendar.HOUR) - calendar1.get(Calendar.HOUR) >= 1)
+            if(calendar.get(Calendar.HOUR_OF_DAY) - calendar1.get(Calendar.HOUR_OF_DAY) >= 1 && calendar.get(Calendar.HOUR_OF_DAY) - calendar1.get(Calendar.HOUR_OF_DAY) < 2)
             {
-                thoiGian.setText(calendar.get(Calendar.HOUR) - calendar1.get(Calendar.HOUR) + " Giờ trước");
-            }
-            else if (calendar.get(Calendar.MINUTE) - calendar1.get(Calendar.MINUTE) >= 1 && calendar.get(Calendar.MINUTE) - calendar1.get(Calendar.MINUTE) < 60) {
-                thoiGian.setText(calendar.get(Calendar.MINUTE) - calendar1.get(Calendar.MINUTE) + " Phút trước");
-            }
-            else if(calendar.get(Calendar.MINUTE) - calendar1.get(Calendar.MINUTE)  < 1) {
-                if (calendar.get(Calendar.SECOND) - calendar1.get(Calendar.SECOND) > 30 && calendar.get(Calendar.SECOND) - calendar1.get(Calendar.SECOND) < 60) {
-                    thoiGian.setText(calendar.get(Calendar.SECOND) - calendar1.get(Calendar.SECOND) + " Giây trước");
-                    if (calendar.get(Calendar.SECOND) - calendar1.get(Calendar.SECOND) <= 30) {
-                        thoiGian.setText("Mới đây");
+                if(calendar.get(Calendar.MINUTE) < calendar1.get(Calendar.MINUTE)){
+                    if ((60 - Math.abs(calendar.get(Calendar.MINUTE) - calendar1.get(Calendar.MINUTE))) >= 1 && Math.abs(calendar.get(Calendar.MINUTE) - calendar1.get(Calendar.MINUTE)) < 60) {
+                        thoiGian.setText(60 - Math.abs(calendar.get(Calendar.MINUTE) - calendar1.get(Calendar.MINUTE)) + " Phút trước");
                     }
                 }
-
+                else {
+                    thoiGian.setText(calendar.get(Calendar.HOUR_OF_DAY) - calendar1.get(Calendar.HOUR_OF_DAY) + " Giờ trước");
+                }
+            }
+            if(calendar.get(Calendar.HOUR_OF_DAY) - calendar1.get(Calendar.HOUR_OF_DAY) >= 2){
+                if((calendar.get(Calendar.MINUTE) >= calendar1.get(Calendar.MINUTE))) {
+                    thoiGian.setText(calendar.get(Calendar.HOUR_OF_DAY) - calendar1.get(Calendar.HOUR_OF_DAY) + " Giờ trước");
+                }
+                else if((calendar.get(Calendar.MINUTE) < calendar1.get(Calendar.MINUTE))){
+                    thoiGian.setText(calendar.get(Calendar.HOUR_OF_DAY) - calendar1.get(Calendar.HOUR_OF_DAY) - 1 + " Giờ trước");
+                }
+            }
+            else if(calendar.get(Calendar.HOUR_OF_DAY) - calendar1.get(Calendar.HOUR_OF_DAY) == 0){
+                if (calendar.get(Calendar.MINUTE) - calendar1.get(Calendar.MINUTE) >= 1 && calendar.get(Calendar.MINUTE) - calendar1.get(Calendar.MINUTE) < 60) {
+                    thoiGian.setText(calendar.get(Calendar.MINUTE) - calendar1.get(Calendar.MINUTE) + " Phút trước");
+                }
+                else if(calendar.get(Calendar.MINUTE) - calendar1.get(Calendar.MINUTE)  == 0) {
+                    if (calendar.get(Calendar.SECOND) - calendar1.get(Calendar.SECOND) > 15 && calendar.get(Calendar.SECOND) - calendar1.get(Calendar.SECOND) < 60) {
+                        thoiGian.setText(calendar.get(Calendar.SECOND) - calendar1.get(Calendar.SECOND) + " Giây trước");
+                        if (calendar.get(Calendar.SECOND) - calendar1.get(Calendar.SECOND) <= 15) {
+                            thoiGian.setText("Mới đây");
+                        }
+                    }
+                }
             }
         }
         //thoiGian.setText(baiViet.LayNgayVietTheoNgayThang()+"");
@@ -389,6 +413,7 @@ public class NoiBatAdapter extends BaseAdapter {
                 }
                 intent.putExtra("NguoiDung", nguoiDung);
                 intent.putExtra("BaiViet", baiViet);
+
                 //intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 
                 context.startActivity(intent);
